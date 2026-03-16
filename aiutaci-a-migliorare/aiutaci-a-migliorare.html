@@ -19,146 +19,103 @@
       --radius:    16px;
       --radius-sm: 10px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Barlow', sans-serif;
       background: var(--blue-bg);
       color: var(--text);
       min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
     }
-
     .wrap {
-      width: 100%;
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 0 16px 32px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      width: 100%; max-width: 540px;
+      margin: 0 auto; padding: 0 16px 32px;
+      flex: 1; display: flex; flex-direction: column;
     }
-
-    /* HEADER */
     .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: var(--blue);
-      margin: 0 -16px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      margin: 0 -16px; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
       gap: 12px;
       box-shadow: 0 2px 12px rgba(54,67,186,0.3);
     }
-
     .brand { display: flex; align-items: center; gap: 12px; }
-
     .logo-wrap {
       width: 48px; height: 48px;
-      background: transparent;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; overflow: hidden;
+      cursor: pointer;
     }
-
     .logo { width: 48px; height: 48px; object-fit: contain; }
-
     .titles h1 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px; font-weight: 800;
       color: var(--white); letter-spacing: 0.3px; line-height: 1.1;
     }
-
     .subtitle {
       font-size: 11px; font-weight: 600;
       color: rgba(255,255,255,0.65);
       letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px;
     }
-
-    /* GRID 2 COLONNE */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 20px;
+    .homeBtn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      border: none; border-radius: 10px;
+      padding: 10px 14px; cursor: pointer;
+      white-space: nowrap;
     }
+    .homeBtn:active { background: rgba(255,255,255,0.25); }
 
-    .sectionBtn {
+    /* TASTI PRINCIPALI */
+    .main-actions {
+      display: flex; flex-direction: column;
+      gap: 14px; margin-top: 32px; flex: 1;
+    }
+    .bigBtn {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 10px;
-      aspect-ratio: 1 / 1;
-      padding: 14px 10px;
+      gap: 14px; padding: 40px 20px;
       background: var(--blue);
       border: none; border-radius: var(--radius);
-      cursor: pointer; text-align: center;
-      transition: transform 0.1s ease, background 0.1s ease;
+      cursor: pointer;
       box-shadow: 0 3px 12px rgba(54,67,186,0.25);
-      animation: fadeUp 0.4s ease both;
+      transition: transform 0.1s ease, background 0.1s ease;
+      animation: fadeUp 0.35s ease both;
     }
-    .sectionBtn:active { transform: scale(0.95); background: var(--blue-dark); }
-    .sectionBtn:nth-child(1) { animation-delay: 0.08s; }
-    .sectionBtn:nth-child(2) { animation-delay: 0.13s; }
-    .sectionBtn:nth-child(3) { animation-delay: 0.18s; }
+    .bigBtn:active { transform: scale(0.97); background: var(--blue-dark); }
+    .bigBtn .btn-emoji { font-size: 42px; line-height: 1; }
+    .bigBtn .btn-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.3px;
+    }
+
+    .smallBtn {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; padding: 20px;
+      background: var(--white);
+      border: none; border-radius: var(--radius);
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.1);
+      transition: transform 0.1s ease, background 0.1s ease;
+      animation: fadeUp 0.35s 0.1s ease both;
+    }
+    .smallBtn:active { transform: scale(0.97); background: var(--blue-bg); }
+    .smallBtn .btn-emoji { font-size: 26px; line-height: 1; }
+    .smallBtn .btn-label {
+      font-size: 14px; font-weight: 700;
+      color: var(--blue);
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .btn-emoji { font-size: 32px; line-height: 1; }
-    .btn-label {
-      font-size: 12px; font-weight: 700;
-      color: var(--white); line-height: 1.25;
-    }
-
-    /* BACHECA */
-    .bacheca {
-      margin-top: 20px;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-
-    .domanda-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 3px 12px rgba(54,67,186,0.1);
-      animation: fadeUp 0.3s ease both;
-    }
-
-    .domanda-testo {
-      font-size: 15px; font-weight: 600;
-      color: var(--text); margin-bottom: 6px;
-    }
-
-    .domanda-meta {
-      font-size: 12px; color: var(--muted);
-    }
-
-    .nessuna {
-      text-align: center; color: var(--muted);
-      font-size: 14px; padding: 32px 0;
-    }
-
-    /* HOME BTN */
-    .home-wrap {
-      margin-top: 24px; text-align: center;
-    }
-
-    .homeBtn {
-      display: inline-block;
-      font-family: 'Barlow', sans-serif;
-      font-size: 13px; font-weight: 700;
-      color: var(--blue);
-      text-decoration: none;
-      letter-spacing: 0.3px;
-    }
-
-    /* FOOTER */
     footer {
       margin-top: 24px; text-align: center;
       font-size: 11px; font-weight: 600;
@@ -168,31 +125,26 @@
 
     /* MODALE */
     .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
+      display: none; position: fixed; inset: 0;
       background: rgba(13,18,64,0.5);
       z-index: 200;
       align-items: center; justify-content: center;
       padding: 20px;
     }
-
     .modal-box {
       background: var(--white);
       border-radius: var(--radius);
       padding: 24px 20px;
       width: 100%; max-width: 400px;
     }
-
     .modal-box h2 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px; font-weight: 800;
       color: var(--text); margin-bottom: 8px;
     }
-
     .modal-box p {
       font-size: 14px; color: var(--muted); margin-bottom: 16px;
     }
-
     .question-textarea {
       width: 100%; min-height: 120px;
       padding: 12px 14px;
@@ -203,11 +155,19 @@
       resize: none; outline: none;
     }
     .question-textarea:focus { border-color: var(--blue); }
-
+    .pwd-input {
+      width: 100%; min-height: 52px;
+      padding: 12px 14px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px; color: var(--text);
+      border: 2px solid var(--blue-bg);
+      border-radius: var(--radius-sm);
+      resize: none; outline: none;
+    }
+    .pwd-input:focus { border-color: var(--blue); }
     .modal-actions {
       display: flex; gap: 10px; margin-top: 16px;
     }
-
     .modal-btn {
       flex: 1; padding: 13px;
       font-family: 'Barlow', sans-serif;
@@ -222,10 +182,9 @@
 <body>
 <div class="wrap">
 
-  <!-- HEADER -->
   <header class="header">
     <div class="brand">
-      <div class="logo-wrap">
+      <div class="logo-wrap" id="logoBtn">
         <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
       </div>
       <div class="titles">
@@ -233,30 +192,18 @@
         <p class="subtitle">Sito sempre aggiornato</p>
       </div>
     </div>
-    <span style="width:40px;"></span>
+    <a href="../index.html" class="homeBtn">← Home</a>
   </header>
 
-  <!-- TASTI -->
-  <div class="grid">
-    <button class="sectionBtn" id="btnNuova">
+  <div class="main-actions">
+    <button class="bigBtn" id="btnNuova">
       <span class="btn-emoji">✏️</span>
-      <span class="btn-label">Nuova Domanda</span>
+      <span class="btn-label">Scrivi una Domanda</span>
     </button>
-    <button class="sectionBtn" id="btnAdmin">
-      <span class="btn-emoji">🔒</span>
-      <span class="btn-label">Area Admin</span>
+    <button class="smallBtn" id="btnCrediti">
+      <span class="btn-emoji">🙏</span>
+      <span class="btn-label">Crediti</span>
     </button>
-    <button class="sectionBtn" id="btnBacheca">
-      <span class="btn-emoji">📋</span>
-      <span class="btn-label">Leggi Domande</span>
-    </button>
-  </div>
-
-  <!-- BACHECA (nascosta di default) -->
-  <div class="bacheca" id="bacheca" style="display:none;"></div>
-
-  <div class="home-wrap">
-    <a href="../index.html" class="homeBtn">← Torna alla Home</a>
   </div>
 
   <footer>© Il Perfetto Venditore</footer>
@@ -269,41 +216,28 @@
     <p>Scrivi un dubbio o una segnalazione — ci aiuti a migliorare.</p>
     <textarea id="questionInput" class="question-textarea" placeholder="Scrivi qui..."></textarea>
     <div class="modal-actions">
-      <button class="modal-btn cancel" id="btnAnnullaNuova">Annulla</button>
+      <button class="modal-btn cancel" id="btnAnnulla">Annulla</button>
       <button class="modal-btn confirm" id="btnInvia">Invia</button>
     </div>
   </div>
 </div>
 
-<!-- MODALE PASSWORD BACHECA -->
-<div id="modalBacheca" class="modal-overlay">
+<!-- MODALE PASSWORD LOGO -->
+<div id="modalPwd" class="modal-overlay">
   <div class="modal-box">
-    <h2>Accesso riservato</h2>
-    <p>Inserisci la password per leggere le domande.</p>
-    <textarea id="pwdBacheca" class="question-textarea" style="min-height:60px;" placeholder="Password..."></textarea>
+    <h2>Area riservata</h2>
+    <p>Inserisci la password per accedere alle domande.</p>
+    <textarea id="pwdInput" class="pwd-input" placeholder="Password..."></textarea>
     <div class="modal-actions">
-      <button class="modal-btn cancel" id="btnAnnullaBacheca">Annulla</button>
-      <button class="modal-btn confirm" id="btnAccediBacheca">Accedi</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODALE ADMIN -->
-<div id="modalAdmin" class="modal-overlay">
-  <div class="modal-box">
-    <h2>Area Admin</h2>
-    <p>Inserisci la password per eliminare tutte le domande.</p>
-    <textarea id="pwdAdmin" class="question-textarea" style="min-height:60px;" placeholder="Password..."></textarea>
-    <div class="modal-actions">
-      <button class="modal-btn cancel" id="btnAnnullaAdmin">Annulla</button>
-      <button class="modal-btn confirm" id="btnAccediAdmin">Accedi</button>
+      <button class="modal-btn cancel" id="btnAnnullaPwd">Annulla</button>
+      <button class="modal-btn confirm" id="btnAccedi">Accedi</button>
     </div>
   </div>
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCm0bPUUOYtq0jowTbPhiUu4pWGd40ycOc",
@@ -319,11 +253,11 @@
   const db = getDatabase(app);
   const domandeRef = ref(db, "domande");
 
-  // Modale nuova domanda
+  // Nuova domanda
   document.getElementById('btnNuova').addEventListener('click', () => {
     document.getElementById('modalNuova').style.display = 'flex';
   });
-  document.getElementById('btnAnnullaNuova').addEventListener('click', () => {
+  document.getElementById('btnAnnulla').addEventListener('click', () => {
     document.getElementById('modalNuova').style.display = 'none';
     document.getElementById('questionInput').value = '';
   });
@@ -336,64 +270,28 @@
     alert('Domanda inviata!');
   });
 
-  // Modale bacheca con password
-  document.getElementById('btnBacheca').addEventListener('click', () => {
-    document.getElementById('modalBacheca').style.display = 'flex';
+  // Logo — password per box domande
+  document.getElementById('logoBtn').addEventListener('click', () => {
+    document.getElementById('modalPwd').style.display = 'flex';
   });
-  document.getElementById('btnAnnullaBacheca').addEventListener('click', () => {
-    document.getElementById('modalBacheca').style.display = 'none';
-    document.getElementById('pwdBacheca').value = '';
+  document.getElementById('btnAnnullaPwd').addEventListener('click', () => {
+    document.getElementById('modalPwd').style.display = 'none';
+    document.getElementById('pwdInput').value = '';
   });
-  document.getElementById('btnAccediBacheca').addEventListener('click', () => {
-    const pwd = document.getElementById('pwdBacheca').value;
+  document.getElementById('btnAccedi').addEventListener('click', () => {
+    const pwd = document.getElementById('pwdInput').value.trim();
     if (pwd === 'avoingresso') {
-      document.getElementById('modalBacheca').style.display = 'none';
-      document.getElementById('pwdBacheca').value = '';
-      mostraBacheca();
+      window.location.href = 'box-domande.html';
     } else {
       alert('Password non corretta.');
+      document.getElementById('pwdInput').value = '';
     }
   });
 
-  // Modale admin
-  document.getElementById('btnAdmin').addEventListener('click', () => {
-    document.getElementById('modalAdmin').style.display = 'flex';
+  // Crediti
+  document.getElementById('btnCrediti').addEventListener('click', () => {
+    window.location.href = 'crediti.html';
   });
-  document.getElementById('btnAnnullaAdmin').addEventListener('click', () => {
-    document.getElementById('modalAdmin').style.display = 'none';
-    document.getElementById('pwdAdmin').value = '';
-  });
-  document.getElementById('btnAccediAdmin').addEventListener('click', () => {
-    const pwd = document.getElementById('pwdAdmin').value;
-    if (pwd === 'dipunziomagico') {
-      if (confirm('Vuoi eliminare tutte le domande?')) { remove(domandeRef); }
-      document.getElementById('modalAdmin').style.display = 'none';
-      document.getElementById('pwdAdmin').value = '';
-    } else {
-      alert('Password non corretta.');
-    }
-  });
-
-  function mostraBacheca() {
-    const bacheca = document.getElementById('bacheca');
-    bacheca.style.display = 'flex';
-    bacheca.innerHTML = '<p class="nessuna">Caricamento...</p>';
-    onValue(domandeRef, (snapshot) => {
-      bacheca.innerHTML = '';
-      if (!snapshot.exists()) {
-        bacheca.innerHTML = '<p class="nessuna">Nessuna domanda ancora.</p>';
-        return;
-      }
-      const domande = [];
-      snapshot.forEach(child => domande.push({ id: child.key, ...child.val() }));
-      domande.reverse().forEach(d => {
-        const card = document.createElement('div');
-        card.className = 'domanda-card';
-        card.innerHTML = `<div class="domanda-testo">${d.testo}</div><div class="domanda-meta">${d.data}</div>`;
-        bacheca.appendChild(card);
-      });
-    });
-  }
 </script>
 </body>
 </html>
