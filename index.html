@@ -41,7 +41,7 @@
       flex-direction: column;
     }
 
-    /* HEADER */
+    /* ── HEADER ── */
     .header {
       position: sticky;
       top: 0;
@@ -56,197 +56,168 @@
       box-shadow: 0 2px 12px rgba(54,67,186,0.3);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
 
     .logo-wrap {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: var(--white);
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
     }
 
-    .logo {
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-    }
+    .logo { width: 34px; height: 34px; object-fit: contain; }
 
     .titles h1 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: 0.3px;
-      line-height: 1.1;
+      font-size: 20px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.3px; line-height: 1.1;
     }
 
     .subtitle {
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11px; font-weight: 600;
       color: rgba(255,255,255,0.65);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-top: 2px;
+      letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px;
     }
 
     .searchBtn {
       background: rgba(255,255,255,0.15);
-      border: none;
-      border-radius: 10px;
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.15s;
+      border: none; border-radius: 10px;
+      width: 40px; height: 40px; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
     }
-
     .searchBtn:active { background: rgba(255,255,255,0.25); }
 
-    /* SEARCH */
+    /* ── SEARCH ── */
     .search-wrap {
-      overflow: hidden;
-      max-height: 0;
+      overflow: hidden; max-height: 0;
       transition: max-height 0.25s ease, padding 0.25s ease;
       background: var(--blue-dark);
       margin: 0 -16px;
     }
-
-    .search-wrap.open {
-      max-height: 80px;
-      padding: 10px 16px 12px;
-    }
+    .search-wrap.open { max-height: 80px; padding: 10px 16px 12px; }
 
     #searchInput {
-      width: 100%;
-      padding: 12px 16px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      border: none;
-      border-radius: var(--radius-sm);
-      background: var(--white);
-      color: var(--text);
-      outline: none;
+      width: 100%; padding: 12px 16px;
+      font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 500;
+      border: none; border-radius: var(--radius-sm);
+      background: var(--white); color: var(--text); outline: none;
     }
-
     #searchInput::placeholder { color: var(--muted); }
 
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
+    /* ── AIUTACI BUTTON ── */
+    .accent-wrap { margin-top: 20px; }
+
+    .accentBtn {
+      width: 100%;
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 20px;
+      background: var(--white);
+      border: none; border-radius: var(--radius);
+      cursor: pointer; text-align: left;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.12);
+      transition: transform 0.1s ease, background 0.1s ease;
+      animation: fadeUp 0.3s ease both;
+    }
+    .accentBtn:active { transform: scale(0.98); background: var(--blue-bg); }
+
+    .accentBtn .btn-emoji { font-size: 26px; line-height: 1; flex-shrink: 0; }
+    .accentBtn .btn-label {
+      font-size: 16px; font-weight: 800;
+      color: var(--blue); flex: 1;
+    }
+    .accentBtn .btn-arrow {
+      font-size: 20px; font-weight: 700;
+      color: var(--blue); opacity: 0.35;
     }
 
-    /* BUTTONS */
+    /* ── GRID 3x3 ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
     .sectionBtn {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      min-height: 120px;
-      padding: 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+      aspect-ratio: 1 / 1;
+      padding: 14px 10px;
       background: var(--blue);
-      border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-      text-align: left;
+      border: none; border-radius: var(--radius);
+      cursor: pointer; text-align: center;
       transition: transform 0.1s ease, background 0.1s ease;
       box-shadow: 0 3px 12px rgba(54,67,186,0.25);
       animation: fadeUp 0.4s ease both;
     }
+    .sectionBtn:active { transform: scale(0.95); background: var(--blue-dark); }
 
-    .sectionBtn:active {
-      transform: scale(0.97);
-      background: var(--blue-dark);
-    }
-
-    .sectionBtn:nth-child(1)  { animation-delay: 0.05s; }
-    .sectionBtn:nth-child(2)  { animation-delay: 0.10s; }
-    .sectionBtn:nth-child(3)  { animation-delay: 0.15s; }
-    .sectionBtn:nth-child(4)  { animation-delay: 0.20s; }
-    .sectionBtn:nth-child(5)  { animation-delay: 0.25s; }
-    .sectionBtn:nth-child(6)  { animation-delay: 0.30s; }
-    .sectionBtn:nth-child(7)  { animation-delay: 0.35s; }
-    .sectionBtn:nth-child(8)  { animation-delay: 0.40s; }
-    .sectionBtn:nth-child(9)  { animation-delay: 0.45s; }
-    .sectionBtn:nth-child(10) { animation-delay: 0.50s; }
+    .sectionBtn:nth-child(1) { animation-delay: 0.08s; }
+    .sectionBtn:nth-child(2) { animation-delay: 0.13s; }
+    .sectionBtn:nth-child(3) { animation-delay: 0.18s; }
+    .sectionBtn:nth-child(4) { animation-delay: 0.23s; }
+    .sectionBtn:nth-child(5) { animation-delay: 0.28s; }
+    .sectionBtn:nth-child(6) { animation-delay: 0.33s; }
+    .sectionBtn:nth-child(7) { animation-delay: 0.38s; }
+    .sectionBtn:nth-child(8) { animation-delay: 0.43s; }
+    .sectionBtn:nth-child(9) { animation-delay: 0.48s; }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .btn-emoji {
-      font-size: 30px;
-      line-height: 1;
-    }
-
+    .btn-emoji { font-size: 32px; line-height: 1; }
     .btn-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
+      font-size: 12px; font-weight: 700;
+      color: var(--white); line-height: 1.25;
     }
-
-    .btn-arrow {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* Aiutaci a Migliorare — full width, white */
-    .sectionBtn.accent {
-      grid-column: 1 / -1;
-      flex-direction: row;
-      align-items: center;
-      min-height: 64px;
-      background: var(--white);
-      gap: 14px;
-      box-shadow: 0 3px 12px rgba(54,67,186,0.12);
-    }
-
-    .sectionBtn.accent .btn-emoji { font-size: 24px; }
-    .sectionBtn.accent .btn-label { color: var(--blue); font-size: 15px; }
-    .sectionBtn.accent .btn-arrow { color: var(--blue); opacity: 0.35; }
-    .sectionBtn.accent:active     { background: var(--blue-bg); }
 
     /* No results */
     .empty {
-      display: none;
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-      font-size: 15px;
+      display: none; grid-column: 1 / -1;
+      text-align: center; padding: 40px 20px;
+      color: var(--muted); font-size: 15px;
     }
 
-    /* FOOTER */
+    /* ── TIPS ── */
+    .tips-wrap {
+      margin-top: 20px;
+      background: var(--blue);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.25);
+      animation: fadeUp 0.4s 0.55s ease both;
+    }
+
+    .tips-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .tips-label {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .tips-icon { font-size: 14px; }
+
+    .tip-text {
+      font-size: 15px; font-weight: 600;
+      color: var(--white); line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
     footer {
-      margin-top: 28px;
-      text-align: center;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      color: var(--muted);
+      margin-top: 24px; text-align: center;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.5px; color: var(--muted);
       text-transform: uppercase;
     }
   </style>
@@ -254,6 +225,7 @@
 <body>
 <div class="wrap">
 
+  <!-- HEADER -->
   <header class="header">
     <div class="brand">
       <div class="logo-wrap">
@@ -267,109 +239,95 @@
     <button class="searchBtn" id="searchBtn" aria-label="Cerca">🔍</button>
   </header>
 
+  <!-- SEARCH -->
   <div class="search-wrap" id="searchWrap">
     <input id="searchInput" type="search" placeholder="Cerca una sezione…" autocomplete="off">
   </div>
 
+  <!-- AIUTACI A MIGLIORARE -->
+  <div class="accent-wrap">
+    <button class="accentBtn" data-name="aiutaci migliorare feedback suggerimenti sito" data-href="aiutaci-a-migliorare/aiutaci-a-migliorare.html">
+      <span class="btn-emoji">😁</span>
+      <span class="btn-label">Aiutaci a Migliorare!</span>
+      <span class="btn-arrow">›</span>
+    </button>
+  </div>
+
+  <!-- GRID 3x3 -->
   <main>
     <div class="grid" id="sectionsGrid">
 
-      <button class="sectionBtn accent"
-        data-name="aiutaci migliorare feedback suggerimenti sito"
-        data-href="aiutaci-a-migliorare/aiutaci-a-migliorare.html">
-        <span class="btn-emoji">😁</span>
-        <span class="btn-label">Aiutaci a Migliorare!</span>
-        <span class="btn-arrow">›</span>
-      </button>
-
-      <button class="sectionBtn"
-        data-name="b2b club aziende tessera associazioni carta club"
-        data-href="b2b/b2b.html">
+      <button class="sectionBtn" data-name="b2b club aziende tessera associazioni" data-href="b2b/b2b.html">
         <span class="btn-emoji">🤝</span>
         <span class="btn-label">B2B</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="second hand usato riacquisto vendita usato reso usato"
-        data-href="second-hand/second-hand.html">
+      <button class="sectionBtn" data-name="second hand usato riacquisto vendita usato reso" data-href="second-hand/second-hand.html">
         <span class="btn-emoji">♻️</span>
         <span class="btn-label">Second Hand</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="assistenza riparazione laboratorio prodotto rotto"
-        data-href="assistenza/assistenza.html">
+      <button class="sectionBtn" data-name="assistenza riparazione laboratorio prodotto rotto" data-href="assistenza/assistenza.html">
         <span class="btn-emoji">🧰</span>
         <span class="btn-label">Assistenza</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="carta decathlon reso buono cliente rimborso"
-        data-href="carta-decathlon/carta-decathlon.html">
+      <button class="sectionBtn" data-name="carta decathlon reso buono cliente rimborso" data-href="carta-decathlon/carta-decathlon.html">
         <span class="btn-emoji">🎫</span>
         <span class="btn-label">Carta Decathlon</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="fatturazione fattura partita iva azienda documento"
-        data-href="fatturazione/fatturazione.html">
+      <button class="sectionBtn" data-name="fatturazione fattura partita iva azienda documento" data-href="fatturazione/fatturazione.html">
         <span class="btn-emoji">🧾</span>
         <span class="btn-label">Fatturazione</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="garanzia assicurazione protezione prodotto danno"
-        data-href="garanzia-assicurazione/garanzia-assicurazione.html">
+      <button class="sectionBtn" data-name="garanzia assicurazione protezione prodotto danno" data-href="garanzia-assicurazione/garanzia-assicurazione.html">
         <span class="btn-emoji">🛡️</span>
         <span class="btn-label">Garanzia e Assicurazione</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="incasso cassa pagamento contanti carta pagamento"
-        data-href="incasso/incasso.html">
+      <button class="sectionBtn" data-name="incasso cassa pagamento contanti carta" data-href="incasso/incasso.html">
         <span class="btn-emoji">🏧</span>
         <span class="btn-label">Incasso</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="intermag trasferimento magazzino negozio prodotto"
-        data-href="intermag/intermag.html">
+      <button class="sectionBtn" data-name="intermag trasferimento magazzino negozio prodotto" data-href="intermag/intermag.html">
         <span class="btn-emoji">🚚</span>
         <span class="btn-label">Intermag</span>
-        <span class="btn-arrow">›</span>
       </button>
 
-      <button class="sectionBtn"
-        data-name="ordine plus ordine cliente prodotto spedizione"
-        data-href="ordine-plus/ordine-plus.html">
+      <button class="sectionBtn" data-name="ordine plus ordine cliente prodotto spedizione" data-href="ordine-plus/ordine-plus.html">
         <span class="btn-emoji">📦</span>
         <span class="btn-label">Ordine PLUS</span>
-        <span class="btn-arrow">›</span>
       </button>
 
       <p class="empty" id="emptyMsg">Nessuna sezione trovata.</p>
-
     </div>
   </main>
+
+  <!-- TIPS -->
+  <div class="tips-wrap" id="tipsWrap">
+    <div class="tips-header">
+      <span class="tips-icon">💡</span>
+      <span class="tips-label">Tip del giorno</span>
+    </div>
+    <p class="tip-text" id="tipText"></p>
+  </div>
 
   <footer>© Il Perfetto Venditore</footer>
 </div>
 
 <script>
-  document.querySelectorAll('.sectionBtn').forEach(btn => {
+  // ── NAVIGATION ──
+  document.querySelectorAll('.sectionBtn, .accentBtn').forEach(btn => {
     btn.addEventListener('click', () => {
       const href = btn.dataset.href;
       if (href) window.location.href = href;
     });
   });
 
+  // ── SEARCH ──
   const searchBtn   = document.getElementById('searchBtn');
   const searchWrap  = document.getElementById('searchWrap');
   const searchInput = document.getElementById('searchInput');
@@ -381,12 +339,12 @@
     if (!isOpen) { searchInput.value = ''; filterButtons(''); }
   });
 
-  const buttons  = document.querySelectorAll('.sectionBtn');
+  const allBtns  = document.querySelectorAll('.sectionBtn');
   const emptyMsg = document.getElementById('emptyMsg');
 
   function filterButtons(q) {
     let visible = 0;
-    buttons.forEach(btn => {
+    allBtns.forEach(btn => {
       const text = (btn.dataset.name + ' ' + btn.innerText).toLowerCase();
       const show = text.includes(q);
       btn.style.display = show ? '' : 'none';
@@ -398,6 +356,30 @@
   searchInput.addEventListener('input', () => {
     filterButtons(searchInput.value.toLowerCase().trim());
   });
+
+  // ── TIPS ──
+  const tips = [
+    "Ascolta prima di parlare: capisci cosa cerca il cliente prima di proporre qualsiasi prodotto.",
+    "Un sorriso autentico vale più di qualsiasi tecnica di vendita.",
+    "Conosci i tuoi prodotti meglio dei tuoi clienti: la competenza crea fiducia.",
+    "Non vendere un prodotto, risolvi un problema.",
+    "Il cliente che torna è più prezioso di dieci clienti nuovi.",
+    "Fai domande aperte: 'Cosa ti serve?' apre più porte di 'Posso aiutarti?'",
+    "Mostra entusiasmo per ciò che vendi — l'energia si trasmette.",
+    "Un reso gestito bene può trasformare un cliente insoddisfatto in un cliente fedele.",
+    "Proponi sempre un articolo complementare: non è insistenza, è servizio.",
+    "Il linguaggio del corpo conta quanto le parole: stai dritto, mantieni il contatto visivo.",
+    "Ricorda il nome del cliente — è il suono che preferisce sentire.",
+    "Una promessa mantenuta vale più di mille promesse fatte.",
+    "Se non sai rispondere, dì 'Lo scopro subito per te' — non improvvisare.",
+    "Il momento migliore per fidelizzare un cliente è durante il primo acquisto.",
+    "Ringrazia sempre — anche chi non compra oggi potrebbe tornare domani.",
+  ];
+
+  const tipEl = document.getElementById('tipText');
+  // Cambia tip ogni giorno, non solo ad ogni accesso
+  const idx = Math.floor(Math.random() * tips.length);
+  tipEl.textContent = tips[idx];
 </script>
 </body>
 </html>
