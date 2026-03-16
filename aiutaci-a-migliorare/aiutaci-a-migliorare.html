@@ -1,1 +1,124 @@
-.
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aiutaci a migliorare</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <style>
+    .bacheca { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+    .domanda-card { background:#F1F3FF; border-radius:12px; padding:14px 16px; }
+    .domanda-testo { font-size:15px; color:#0B1220; margin-bottom:6px; }
+    .domanda-meta { font-size:12px; color:#4F5B78; }
+    .nessuna { text-align:center; color:#4F5B78; margin-top:24px; font-size:14px; }
+    .delete-btn { float:right; background:none; border:none; color:#4F5B78; font-size:18px; cursor:pointer; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">
+      <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      <div class="titles">
+        <h1>Aiutaci a migliorare</h1>
+        <p class="subtitle">Sito sempre aggiornato</p>
+      </div>
+    </div>
+    <span style="width:32px;"></span>
+  </header>
+
+  <main class="card">
+    <div class="card-content">
+      <div class="improve-banner">
+        <p>Hai trovato un passaggio poco chiaro o hai un dubbio? Scrivilo qui — le segnalazioni ci aiutano a migliorare le procedure per tutti.</p>
+      </div>
+      <div class="grid">
+        <button class="sectionBtn" onclick="apriNuovaDomanda()">✏️ Nuova Domanda</button>
+        <button class="sectionBtn" onclick="apriAdmin()">🔒 Area Admin</button>
+      </div>
+      <div class="bacheca" id="bacheca">
+        <p class="nessuna">Caricamento...</p>
+      </div>
+    </div>
+  </main>
+
+  <div style="text-align:center;">
+    <a href="../index.html" class="homeBtn">← Torna alla Home</a>
+  </div>
+</div>
+
+<!-- MODALE NUOVA DOMANDA -->
+<div id="questionModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h2>Nuova domanda</h2>
+    <p>Scrivi un dubbio o una segnalazione.</p>
+    <textarea id="questionInput" class="question-textarea" placeholder="Scrivi qui..."></textarea>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" onclick="chiudiModal()">Annulla</button>
+      <button class="modal-btn confirm" onclick="salvaDomanda()">Invia</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE ADMIN -->
+<div id="adminModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h2>Area Admin</h2>
+    <textarea id="adminInput" class="question-textarea" placeholder="Password..."></textarea>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" onclick="chiudiAdmin()">Annulla</button>
+      <button class="modal-btn confirm" onclick="verificaAdmin()">Accedi</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCm0bPUUOYtq0jowTbPhiUu4pWGd40ycOc",
+    authDomain: "il-perfetto-venditore.firebaseapp.com",
+    databaseURL: "https://il-perfetto-venditore-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "il-perfetto-venditore",
+    storageBucket: "il-perfetto-venditore.firebasestorage.app",
+    messagingSenderId: "48604769561",
+    appId: "1:48604769561:web:6207fa32bd75af612ea988"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const domandeRef = ref(db, "domande");
+
+  // Carica e mostra le domande in tempo reale
+  onValue(domandeRef, (snapshot) => {
+    const bacheca = document.getElementById("bacheca");
+    bacheca.innerHTML = "";
+    if (!snapshot.exists()) {
+      bacheca.innerHTML = '<p class="nessuna">Nessuna domanda ancora. Sii il primo!</p>';
+      return;
+    }
+    const domande = [];
+    snapshot.forEach(child => {
+      domande.push({ id: child.key, ...child.val() });
+    });
+    domande.reverse().forEach(d => {
+      const card = document.createElement("div");
+      card.className = "domanda-card";
+      card.innerHTML = `
+        <div class="domanda-testo">${d.testo}</div>
+        <div class="domanda-meta">${d.data}</div>
+      `;
+      bacheca.appendChild(card);
+    });
+  });
+
+  // Salva nuova domanda
+  window.salvaDomanda = function() {
+    const testo = document.getElementById("questionInput").value.trim();
+    if (!testo) { alert("Scrivi una domanda prima di inviare."); return; }
+    push(domandeRef, {
+      testo: testo,
+      data: new Date().toLocaleString("it-IT")
+    });
+    document.getElementById("questionInpu
