@@ -59,14 +59,14 @@
     .brand { display: flex; align-items: center; gap: 12px; }
 
     .logo-wrap {
-      width: 40px; height: 40px;
-      background: var(--white);
-      border-radius: 10px;
+      width: 48px; height: 48px;
+      background: transparent;
+      border-radius: 0;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; overflow: hidden;
     }
 
-    .logo { width: 34px; height: 34px; object-fit: contain; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
 
     .titles h1 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -111,11 +111,11 @@
 
     .accentBtn {
       width: 100%;
-      display: flex; align-items: center; gap: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
       padding: 18px 20px;
       background: var(--white);
       border: none; border-radius: var(--radius);
-      cursor: pointer; text-align: left;
+      cursor: pointer; text-align: center;
       box-shadow: 0 3px 12px rgba(54,67,186,0.12);
       transition: transform 0.1s ease, background 0.1s ease;
       animation: fadeUp 0.3s ease both;
@@ -125,11 +125,7 @@
     .accentBtn .btn-emoji { font-size: 26px; line-height: 1; flex-shrink: 0; }
     .accentBtn .btn-label {
       font-size: 16px; font-weight: 800;
-      color: var(--blue); flex: 1;
-    }
-    .accentBtn .btn-arrow {
-      font-size: 20px; font-weight: 700;
-      color: var(--blue); opacity: 0.35;
+      color: var(--blue);
     }
 
     /* ── GRID 3x3 ── */
@@ -249,7 +245,6 @@
     <button class="accentBtn" data-name="aiutaci migliorare feedback suggerimenti sito" data-href="aiutaci-a-migliorare/aiutaci-a-migliorare.html">
       <span class="btn-emoji">😁</span>
       <span class="btn-label">Aiutaci a Migliorare!</span>
-      <span class="btn-arrow">›</span>
     </button>
   </div>
 
