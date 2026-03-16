@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--blue-bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 16px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--blue);
+      margin: 0 -16px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(54,67,186,0.3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap {
+      width: 40px;
+      height: 40px;
+      background: var(--white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .titles h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .searchBtn {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .searchBtn:active { background: rgba(255,255,255,0.25); }
+
+    /* SEARCH */
+    .search-wrap {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.25s ease, padding 0.25s ease;
+      background: var(--blue-dark);
+      margin: 0 -16px;
+    }
+
+    .search-wrap.open {
+      max-height: 80px;
+      padding: 10px 16px 12px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--text);
+      outline: none;
+    }
+
+    #searchInput::placeholder { color: var(--muted); }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    /* BUTTONS */
+    .sectionBtn {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 120px;
+      padding: 16px;
+      background: var(--blue);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.1s ease, background 0.1s ease;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.25);
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .sectionBtn:active {
+      transform: scale(0.97);
+      background: var(--blue-dark);
+    }
+
+    .sectionBtn:nth-child(1)  { animation-delay: 0.05s; }
+    .sectionBtn:nth-child(2)  { animation-delay: 0.10s; }
+    .sectionBtn:nth-child(3)  { animation-delay: 0.15s; }
+    .sectionBtn:nth-child(4)  { animation-delay: 0.20s; }
+    .sectionBtn:nth-child(5)  { animation-delay: 0.25s; }
+    .sectionBtn:nth-child(6)  { animation-delay: 0.30s; }
+    .sectionBtn:nth-child(7)  { animation-delay: 0.35s; }
+    .sectionBtn:nth-child(8)  { animation-delay: 0.40s; }
+    .sectionBtn:nth-child(9)  { animation-delay: 0.45s; }
+    .sectionBtn:nth-child(10) { animation-delay: 0.50s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-emoji {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .btn-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .btn-arrow {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Aiutaci a Migliorare — full width, white */
+    .sectionBtn.accent {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      min-height: 64px;
+      background: var(--white);
+      gap: 14px;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.12);
+    }
+
+    .sectionBtn.accent .btn-emoji { font-size: 24px; }
+    .sectionBtn.accent .btn-label { color: var(--blue); font-size: 15px; }
+    .sectionBtn.accent .btn-arrow { color: var(--blue); opacity: 0.35; }
+    .sectionBtn.accent:active     { background: var(--blue-bg); }
+
+    /* No results */
+    .empty {
+      display: none;
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Il Perfetto Venditore</h1>
+        <p class="subtitle">Chiedi ai Trainer</p>
+      </div>
+    </div>
+    <button class="searchBtn" id="searchBtn" aria-label="Cerca">🔍</button>
+  </header>
+
+  <div class="search-wrap" id="searchWrap">
+    <input id="searchInput" type="search" placeholder="Cerca una sezione…" autocomplete="off">
+  </div>
+
+  <main>
+    <div class="grid" id="sectionsGrid">
+
+      <button class="sectionBtn accent"
+        data-name="aiutaci migliorare feedback suggerimenti sito"
+        data-href="aiutaci-a-migliorare/aiutaci-a-migliorare.html">
+        <span class="btn-emoji">😁</span>
+        <span class="btn-label">Aiutaci a Migliorare!</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="b2b club aziende tessera associazioni carta club"
+        data-href="b2b/b2b.html">
+        <span class="btn-emoji">🤝</span>
+        <span class="btn-label">B2B</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="second hand usato riacquisto vendita usato reso usato"
+        data-href="second-hand/second-hand.html">
+        <span class="btn-emoji">♻️</span>
+        <span class="btn-label">Second Hand</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="assistenza riparazione laboratorio prodotto rotto"
+        data-href="assistenza/assistenza.html">
+        <span class="btn-emoji">🧰</span>
+        <span class="btn-label">Assistenza</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="carta decathlon reso buono cliente rimborso"
+        data-href="carta-decathlon/carta-decathlon.html">
+        <span class="btn-emoji">🎫</span>
+        <span class="btn-label">Carta Decathlon</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="fatturazione fattura partita iva azienda documento"
+        data-href="fatturazione/fatturazione.html">
+        <span class="btn-emoji">🧾</span>
+        <span class="btn-label">Fatturazione</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="garanzia assicurazione protezione prodotto danno"
+        data-href="garanzia-assicurazione/garanzia-assicurazione.html">
+        <span class="btn-emoji">🛡️</span>
+        <span class="btn-label">Garanzia e Assicurazione</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="incasso cassa pagamento contanti carta pagamento"
+        data-href="incasso/incasso.html">
+        <span class="btn-emoji">🏧</span>
+        <span class="btn-label">Incasso</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="intermag trasferimento magazzino negozio prodotto"
+        data-href="intermag/intermag.html">
+        <span class="btn-emoji">🚚</span>
+        <span class="btn-label">Intermag</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <button class="sectionBtn"
+        data-name="ordine plus ordine cliente prodotto spedizione"
+        data-href="ordine-plus/ordine-plus.html">
+        <span class="btn-emoji">📦</span>
+        <span class="btn-label">Ordine PLUS</span>
+        <span class="btn-arrow">›</span>
+      </button>
+
+      <p class="empty" id="emptyMsg">Nessuna sezione trovata.</p>
+
+    </div>
+  </main>
+
+  <footer>© Il Perfetto Venditore</footer>
+</div>
+
+<script>
+  document.querySelectorAll('.sectionBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const href = btn.dataset.href;
+      if (href) window.location.href = href;
+    });
+  });
+
+  const searchBtn   = document.getElementById('searchBtn');
+  const searchWrap  = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+
+  searchBtn.addEventListener('click', () => {
+    const isOpen = searchWrap.classList.toggle('open');
+    searchBtn.textContent = isOpen ? '❌' : '🔍';
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+    if (!isOpen) { searchInput.value = ''; filterButtons(''); }
+  });
+
+  const buttons  = document.querySelectorAll('.sectionBtn');
+  const emptyMsg = document.getElementById('emptyMsg');
+
+  function filterButtons(q) {
+    let visible = 0;
+    buttons.forEach(btn => {
+      const text = (btn.dataset.name + ' ' + btn.innerText).toLowerCase();
+      const show = text.includes(q);
+      btn.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', () => {
+    filterButtons(searchInput.value.toLowerCase().trim());
+  });
+</script>
+</body>
+</html>
