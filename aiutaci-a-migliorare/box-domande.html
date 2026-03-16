@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Box Domande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--blue-bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+    }
+    .wrap {
+      width: 100%; max-width: 540px;
+      margin: 0 auto; padding: 0 16px 32px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue);
+      margin: 0 -16px; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(54,67,186,0.3);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.3px; line-height: 1.1;
+    }
+    .subtitle {
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px;
+    }
+    .backBtn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      border: none; border-radius: 10px;
+      padding: 10px 14px; cursor: pointer;
+      white-space: nowrap;
+    }
+    .bacheca {
+      display: flex; flex-direction: column;
+      gap: 12px; margin-top: 20px;
+    }
+    .domanda-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.1);
+      animation: fadeUp 0.3s ease both;
+    }
+    .domanda-testo {
+      font-size: 15px; font-weight: 600;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .domanda-meta { font-size: 12px; color: var(--muted); }
+    .nessuna {
+      text-align: center; color: var(--muted);
+      font-size: 14px; padding: 40px 0;
+    }
+    .svuota-wrap { margin-top: 24px; text-align: center; }
+    .svuotaBtn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--muted); background: none;
+      border: 2px solid var(--muted);
+      border-radius: var(--radius-sm);
+      padding: 10px 20px; cursor: pointer;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      margin-top: 24px; text-align: center;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.5px; color: var(--muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Box Domande</h1>
+        <p class="subtitle">Area riservata</p>
+      </div>
+    </div>
+    <button class="backBtn" onclick="history.back()">← Indietro</button>
+  </header>
+
+  <div class="bacheca" id="bacheca">
+    <p class="nessuna">Caricamento...</p>
+  </div>
+
+  <div class="svuota-wrap">
+    <button class="svuotaBtn" id="btnSvuota">🗑 Svuota bacheca</button>
+  </div>
+
+  <footer>© Il Perfetto Venditore</footer>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCm0bPUUOYtq0jowTbPhiUu4pWGd40ycOc",
+    authDomain: "il-perfetto-venditore.firebaseapp.com",
+    databaseURL: "https://il-perfetto-venditore-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "il-perfetto-venditore",
+    storageBucket: "il-perfetto-venditore.firebasestorage.app",
+    messagingSenderId: "48604769561",
+    appId: "1:48604769561:web:6207fa32bd75af612ea988"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const domandeRef = ref(db, "domande");
+
+  const bacheca = document.getElementById('bacheca');
+
+  onValue(domandeRef, (snapshot) => {
+    bacheca.innerHTML = '';
+    if (!snapshot.exists()) {
+      bacheca.innerHTML = '<p class="nessuna">Nessuna domanda ancora.</p>';
+      return;
+    }
+    const domande = [];
+    snapshot.forEach(child => domande.push({ id: child.key, ...child.val() }));
+    domande.reverse().forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'domanda-card';
+      card.innerHTML = `<div class="domanda-testo">${d.testo}</div><div class="domanda-meta">${d.data}</div>`;
+      bacheca.appendChild(card);
+    });
+  });
+
+  document.getElementById('btnSvuota').addEventListener('click', () => {
+    if (confirm('Vuoi eliminare tutte le domande?')) { remove(domandeRef); }
+  });
+</script>
+</body>
+</html>
