@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Campagna – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+    .hero { margin-top: 20px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 3px 14px rgba(54,67,186,0.2); animation: fadeUp 0.3s ease both; }
+    .hero img { width: 100%; display: block; object-fit: cover; max-height: 200px; }
+    .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 12px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s 0.05s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .card-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--blue); margin-bottom: 12px; line-height: 1.1; }
+    p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
+    p:last-of-type { margin-bottom: 0; }
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+    ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
+    ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+    .cta-wrap { margin-top: 20px; animation: fadeUp 0.3s 0.1s ease both; }
+    .ctaBtn { display: block; width: 100%; padding: 18px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); background: var(--blue); border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 3px 12px rgba(54,67,186,0.3); transition: background 0.1s; }
+    .ctaBtn:active { background: var(--blue-dark); }
+    .homeBtn { display: inline-block; margin-top: 16px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+    .date-badge { display: inline-block; font-size: 12px; font-weight: 700; color: var(--muted); background: var(--blue-bg); border-radius: 6px; padding: 4px 10px; margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1 id="pageTitle">Campagna in corso</h1>
+        <p class="subtitle">Opeco</p>
+      </div>
+    </div>
+    <span style="width:40px;"></span>
+  </header>
+
+  <div class="hero">
+    <img id="heroImg" src="" alt="Immagine campagna">
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Campagna attiva</p>
+    <p class="card-title" id="cardTitle">—</p>
+    <p class="date-badge" id="dateBadge">—</p>
+    <div id="cardContent"></div>
+  </div>
+
+  <div class="cta-wrap">
+    <a id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer" class="ctaBtn">
+      🔗 Vai alla pagina della campagna
+    </a>
+  </div>
+
+  <div class="footer-nav">
+    <a href="../index.html" class="homeBtn">← Torna alla Home</a>
+  </div>
+
+</div>
+
+<script>
+  // ── OPECO CALENDARIZZATE ──
+  // Stesso array dell'index.html — tienili sincronizzati.
+  // Aggiungi il campo "descrizione" (HTML) e "linkEsterno" per ogni opeco.
+  const opeco = [
+    {
+      inizio:       "2026-01-01",
+      fine:         "2026-03-31",
+      immagine:     "../assets/opeco-wintersport.jpg",
+      titolo:       "Winter Sport",
+      descrizione:  `<p>La campagna <strong>Winter Sport</strong> promuove l'intera gamma di prodotti invernali: sci, snowboard, abbigliamento tecnico e accessori.</p>
+                     <ul>
+                       <li>Punti extra sulla categoria sci alpino</li>
+                       <li>Promozioni su caschi e protezioni</li>
+                       <li>Bundle abbigliamento termico</li>
+                     </ul>`,
+      linkEsterno:  "https://www.decathlon.it"
+    },
+    {
+      inizio:       "2026-04-01",
+      fine:         "2026-06-30",
+      immagine:     "../assets/opeco-primavera.jpg",
+      titolo:       "Primavera Sport",
+      descrizione:  `<p>Con la <strong>Primavera Sport</strong> torna la voglia di muoversi all'aperto. Focus su running, ciclismo e outdoor.</p>
+                     <ul>
+                       <li>Offerte su bici e accessori</li>
+                       <li>Promozioni su scarpe da running</li>
+                       <li>Kit trekking in evidenza</li>
+                     </ul>`,
+      linkEsterno:  "https://www.decathlon.it"
+    },
+    {
+      inizio:       "2026-07-01",
+      fine:         "2026-08-31",
+      immagine:     "../assets/opeco-summer.jpg",
+      titolo:       "Summer Season",
+      descrizione:  `<p>La <strong>Summer Season</strong> porta in primo piano tutto il mondo acqua e spiaggia.</p>
+                     <ul>
+                       <li>Sport acquatici e snorkeling</li>
+                       <li>Attrezzatura beach volley</li>
+                       <li>Abbigliamento estivo tecnico</li>
+                     </ul>`,
+      linkEsterno:  "https://www.decathlon.it"
+    },
+    {
+      inizio:       "2026-09-01",
+      fine:         "2026-10-15",
+      immagine:     "../assets/opeco-backtoschool.jpg",
+      titolo:       "Back to School",
+      descrizione:  `<p><strong>Back to School</strong> è dedicata ai giovani sportivi e alle famiglie che riprendono l'attività dopo l'estate.</p>
+                     <ul>
+                       <li>Sport di squadra: calcio, basket, pallavolo</li>
+                       <li>Abbigliamento scolastico sportivo</li>
+                       <li>Zaini e attrezzatura per i ragazzi</li>
+                     </ul>`,
+      linkEsterno:  "https://www.decathlon.it"
+    },
+    {
+      inizio:       "2026-10-16",
+      fine:         "2026-12-31",
+      immagine:     "../assets/opeco-natale.jpg",
+      titolo:       "Natale Sport",
+      descrizione:  `<p><strong>Natale Sport</strong> è la campagna dei regali: idee regalo per tutti gli sportivi, dai principianti agli esperti.</p>
+                     <ul>
+                       <li>Gift card Decathlon</li>
+                       <li>Box regalo per sport specifici</li>
+                       <li>Promozioni su prodotti premium</li>
+                     </ul>`,
+      linkEsterno:  "https://www.decathlon.it"
+    }
+  ];
+
+  function getOpecoAttiva() {
+    const oggi = new Date();
+    oggi.setHours(0, 0, 0, 0);
+    return opeco.find(o => {
+      const start = new Date(o.inizio);
+      const end   = new Date(o.fine);
+      end.setHours(23, 59, 59);
+      return oggi >= start && oggi <= end;
+    });
+  }
+
+  function formatData(str) {
+    const d = new Date(str);
+    return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  const attiva = getOpecoAttiva();
+  if (attiva) {
+    document.getElementById('pageTitle').textContent    = attiva.titolo;
+    document.getElementById('heroImg').src              = attiva.immagine;
+    document.getElementById('heroImg').alt              = attiva.titolo;
+    document.getElementById('cardTitle').textContent    = attiva.titolo;
+    document.getElementById('dateBadge').textContent    = formatData(attiva.inizio) + ' – ' + formatData(attiva.fine);
+    document.getElementById('cardContent').innerHTML    = attiva.descrizione;
+    document.getElementById('ctaBtn').href              = attiva.linkEsterno;
+  }
+</script>
+</body>
+</html>
