@@ -106,8 +106,52 @@
     }
     #searchInput::placeholder { color: var(--muted); }
 
+    /* ── OPECO BUTTON ── */
+    .opeco-wrap { margin-top: 20px; }
+
+    .opecoBtn {
+      width: 100%;
+      height: 110px;
+      display: block;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 3px 14px rgba(54,67,186,0.25);
+      animation: fadeUp 0.3s ease both;
+      background: var(--blue);
+    }
+    .opecoBtn:active { transform: scale(0.98); }
+
+    .opeco-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .opeco-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 100%);
+    }
+
+    .opeco-label {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
     /* ── AIUTACI BUTTON ── */
-    .accent-wrap { margin-top: 20px; }
+    .accent-wrap { margin-top: 12px; }
 
     .accentBtn {
       width: 100%;
@@ -173,7 +217,6 @@
       color: var(--white); line-height: 1.25;
     }
 
-    /* No results */
     .empty {
       display: none; grid-column: 1 / -1;
       text-align: center; padding: 40px 20px;
@@ -238,6 +281,15 @@
   <!-- SEARCH -->
   <div class="search-wrap" id="searchWrap">
     <input id="searchInput" type="search" placeholder="Cerca una sezione…" autocomplete="off">
+  </div>
+
+  <!-- OPECO -->
+  <div class="opeco-wrap">
+    <button class="opecoBtn" id="opecoBtn">
+      <img class="opeco-img" id="opecoImg" src="" alt="Campagna attiva">
+      <div class="opeco-overlay"></div>
+      <span class="opeco-label" id="opecoLabel">Campagna in corso</span>
+    </button>
   </div>
 
   <!-- AIUTACI A MIGLIORARE -->
@@ -314,6 +366,71 @@
 </div>
 
 <script>
+  // ── OPECO CALENDARIZZATE ──
+  // Per aggiornare: modifica questo array.
+  // inizio/fine: formato YYYY-MM-DD
+  // immagine: percorso relativo nella cartella assets/
+  // titolo: testo mostrato come etichetta sul tasto
+  // link: pagina interna della campagna
+  const opeco = [
+    {
+      inizio:   "2026-01-01",
+      fine:     "2026-03-31",
+      immagine: "assets/opeco-wintersport.jpg",
+      titolo:   "Winter Sport",
+      link:     "opeco/opeco.html"
+    },
+    {
+      inizio:   "2026-04-01",
+      fine:     "2026-06-30",
+      immagine: "assets/opeco-primavera.jpg",
+      titolo:   "Primavera Sport",
+      link:     "opeco/opeco.html"
+    },
+    {
+      inizio:   "2026-07-01",
+      fine:     "2026-08-31",
+      immagine: "assets/opeco-summer.jpg",
+      titolo:   "Summer Season",
+      link:     "opeco/opeco.html"
+    },
+    {
+      inizio:   "2026-09-01",
+      fine:     "2026-10-15",
+      immagine: "assets/opeco-backtoschool.jpg",
+      titolo:   "Back to School",
+      link:     "opeco/opeco.html"
+    },
+    {
+      inizio:   "2026-10-16",
+      fine:     "2026-12-31",
+      immagine: "assets/opeco-natale.jpg",
+      titolo:   "Natale Sport",
+      link:     "opeco/opeco.html"
+    }
+  ];
+
+  function getOpecoAttiva() {
+    const oggi = new Date();
+    oggi.setHours(0, 0, 0, 0);
+    return opeco.find(o => {
+      const start = new Date(o.inizio);
+      const end   = new Date(o.fine);
+      end.setHours(23, 59, 59);
+      return oggi >= start && oggi <= end;
+    });
+  }
+
+  const attiva = getOpecoAttiva();
+  if (attiva) {
+    document.getElementById('opecoImg').src       = attiva.immagine;
+    document.getElementById('opecoImg').alt       = attiva.titolo;
+    document.getElementById('opecoLabel').textContent = attiva.titolo;
+    document.getElementById('opecoBtn').addEventListener('click', () => {
+      window.location.href = attiva.link;
+    });
+  }
+
   // ── NAVIGATION ──
   document.querySelectorAll('.sectionBtn, .accentBtn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -372,7 +489,6 @@
   ];
 
   const tipEl = document.getElementById('tipText');
-  // Cambia tip ogni giorno, non solo ad ogni accesso
   const idx = Math.floor(Math.random() * tips.length);
   tipEl.textContent = tips[idx];
 </script>
