@@ -4,177 +4,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3643BA">
-  <title>Second Hand – Second Hand o EPV?</title>
+  <title>Second Hand o EPV?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue:      #3643BA;
-      --blue-dark: #2A3499;
-      --blue-bg:   #EEF0FB;
-      --white:     #FFFFFF;
-      --text:      #0D1240;
-      --muted:     #6370A0;
-      --green:     #00a651;
-      --green-bg:  #E8F8EF;
-      --red:       #D32F2F;
-      --red-bg:    #FDECEA;
-      --radius:    16px;
-      --radius-sm: 10px;
+      --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB;
+      --white: #FFFFFF; --text: #0D1240; --muted: #6370A0;
+      --green: #00a651; --green-bg: #E8F8EF;
+      --red: #D32F2F; --red-bg: #FDECEA;
+      --radius: 16px; --radius-sm: 10px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--blue-bg);
-      color: var(--text);
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .wrap {
-      width: 100%;
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 0 16px 32px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--blue); margin: 0 -16px;
-      padding: 14px 20px; display: flex;
-      align-items: center; justify-content: space-between;
-      gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3);
-    }
-
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
     .brand { display: flex; align-items: center; gap: 12px; }
     .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
     .logo { width: 48px; height: 48px; object-fit: contain; }
     .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
     .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
-
-    .legenda {
-      display: flex; gap: 10px; justify-content: center;
-      margin: 16px 0 4px; flex-wrap: wrap;
-    }
-
-    .leg-item {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 12px; font-weight: 700; color: var(--muted);
-    }
-
-    .leg-dot {
-      width: 24px; height: 24px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
-    }
-
-    .leg-dot.sh   { background: var(--blue-bg); }
-    .leg-dot.new  { background: var(--green-bg); }
-    .leg-dot.dist { background: var(--red-bg); }
-
+    .legenda { display: flex; gap: 10px; justify-content: center; margin: 16px 0 4px; flex-wrap: wrap; }
+    .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--muted); }
+    .leg-dot { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .leg-dot.sh  { background: var(--blue-bg); }
+    .leg-dot.new { background: var(--green-bg); }
+    .leg-dot.dst { background: var(--red-bg); }
     .cards { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-
-    .caso {
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      box-shadow: 0 2px 8px rgba(54,67,186,0.08);
-      overflow: hidden;
-      animation: fadeUp 0.3s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .caso-header {
-      display: flex; align-items: center;
-      padding: 12px 14px; gap: 10px;
-      cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .caso-header:active { background: var(--blue-bg); }
-
-    .caso-testo {
-      flex: 1;
-      font-size: 14px; font-weight: 700;
-      color: var(--text); line-height: 1.35;
-    }
-
+    .caso { background: var(--white); border-radius: var(--radius-sm); box-shadow: 0 2px 8px rgba(54,67,186,0.08); overflow: hidden; animation: fadeUp 0.3s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .caso-header { display: flex; align-items: center; padding: 12px 14px; gap: 10px; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .caso-header.clickable { cursor: pointer; }
+    .caso-header.clickable:active { background: var(--blue-bg); }
+    .caso-testo { flex: 1; font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; }
     .badges { display: flex; gap: 5px; flex-shrink: 0; }
-
-    .badge {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-    }
-
-    .badge.sh-on   { background: var(--blue-bg); }
-    .badge.sh-off  { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
-    .badge.new-on  { background: var(--green-bg); }
-    .badge.new-off { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
-    .badge.dst-on  { background: var(--red-bg); }
-    .badge.dst-off { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
-
-    .chevron {
-      font-size: 11px; color: var(--muted);
-      transition: transform 0.2s ease;
-      flex-shrink: 0; margin-left: 2px;
-    }
-
+    .badge { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .badge.sh-on  { background: var(--blue-bg); }
+    .badge.sh-off { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
+    .badge.nw-on  { background: var(--green-bg); }
+    .badge.nw-off { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
+    .badge.dt-on  { background: var(--red-bg); }
+    .badge.dt-off { background: #f0f0f0; opacity: 0.3; filter: grayscale(1); }
+    .chevron { font-size: 11px; color: var(--muted); transition: transform 0.2s ease; flex-shrink: 0; margin-left: 2px; }
     .caso.open .chevron { transform: rotate(180deg); }
-
-    .caso-detail {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
+    .caso-detail { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
     .caso.open .caso-detail { max-height: 500px; }
-
-    .caso-detail-inner {
-      margin: 0 14px;
-      padding: 10px 0 14px;
-      border-top: 1px solid var(--blue-bg);
-      font-size: 13px; line-height: 1.65;
-      color: var(--muted);
-      display: flex; flex-direction: column; gap: 6px;
-    }
-
+    .caso-detail-inner { margin: 0 14px; padding: 10px 0 14px; border-top: 1px solid var(--blue-bg); font-size: 13px; line-height: 1.65; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
     .caso-detail-inner strong { color: var(--text); }
-
-    .separator {
-      display: flex; align-items: center; gap: 10px;
-      margin: 12px 0 4px;
-    }
-
+    .caso-detail-inner a { color: var(--blue); font-weight: 700; }
+    .separator { display: flex; align-items: center; gap: 10px; margin: 12px 0 4px; }
     .separator-line { flex: 1; height: 1px; background: rgba(54,67,186,0.15); }
-
-    .separator-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px; font-weight: 800;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--muted); white-space: nowrap;
-    }
-
-    .homeBtn {
-      display: inline-block; margin-top: 24px;
-      padding: 12px 28px; background: var(--white);
-      color: var(--blue); font-family: 'Barlow', sans-serif;
-      font-size: 14px; font-weight: 700;
-      border-radius: var(--radius-sm); text-decoration: none;
-      box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s;
-    }
+    .separator-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
     .homeBtn:active { background: var(--blue-bg); }
     .footer-nav { text-align: center; }
   </style>
@@ -198,7 +80,7 @@
   <div class="legenda">
     <div class="leg-item"><div class="leg-dot sh">♻️</div> Second Hand</div>
     <div class="leg-item"><div class="leg-dot new">🆕</div> Vendi come nuovo</div>
-    <div class="leg-item"><div class="leg-dot dist">🗑️</div> Distruzione</div>
+    <div class="leg-item"><div class="leg-dot dst">🗑️</div> Distruzione</div>
   </div>
 
   <div class="cards" id="cards"></div>
@@ -210,179 +92,176 @@
 </div>
 
 <script>
+  const PROC = 'https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4';
+  const procLink = '<a href="' + PROC + '" target="_blank" rel="noopener noreferrer">procedura specifica</a>';
+
   const casi = [
     {
-      testo: "Prodotto macchiato / scucito / bottone mancante",
-      sh: true, nuovo: false, dist: false,
-      note: []
+      testo: 'Prodotto macchiato / scucito / bottone mancante',
+      sh: true, nw: false, dt: false, note: []
     },
     {
-      testo: "Prodotto con lievi segni di usura (sup usato, pallone sporco dopo VLG, ecc.)",
-      sh: true, nuovo: false, dist: false,
-      note: []
+      testo: 'Prodotto con lievi segni di usura (sup usato, pallone sporco dopo VLG, ecc.)',
+      sh: true, nw: false, dt: false, note: []
     },
     {
-      testo: "Elastici fitness da expo / test",
-      sh: false, nuovo: false, dist: true,
-      note: []
+      testo: 'Elastici fitness da expo / test',
+      sh: false, nw: false, dt: true, note: []
     },
     {
-      testo: "Parte accessoria mancante che si può ri-ordinare",
-      sh: false, nuovo: true, dist: false,
+      testo: 'Parte accessoria mancante che si può ri-ordinare',
+      sh: false, nw: true, dt: false,
       note: [
-        "Ordina il pezzo mancante e fai consumazione interna.",
-        "<strong>Es. 1</strong> — Scarpe senza lacci → consumazione interna + lacci nuovi → vendi come nuovo.",
-        "<strong>Es. 2</strong> — Borraccia senza tappo → ordina il tappo → vendi come nuovo."
+        'Ordina il pezzo mancante e fai consumazione interna.',
+        '<strong>Es. 1</strong> — Scarpe senza lacci → consumazione interna + lacci nuovi → vendi come nuovo.',
+        '<strong>Es. 2</strong> — Borraccia senza tappo → ordina il tappo → vendi come nuovo.'
       ]
     },
     {
       testo: "Parte accessoria mancante, non ri-ordinabile, che non compromette l'utilizzo",
-      sh: true, nuovo: false, dist: false,
+      sh: true, nw: false, dt: false,
       note: ["Es. zaino idrico (Camelbak) senza sacca d'acqua → vendibile in Second Hand senza la sacca."]
     },
     {
       testo: "Parte accessoria mancante, non ri-ordinabile, che compromette l'utilizzo",
-      sh: false, nuovo: false, dist: true,
-      note: []
+      sh: false, nw: false, dt: true, note: []
     },
     {
-      testo: "Multipack con quantità mancante (calze, slip, magliette, kit ami pesca, piombi, ecc.)",
-      sh: false, nuovo: true, dist: false,
+      testo: 'Multipack con quantità mancante (calze, slip, magliette, kit ami pesca, piombi, ecc.)',
+      sh: false, nw: true, dt: false,
       note: [
-        "Vendi con il codice del nuovo scontando in cassa — <strong>EPV in cassa</strong>.",
-        "Il prodotto non è usato, solo incompleto. Evita che risulti poco appetibile al cliente."
+        'Vendi con il codice del nuovo scontando in cassa — <strong>EPV in cassa</strong>.',
+        'Il prodotto non è usato, solo incompleto. Evita che risulti poco appetibile al cliente.'
       ]
     },
     {
       testo: "Packaging danneggiato non funzionale all'uso (es. scatola gymball)",
-      sh: false, nuovo: true, dist: false,
+      sh: false, nw: true, dt: false,
       note: [
-        "Vendi come nuovo con <strong>EPV in cassa</strong>.",
-        "Ricordati di fornire tutte le informazioni del packaging originale (es. fotocopia di un altro packaging dello stesso prodotto)."
+        'Vendi come nuovo con <strong>EPV in cassa</strong>.',
+        'Ricordati di fornire tutte le informazioni del packaging originale (es. fotocopia di un altro packaging dello stesso prodotto).'
       ]
     },
     {
-      testo: "Prodotto incompleto (tuta con solo giacca, costume spaiato, kit canna+mulinello, ecc.)",
-      sh: true, nuovo: false, dist: false,
-      note: []
-    },
+      testo: 'Prodotto incompleto (tuta con solo giacca, costume spaiato, kit canna+mulinello, ecc.)',
+      sh: true, nw: false, dt: false, note: []
+    }
   ];
 
   const vrp = [
     {
-      testo: "VRP – Mobilità urbana (biciclette, monopattini)",
-      sh: true, nuovo: true, dist: false,
-      note: ["Vendibili sia come nuovi (dopo opportune verifiche) che come Second Hand. Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."]
+      testo: 'VRP – Mobilità urbana (biciclette, monopattini)',
+      sh: true, nw: true, dt: false,
+      note: ['Vendibili sia come nuovi (dopo opportune verifiche) che come Second Hand. Consulta la ' + procLink + '.']
     },
     {
-      testo: "VRP – Alimentazione (umana e animale)",
-      sh: false, nuovo: false, dist: true,
+      testo: 'VRP – Alimentazione (umana e animale)',
+      sh: false, nw: false, dt: true,
       note: [
-        "Mai vendibili in Second Hand. Non rimettibili in vendita se resi.",
+        'Mai vendibili in Second Hand. Non rimettibili in vendita se resi.',
         "L'alimentazione umana è vendibile tramite il progetto <strong>TGTG</strong> se il packaging è integro con tutte le informazioni originali.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – Food contact (borracce, gavette, tazze, bicchieri, ecc.)",
-      sh: false, nuovo: true, dist: true,
+      testo: 'VRP – Food contact (borracce, gavette, tazze, bicchieri, ecc.)',
+      sh: false, nw: true, dt: true,
       note: [
-        "Mai vendibili in Second Hand.",
-        "Pezzo mancante → ordina e rimetti in vendita come nuovo.",
-        "Difetto (graffio, ammaccatura) → <strong>EPV in cassa</strong>.",
-        "Resi cliente → smaltimento obbligatorio.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand.',
+        'Pezzo mancante → ordina e rimetti in vendita come nuovo.',
+        'Difetto (graffio, ammaccatura) → <strong>EPV in cassa</strong>.',
+        'Resi cliente → smaltimento obbligatorio.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – DPI (caschi, protezioni, easybreath, maschere, guantoni da boxe, ecc.)",
-      sh: false, nuovo: true, dist: true,
+      testo: 'VRP – DPI (caschi, protezioni, easybreath, maschere, guantoni da boxe, ecc.)',
+      sh: false, nw: true, dt: true,
       note: [
-        "Mai vendibili in Second Hand.",
-        "Rimettibili in vendita come nuovi se resi e verificati.",
-        "Difetti → <strong>EPV in cassa</strong>.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand.',
+        'Rimettibili in vendita come nuovi se resi e verificati.',
+        'Difetti → <strong>EPV in cassa</strong>.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – DPI (aiuto al galleggiamento)",
-      sh: false, nuovo: true, dist: true,
+      testo: 'VRP – DPI (aiuto al galleggiamento)',
+      sh: false, nw: true, dt: true,
       note: [
-        "Mai vendibili in Second Hand.",
-        "Rimettibili in vendita come nuovi se resi e verificati.",
-        "Difetti → <strong>EPV in cassa</strong>.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand.',
+        'Rimettibili in vendita come nuovi se resi e verificati.',
+        'Difetti → <strong>EPV in cassa</strong>.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – Dispositivi medici (marcatura CE)",
-      sh: false, nuovo: false, dist: true,
+      testo: 'VRP – Dispositivi medici (marcatura CE)',
+      sh: false, nw: false, dt: true,
       note: [
-        "Mai vendibili in Second Hand. Non rimettibili in vendita se resi.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand. Non rimettibili in vendita se resi.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – Materiale arrampicata",
-      sh: false, nuovo: true, dist: true,
+      testo: 'VRP – Materiale arrampicata',
+      sh: false, nw: true, dt: true,
       note: [
-        "Mai vendibili in Second Hand.",
-        "Rimettibili in vendita come nuovi se resi e verificati.",
-        "Difetti → <strong>EPV in cassa</strong>.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand.',
+        'Rimettibili in vendita come nuovi se resi e verificati.',
+        'Difetti → <strong>EPV in cassa</strong>.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
       testo: "VRP – Prodotti cura dell'infanzia (es. zaini porta bebè)",
-      sh: false, nuovo: true, dist: true,
+      sh: false, nw: true, dt: true,
       note: [
-        "Mai vendibili in Second Hand.",
-        "Rimettibili in vendita come nuovi se resi e verificati.",
-        "Lievi difetti → <strong>EPV in cassa</strong>.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand.',
+        'Rimettibili in vendita come nuovi se resi e verificati.',
+        'Lievi difetti → <strong>EPV in cassa</strong>.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – Prodotti chimici/cosmetici (bombole gas campeggio, creme, ecc.)",
-      sh: false, nuovo: false, dist: true,
+      testo: 'VRP – Prodotti chimici/cosmetici (bombole gas campeggio, creme, ecc.)',
+      sh: false, nw: false, dt: true,
       note: [
-        "Mai vendibili in Second Hand. Non rimettibili in vendita se resi.",
-        "Smaltimento dedicato.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand. Non rimettibili in vendita se resi.',
+        'Smaltimento dedicato.',
+        'Consulta la ' + procLink + '.'
       ]
     },
     {
-      testo: "VRP – Materiale immersione",
-      sh: false, nuovo: false, dist: true,
+      testo: 'VRP – Materiale immersione',
+      sh: false, nw: false, dt: true,
       note: [
-        "Mai vendibili in Second Hand. Non rimettibili in vendita se resi.",
-        "Consulta la <a href="https://docs.google.com/presentation/d/1ZXIGH0Jm7gha2YCQ7sCcocpIgBziKeb_dK21yHTLs8M/edit?slide=id.g116f59381cb_0_4#slide=id.g116f59381cb_0_4" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:700;">procedura specifica</a>."
+        'Mai vendibili in Second Hand. Non rimettibili in vendita se resi.',
+        'Consulta la ' + procLink + '.'
       ]
-    },
+    }
   ];
 
   function buildCard(item, index) {
     const delay = (index * 0.035).toFixed(2);
     const hasNote = item.note && item.note.length > 0;
+    const noteHtml = hasNote ? item.note.map(r => '<p>' + r + '</p>').join('') : '';
+    const detail = hasNote ? '<div class="caso-detail"><div class="caso-detail-inner">' + noteHtml + '</div></div>' : '';
+    const chevron = hasNote ? '<span class="chevron">▼</span>' : '<span style="width:18px"></span>';
+    const headerClass = hasNote ? 'caso-header clickable' : 'caso-header';
+    const onclick = hasNote ? ' onclick="toggle(this)"' : '';
 
-    const noteHtml = hasNote
-      ? item.note.map(r => `<p>${r}</p>`).join('')
-      : '';
-
-    return `
-      <div class="caso" style="animation-delay:${delay}s">
-        <div class="caso-header" ${hasNote ? 'onclick="toggle(this)"' : 'style="cursor:default"'}>
-          <span class="caso-testo">${item.testo}</span>
-          <div class="badges">
-            <div class="badge ${item.sh    ? 'sh-on'  : 'sh-off'}"  title="Second Hand">♻️</div>
-            <div class="badge ${item.nuovo ? 'new-on' : 'new-off'}" title="Vendi come nuovo">🆕</div>
-            <div class="badge ${item.dist  ? 'dst-on' : 'dst-off'}" title="Distruzione">🗑️</div>
-          </div>
-          ${hasNote ? '<span class="chevron">▼</span>' : '<span style="width:18px"></span>'}
-        </div>
-        ${hasNote ? `<div class="caso-detail"><div class="caso-detail-inner">${noteHtml}</div></div>` : ''}
-      </div>
-    `;
+    return '<div class="caso" style="animation-delay:' + delay + 's">' +
+      '<div class="' + headerClass + '"' + onclick + '>' +
+        '<span class="caso-testo">' + item.testo + '</span>' +
+        '<div class="badges">' +
+          '<div class="badge ' + (item.sh ? 'sh-on' : 'sh-off') + '" title="Second Hand">♻️</div>' +
+          '<div class="badge ' + (item.nw ? 'nw-on' : 'nw-off') + '" title="Vendi come nuovo">🆕</div>' +
+          '<div class="badge ' + (item.dt ? 'dt-on' : 'dt-off') + '" title="Distruzione">🗑️</div>' +
+        '</div>' +
+        chevron +
+      '</div>' +
+      detail +
+    '</div>';
   }
 
   function toggle(header) {
@@ -390,18 +269,11 @@
   }
 
   const container = document.getElementById('cards');
-
-  casi.forEach((item, i) => container.insertAdjacentHTML('beforeend', buildCard(item, i)));
-
-  container.insertAdjacentHTML('beforeend', `
-    <div class="separator">
-      <div class="separator-line"></div>
-      <span class="separator-label">⚠️ Very Risky Products</span>
-      <div class="separator-line"></div>
-    </div>
-  `);
-
-  vrp.forEach((item, i) => container.insertAdjacentHTML('beforeend', buildCard(item, casi.length + i)));
+  casi.forEach(function(item, i) { container.insertAdjacentHTML('beforeend', buildCard(item, i)); });
+  container.insertAdjacentHTML('beforeend',
+    '<div class="separator"><div class="separator-line"></div><span class="separator-label">⚠️ Very Risky Products</span><div class="separator-line"></div></div>'
+  );
+  vrp.forEach(function(item, i) { container.insertAdjacentHTML('beforeend', buildCard(item, casi.length + i)); });
 </script>
 </body>
 </html>
