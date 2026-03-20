@@ -4,20 +4,211 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3643BA">
-  <title>Sezione in lavorazione</title>
+  <title>Second Hand – Resi e Garanzia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --blue: #3643BA; --blue-bg: #EEF0FB; --white: #FFFFFF; --radius-sm: 10px; }
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --green: #00a651; --orange: #FFA500; --red: #D32F2F; --radius: 16px; --radius-sm: 10px; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
-    img { max-width: 340px; width: 90%; height: auto; border-radius: 16px; cursor: pointer; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .nav-buttons { display: flex; gap: 10px; margin-top: 20px; }
+    .nav-btn { flex: 1; padding: 14px 10px; border-radius: var(--radius-sm); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-align: center; cursor: pointer; border: 2px solid var(--blue); background: var(--white); color: var(--blue); text-decoration: none; line-height: 1.4; transition: background 0.15s, color 0.15s; display: block; }
+    .nav-btn:active { background: var(--blue); color: var(--white); }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 12px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .card-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .lead { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+    p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+    h3:first-child { margin-top: 0; }
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
+    ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+    .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin: 12px 0; line-height: 1.5; }
+    .alert { font-size: 13px; font-weight: 600; color: var(--text); background: #FFF3CD; border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0; line-height: 1.5; border-left: 3px solid var(--orange); }
+    .alert-red { font-size: 13px; font-weight: 600; color: var(--text); background: #FDECEA; border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0; line-height: 1.6; border-left: 3px solid var(--red); }
+    .alert-red strong { color: var(--red); }
+
+    .timing-grid { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+    .timing-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-sm); background: #E8F8EF; border-left: 3px solid var(--green); }
+    .timing-days { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; color: var(--green); line-height: 1; min-width: 52px; }
+    .timing-desc { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
+
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; background: var(--blue-bg); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--blue); }
+
+    .step-list { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
+    .step-item { display: flex; gap: 12px; align-items: flex-start; }
+    .step-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .step-body { font-size: 14px; line-height: 1.6; color: var(--text); flex: 1; }
+
+    .mail-box { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px; margin: 12px 0; font-size: 13px; line-height: 1.8; color: var(--text); font-style: italic; border-left: 3px solid var(--blue); }
+
+    .section-anchor { display: block; }
+    .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin: 24px 0 4px; padding-left: 4px; display: block; }
+
+    .divider { border: none; border-top: 1px solid var(--blue-bg); margin: 14px 0; }
+
+    .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
   </style>
 </head>
 <body>
-  <a href="second-hand.html">
-    <img src="../assets/work-in-progress.png" alt="Sezione in lavorazione">
-  </a>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Resi e Garanzia</h1>
+        <p class="subtitle">Second Hand · 2Life</p>
+      </div>
+    </div>
+    <span style="width:40px;"></span>
+  </header>
+
+  <!-- NAVIGAZIONE INTERNA -->
+  <div class="nav-buttons">
+    <a href="#negozio" class="nav-btn">🏪 Acquistato<br>in negozio</a>
+    <a href="#online" class="nav-btn">🌐 Acquistato<br>su decathlon.it</a>
+  </div>
+
+  <!-- ========== SEZIONE 1: NEGOZIO ========== -->
+  <span class="section-anchor" id="negozio"></span>
+  <span class="section-label">🏪 Acquistato in negozio</span>
+
+  <div class="card">
+    <p class="card-tag">Garanzia e reso</p>
+    <p class="lead">Anche i prodotti Second Hand hanno garanzia legale di 2 anni e diritto al reso.</p>
+    <p>Le stesse condizioni valgono per tutte le tipologie:</p>
+    <div class="pill-row">
+      <span class="pill">📦 Saved Product</span>
+      <span class="pill">🔄 Buyback</span>
+      <span class="pill">🔧 Ricondizionato</span>
+    </div>
+    <hr class="divider">
+    <p style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Tempi di reso</p>
+    <div class="timing-grid">
+      <div class="timing-item">
+        <div class="timing-days">30gg</div>
+        <div class="timing-desc">Reso standard — senza account registrato</div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-days">365gg</div>
+        <div class="timing-desc">Reso esteso — acquisto registrato sull'account Decathlon del cliente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Procedura di reso</p>
+    <p>Segui la normale procedura di reso.</p>
+    <p>Una volta effettuato, il prodotto rientra automaticamente nell'App 2Hand sotto <strong>Stock Negozio</strong>, in attesa di essere rimesso in vendita.</p>
+    <div class="alert-red">
+      ⚠️ <strong>NO RESO SENZA DOCUMENTO DI VENDITA.</strong><br><br>
+      È difficile distinguere un articolo Second Hand da un prodotto nuovo. Il cliente deve avere lo scontrino oppure aver passato la Carta Decathlon al momento dell'acquisto.<br><br>
+      Il rischio concreto: effettuare il reso del prodotto <strong>nuovo</strong> al posto dell'usato — <strong>anomalia di stock</strong> e rimborso superiore a quanto pagato.
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Prodotto difettoso</p>
+    <p>Non esiste una procedura difettosi dedicata per i prodotti Second Hand. Segui la <strong>normale procedura di reso</strong>.</p>
+    <p>Dopo il reso, cerca il prodotto nell'app: risulterà nello stato <em>Da mettere in vendita</em>. Modifica lo stock scegliendo come motivo <strong>décote</strong>.</p>
+  </div>
+
+  <!-- ========== SEZIONE 2: ONLINE ========== -->
+  <span class="section-anchor" id="online"></span>
+  <span class="section-label">🌐 Acquistato su decathlon.it</span>
+
+  <div class="card">
+    <p class="card-tag">Premessa</p>
+    <p class="lead">Il cliente può portare in negozio il reso di un prodotto Second Hand acquistato online.</p>
+    <div class="timing-grid">
+      <div class="timing-item">
+        <div class="timing-days">30gg</div>
+        <div class="timing-desc">Senza account Decathlon registrato</div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-days">365gg</div>
+        <div class="timing-desc">Con acquisto registrato sull'account Decathlon</div>
+      </div>
+    </div>
+    <div class="note">Essendo prodotti unici, l'unica scelta possibile è il <strong>rimborso</strong>. Nessuna sostituzione.</div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Prima di iniziare</p>
+    <div class="alert">
+      ⚠️ <strong>NON fare il Digital Return.</strong> Per i prodotti Second Hand è disattivato — su CiS il prodotto risulterà <em>Ineligible</em>. Segui solo la procedura manuale qui sotto.
+    </div>
+    <p>Avvisa subito il cliente: <strong>la validazione del reso non avviene in tempo reale</strong>. Il Servizio Clienti la gestisce entro <strong>48h lavorative</strong>, dopodiché parte il rimborso sullo stesso metodo di pagamento usato in fase di acquisto.</p>
+    <div class="note">Questa procedura si applica solo ai prodotti Second Hand Decathlon — non al Marketplace.</div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Procedura — step da seguire</p>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">Verifica la <strong>conformità del reso</strong> rispetto alla Politica di Reso.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">Recupera il <strong>n° d'ordine</strong> (dal packaging, dalla ricevuta, o da CiS → Ordini / Gestione cliente) e compila il <strong>Google Form</strong> per la richiesta di reso. Indica n° d'ordine e articolo reso.<br><br>
+        <span style="font-size:13px;color:var(--muted);">Se l'ordine contiene più articoli, specifica quale viene reso.</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">Invia una <strong>mail di conferma al cliente</strong> usando il template qui sotto. Non esistono mail automatiche: questa è l'unica prova di avvenuto reso.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">Spedisci l'ordine <strong>senza flusso</strong> al deposito apponendo il <strong>foglio obbligatorio</strong> con il n° d'ordine sul pacco.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">Invia una <strong>mail all'assistenza retail</strong> di riferimento per avvisare del rientro ordine.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Template mail al cliente</p>
+    <div class="mail-box">
+      Gentile ___ (nome cliente),<br><br>
+      Ti confermiamo la presa in carico del reso del tuo ordine Decathlon Second Hand N° ___ presso il Negozio Decathlon ___.<br><br>
+      La validazione del rimborso verrà effettuata dal nostro Servizio Clienti entro 48h lavorative. Il rimborso avverrà sullo stesso metodo di pagamento utilizzato in fase di acquisto.<br><br>
+      La tempistica di ri-accredito varia a seconda del tuo ente bancario. In ogni caso riceverai il rimborso entro 30 giorni lavorativi.
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-tag">Contatti utili</p>
+    <p>Il Servizio Clienti gestisce <strong>solo la validazione del rimborso su SQUARE</strong>.</p>
+    <p>Per qualsiasi altra problematica scrivi a:<br><strong>decathlon2hand_teamitalia@decathlon.com</strong></p>
+    <p class="note">Specifica sempre n° d'ordine e problematica nella mail.</p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="second-hand.html" class="homeBtn">← Torna a Second Hand</a>
+  </div>
+
+</div>
 </body>
 </html>
