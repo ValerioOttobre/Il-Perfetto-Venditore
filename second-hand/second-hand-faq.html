@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>F.A.Q. Second Hand – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; --warning-bg: #FFF8E1; --warning-border: #F59E0B; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 40px; flex: 1; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    /* SECTIONS */
+    .section { margin-top: 24px; animation: fadeUp 0.35s ease both; }
+    .section:nth-child(1) { animation-delay: 0.06s; }
+    .section:nth-child(2) { animation-delay: 0.12s; }
+    .section:nth-child(3) { animation-delay: 0.18s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; color: var(--blue); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 10px; padding-left: 4px; }
+
+    /* FAQ ITEMS */
+    .faq-item { background: var(--white); border-radius: var(--radius-sm); margin-bottom: 8px; overflow: hidden; box-shadow: 0 1px 6px rgba(54,67,186,0.08); }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 14px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; line-height: 1.3; }
+    .faq-question .chevron { flex-shrink: 0; width: 20px; height: 20px; background: var(--blue-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.25s ease, background 0.15s ease; }
+    .faq-question .chevron svg { transition: transform 0.25s ease; }
+    .faq-item.open .faq-question .chevron { background: var(--blue); }
+    .faq-item.open .faq-question .chevron svg { transform: rotate(180deg); }
+    .faq-item.open .faq-question .chevron svg path { stroke: var(--white); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-answer-inner { padding: 0 16px 14px; font-size: 13px; line-height: 1.6; color: var(--text); border-top: 1px solid var(--blue-bg); padding-top: 12px; }
+    .faq-answer-inner a { color: var(--blue); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid rgba(54,67,186,0.3); }
+    .faq-answer-inner a:active { opacity: 0.7; }
+
+    /* WARNING BOX */
+    .warning-box { background: var(--warning-bg); border-left: 3px solid var(--warning-border); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 12px; margin-top: 10px; font-size: 12px; font-weight: 600; line-height: 1.5; color: #78350F; }
+    .warning-box strong { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 0.3px; }
+
+    /* FOOTER */
+    .footer-nav { text-align: center; margin-top: 28px; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>F.A.Q. Second Hand</h1>
+        <p class="subtitle">Domande frequenti</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- BUYBACK -->
+    <div class="section">
+      <p class="section-title">Buyback</p>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Dove posso verificare l'offerta Buyback?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            È possibile visionare l'offerta Buyback in questo <a href="https://docs.google.com/spreadsheets/d/1G2CBf-IZj3GsBhIAs6ZraznlkNL2_y0hE2UmYdOuvmk/edit?gid=69664178#gid=69664178" target="_blank">FILE</a>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Come faccio a sapere qual è l'offerta buyback del mio negozio?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Puoi verificare l'offerta Buyback direttamente su CiS: vai nella sezione Second Hand e avvia un contratto (Cliente senza stima online) e da qui potrai scoprire cosa è aperto sul tuo store (Buyback - Universi aperti in negozio).
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          È necessario verificare se il cliente ha la marca da bollo?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No, è compito nostro informarlo ma è obbligo del cliente applicare la marca da bollo da 2€ sul contratto di vendita se il buono ricevuto è pari o superiore a 77,24€.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK TRANSFER -->
+    <div class="section">
+      <p class="section-title">Bank Transfer</p>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Dopo la prima richiesta, l'IBAN del cliente resta salvato?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No, il cliente deve inserire gli estremi di pagamento (Nome, Cognome e IBAN) ogni volta che finalizza un contratto di buyback con Bonifico Bancario.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Il cliente può inserire gli estremi per il pagamento dall'App Decathlon?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Non è possibile inserire gli estremi per il pagamento da App, ma solo dal sito. Il cliente dovrà sempre connettersi al suo account su <strong>decathlon.it</strong> per fornirci i dati per il pagamento.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Se il cliente ha difficoltà ad inserire gli estremi, possiamo aiutarlo?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Poiché è una responsabilità del cliente fornirci i dati per il pagamento, in nessun caso (neppure il Team 2nd Hand e/o il CRC) è possibile fare la richiesta per conto del cliente con i dati da lui forniti. Potremo solo supportarlo guidandolo passo passo sul suo account.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Dopo la chiusura del contratto si può cambiare il metodo di pagamento?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No. Una volta scelto il pagamento e chiuso il contratto, non è più possibile cambiare il metodo di pagamento (né da voucher a bonifico né viceversa).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVED PRODUCT -->
+    <div class="section">
+      <p class="section-title">Saved Product</p>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Gli articoli Second Hand hanno Garanzia? È possibile fare il reso?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Come gli articoli nuovi, anche i prodotti Second Hand hanno Garanzia (2 anni) e possibilità di reso entro 30 gg o 365 gg se l'acquisto è registrato sull'account Decathlon. Si applica a saved product, buyback e ricondizionati.
+            <div class="warning-box">
+              <strong>⚠️ ATTENZIONE</strong>
+              NON fare resi senza scontrino per questi articoli. La transazione deve essere rintracciabile: il rischio è di fare al cliente il reso del prodotto nuovo, generando un'anomalia di stock e rimborsando una somma superiore a quella pagata.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          È possibile fare l'assicurazione sui prodotti Second Hand?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Da Marzo 2025 è possibile assicurare saved product, articoli Buyback e Ricondizionati. Per maggiori dettagli consultare il <a href="https://sites.google.com/decathlon.com/decathlonsportisuranceitalia/home-page?authuser=1&pli=1" target="_blank">Google Site Insurance</a>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          È possibile un pagamento dilazionato per i prodotti Second Hand?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sì. Essendo prodotti di proprietà di Decathlon è possibile pagarli ratealmente, sia con finanziamento Agos sia con Pagodil (valido per saved product, buyback e ricondizionati).
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Come faccio a fare il reso di un articolo Second Hand?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            La procedura di <a href="second-hand-resi.html">reso</a> di un articolo Second Hand è la medesima di un articolo nuovo.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Sui prodotti Second Hand sono applicabili i vantaggi della carta decathloniano?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Lo sconto del 25% per i prodotti a marchio Decathlon NON è applicato per questi articoli.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Ho dichiarato in demarque un articolo SH ma l'ho ritrovato: posso annullare?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sì, potete annullare la demarque entro 30 giorni. Da CiS: <strong>Second Hand → In vendita → Démarque</strong> → selezionate l'articolo → <em>Annulla la dèmarque</em>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Come pulire i prodotti?
+          <span class="chevron"><svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#3643BA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Le modalità di pulizia e i prodotti da utilizzare sono contenuti in questo <a href="https://docs.google.com/document/d/1nUku2QCbbEFNRUwQqIdBsTj2iDn3tfRJr3g4xWSgbWY/edit?tab=t.0#heading=h.qhcrqa3axxo" target="_blank">DOCUMENTO</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="footer-nav">
+    <a href="second-hand.html" class="homeBtn">← Torna a Second Hand</a>
+  </div>
+
+</div>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
