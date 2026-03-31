@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Lineare – Gamme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 0 0 14px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+    .table-scroll { overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px; }
+    .gamme-table { border-collapse: collapse; min-width: 520px; width: 100%; }
+
+    .gamme-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--white); background: var(--blue);
+      padding: 10px; text-align: center;
+      white-space: nowrap;
+    }
+    .gamme-table th.th-row {
+      background: var(--blue-dark); text-align: left;
+    }
+
+    .gamme-table td {
+      font-size: 12px; font-weight: 600; color: var(--text);
+      padding: 10px; text-align: center;
+      border: 1px solid var(--blue-bg);
+      vertical-align: top; line-height: 1.4;
+    }
+    .gamme-table td.td-row {
+      font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--white); background: var(--blue);
+      text-align: left; white-space: nowrap;
+    }
+    .gamme-table tr:nth-child(even) td:not(.td-row) { background: var(--blue-bg); }
+    .gamme-table tr:nth-child(odd)  td:not(.td-row) { background: var(--white); }
+
+    .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 14px; line-height: 1.5; }
+
+    .homeBtn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Gamme</h1>
+        <p class="subtitle">Lineare</p>
+      </div>
+    </div>
+    <span style="width:40px;"></span>
+  </header>
+
+  <main class="card">
+    <h3>I Fondamentali del Merchandising</h3>
+
+    <div class="table-scroll">
+      <table class="gamme-table">
+        <thead>
+          <tr>
+            <th class="th-row"></th>
+            <th>Gamma 0</th>
+            <th>Gamma 1</th>
+            <th>Gamma 2</th>
+            <th>Gamma 3</th>
+            <th>Gamma 4</th>
+            <th>Gamma 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-row">Prodotto</td>
+            <td>A scelta libera</td>
+            <td colspan="3">'Seguito' in base al livello di gamma del negozio</td>
+            <td>'Internet' / non 'seguito' in gamma</td>
+            <td>'Evento commerciale'</td>
+          </tr>
+          <tr>
+            <td class="td-row">Attivazione Appro</td>
+            <td>Automatica</td>
+            <td colspan="3">Automatica dopo il primo passaggio in cassa</td>
+            <td>No</td>
+            <td>Dopo il primo passaggio in cassa</td>
+          </tr>
+          <tr>
+            <td class="td-row">Calcolo automatico</td>
+            <td>F&amp;R</td>
+            <td colspan="3">F&amp;R</td>
+            <td>No</td>
+            <td>F&amp;R</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">Scorri la tabella orizzontalmente per vedere tutte le gamme.</p>
+  </main>
+
+  <div class="footer-nav">
+    <a href="lineare.html" class="homeBtn">← Torna a Lineare</a>
+  </div>
+
+</div>
+</body>
+</html>
