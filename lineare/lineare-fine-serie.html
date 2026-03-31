@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Lineare – Fine Serie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; --red: #C62828; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
+    .card + .card { margin-top: 12px; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+    p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* Regole A-B-C-D */
+    .regole { display: flex; flex-direction: column; gap: 10px; }
+    .regola { display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: var(--blue-bg); border-radius: var(--radius-sm); }
+    .regola-letter { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); background: var(--blue); width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .regola-text { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+    .tag-red { display: inline; background: var(--red); color: var(--white); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; padding: 1px 6px; border-radius: 4px; }
+
+    /* Stock cards */
+    .stock-list { display: flex; flex-direction: column; gap: 8px; }
+    .stock-card { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: var(--radius-sm); }
+    .stock-card.t7s { background: #FFF3E0; }
+    .stock-card.t7c { background: #E8F5E9; }
+    .stock-card.t8t { background: #E3F2FD; }
+    .stock-card.t8p { background: #F3E5F5; }
+    .stock-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; line-height: 1.4; }
+    .stock-card.t7s .stock-badge { background: #E65100; color: var(--white); }
+    .stock-card.t7c .stock-badge { background: #2E7D32; color: var(--white); }
+    .stock-card.t8t .stock-badge { background: #1565C0; color: var(--white); }
+    .stock-card.t8p .stock-badge { background: #6A1B9A; color: var(--white); }
+    .stock-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+    .alert { font-size: 13px; font-weight: 800; color: var(--red); background: #FFEBEE; border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; line-height: 1.5; border-left: 3px solid var(--red); }
+    .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; line-height: 1.5; }
+
+    .homeBtn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Fine Serie</h1>
+        <p class="subtitle">Lineare</p>
+      </div>
+    </div>
+    <span style="width:40px;"></span>
+  </header>
+
+  <!-- DEFINIZIONE -->
+  <div class="card">
+    <h3>Di cosa si tratta</h3>
+    <p>Nel Fine Serie parliamo al <strong>Cliente</strong>, non all'utilizzatore.</p>
+    <p>Non dobbiamo esporre Balisages con spiegazioni tecniche, ma con <strong>prezzi ribassati</strong> e <strong>chiarezza dell'offerta</strong>.</p>
+  </div>
+
+  <!-- COME SISTEMO IL FINE SERIE -->
+  <div class="card">
+    <h3>Come sistemo il Fine Serie</h3>
+    <div class="regole">
+      <div class="regola">
+        <div class="regola-letter">A</div>
+        <div class="regola-text">Lo rivendico con frontone e incorniciato con barre rosse.</div>
+      </div>
+      <div class="regola">
+        <div class="regola-letter">B</div>
+        <div class="regola-text">Ogni prodotto ha un'<span class="tag-red">etichetta rossa</span> con un'etichetta stampata da MobiPrint contenente prezzo iniziale, finale e percentuale di sconto.</div>
+      </div>
+      <div class="regola">
+        <div class="regola-letter">C</div>
+        <div class="regola-text">I prodotti <strong>Scarpe</strong> e <strong>Abbigliamento</strong> vanno <strong>divisi per taglia</strong> (utilizzo dei ronde taille per l'abbigliamento) alla fine di ogni famiglia, nel rispetto della segmentazione per sport e genere.</div>
+      </div>
+      <div class="regola">
+        <div class="regola-letter">D</div>
+        <div class="regola-text"><strong>Accessori</strong> e <strong>Voluminosi</strong> restano all'interno del reparto della rispettiva famiglia con balisage Fine Serie ad hoc.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GESTIONE PREZZO -->
+  <div class="card">
+    <h3>Quando posso modificare il prezzo?</h3>
+    <div class="stock-list">
+      <div class="stock-card t7s">
+        <span class="stock-badge t7s">T7 con stock</span>
+        <span class="stock-text">Metto in fine serie ma <strong>non modifico il prezzo</strong>.</span>
+      </div>
+      <div class="stock-card t7c">
+        <span class="stock-badge t7c">T7 senza stock</span>
+        <span class="stock-text">Metto in fine serie e <strong>posso lavorare il prezzo</strong>.</span>
+      </div>
+      <div class="stock-card t8t">
+        <span class="stock-badge t8t">T8 con tante qt in stock</span>
+        <span class="stock-text">Abbasso gradualmente il prezzo finché le quantità non diminuiscono.</span>
+      </div>
+      <div class="stock-card t8p">
+        <span class="stock-badge t8p">T8 con pochissimo stock</span>
+        <span class="stock-text">Posso <strong>"ammazzare" il prezzo</strong> per smaltirlo.</span>
+      </div>
+    </div>
+    <div class="alert">⚠️ IMPORTANTE: NON ANDIAMO MAI SOTTO MARGINE!</div>
+  </div>
+
+  <!-- REMIND -->
+  <div class="card">
+    <h3>Ricorda</h3>
+    <p class="note">Fondamentale garantire <strong>facing impeccabile</strong> nei primi 5 metri flusso e controflusso.</p>
+    <p class="note">Le tappe di vita del prodotto guidano la gestione del fine serie — consulta la sezione <strong>Tappe di Vita</strong> per il dettaglio.</p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="lineare.html" class="homeBtn">← Torna a Lineare</a>
+  </div>
+
+</div>
+</body>
+</html>
