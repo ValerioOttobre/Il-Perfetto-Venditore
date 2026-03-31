@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Account Decathlon – Programma Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
+    .card + .card { margin-top: 12px; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+    h3:first-child { margin-top: 0; }
+
+    p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
+    ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+    .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; line-height: 1.5; }
+
+    /* Griglia punti raccolta */
+    .points-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+    .point-card { background: var(--blue); border-radius: var(--radius-sm); padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .point-card .pc-emoji { font-size: 24px; line-height: 1; }
+    .point-card .pc-value { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); line-height: 1; }
+    .point-card .pc-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.75); line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px; }
+    .point-card .pc-desc { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); line-height: 1.4; margin-top: 2px; }
+
+    /* Tabella conversione */
+    .reward-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .reward-table th { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); padding: 0 0 8px; text-align: left; }
+    .reward-table th:last-child { text-align: right; }
+    .reward-table td { font-size: 15px; font-weight: 600; color: var(--text); padding: 10px 0; border-top: 1px solid var(--blue-bg); }
+    .reward-table td:last-child { text-align: right; font-weight: 800; color: var(--blue); }
+    .reward-table .buono { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--blue); }
+
+    .homeBtn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Programma Membership</h1>
+        <p class="subtitle">Account Decathlon</p>
+      </div>
+    </div>
+    <span style="width:40px;"></span>
+  </header>
+
+  <!-- RACCOLTA PUNTI -->
+  <div class="card">
+    <h3>Tanti modi per raccogliere punti</h3>
+    <div class="points-grid">
+      <div class="point-card">
+        <span class="pc-emoji">🛒</span>
+        <span class="pc-value">10 pt / 1€</span>
+        <span class="pc-label">Acquista</span>
+        <span class="pc-desc">Su Decathlon.it, app e in negozio.</span>
+      </div>
+      <div class="point-card">
+        <span class="pc-emoji">🏃</span>
+        <span class="pc-value">100 pt</span>
+        <span class="pc-label">Fai Sport</span>
+        <span class="pc-desc">Almeno 3 ore di sport a settimana. Max 6 volte l'anno.</span>
+      </div>
+      <div class="point-card">
+        <span class="pc-emoji">⭐</span>
+        <span class="pc-value">50 pt</span>
+        <span class="pc-label">Condividi la tua opinione</span>
+        <span class="pc-desc">Scrivi una recensione. Max 5 volte l'anno.</span>
+      </div>
+      <div class="point-card">
+        <span class="pc-emoji">🌍</span>
+        <span class="pc-value">50 pt bonus</span>
+        <span class="pc-label">Agisci per il Pianeta</span>
+        <span class="pc-desc">Acquisto usato o primo noleggio. Max 1 volta l'anno.</span>
+      </div>
+    </div>
+    <p class="note">🎂 <strong>Compleanno/Anniversario:</strong> buono regalo da 5€ nel giorno del tuo compleanno.</p>
+    <p class="note">👤 <strong>Crea un account:</strong> 300 punti una tantum alla registrazione.</p>
+  </div>
+
+  <!-- MODALITÀ E TEMPI -->
+  <div class="card">
+    <h3>Modalità e tempi di risalita punti</h3>
+    <ul>
+      <li>I Membri che accettano le comunicazioni ricevono una <strong>notifica via mail</strong> ad ogni accumulo punti, con saldo aggiornato.</li>
+      <li>Chi non ha accettato le comunicazioni può controllare il saldo dal proprio account su <strong>Decathlon.it</strong> o dall'<strong>App</strong>.</li>
+      <li>Acquisti in negozio: punti visibili dopo <strong>72h dall'acquisto</strong>. Ordini online: dopo <strong>72h dalla spedizione</strong>.</li>
+      <li>L'aggiunta di punti post acquisto è consentita solo al <strong>Servizio Clienti</strong>.</li>
+      <li>I punti sono validi per <strong>12 mesi</strong> dalla loro risalita.</li>
+      <li>Se il cliente dimentica di passare la Carta, è possibile farlo da <strong>Member Center</strong> o dall'<strong>App</strong>, massimo <strong>3 volte l'anno</strong> ed entro <strong>30 giorni</strong> dall'acquisto.</li>
+      <li>È possibile unire due account della stessa persona tramite <strong>CIS</strong> (Profilo → Cancella e trasferisci l'account).</li>
+    </ul>
+  </div>
+
+  <!-- SCADENZA PUNTI -->
+  <div class="card">
+    <h3>Scadenza punti</h3>
+    <ul>
+      <li><strong>Punti base</strong> (acquisti e attività): scadono dopo <strong>12 mesi</strong>.</li>
+      <li><strong>Punti extra</strong> (promozioni e offerte): scadono generalmente dopo <strong>30 giorni</strong>. La validità può variare — consulta il regolamento della promozione specifica.</li>
+    </ul>
+    <p class="note">I buoni generati sono <strong>frazionabili</strong> e spendibili su prodotti e servizi. Non utilizzabili per l'attivazione di Carte Regalo.</p>
+    <p class="note">La conversione punti in premi può essere effettuata <strong>solo dal Membro</strong> nel proprio account (sito o app).</p>
+  </div>
+
+  <!-- CONVERSIONE PUNTI -->
+  <div class="card">
+    <h3>Conversione punti in buoni</h3>
+    <table class="reward-table">
+      <thead>
+        <tr>
+          <th>Buono sconto</th>
+          <th>Punti necessari</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="buono">5 €</td>
+          <td>3.500 punti</td>
+        </tr>
+        <tr>
+          <td class="buono">10 €</td>
+          <td>6.500 punti</td>
+        </tr>
+        <tr>
+          <td class="buono">25 €</td>
+          <td>16.000 punti</td>
+        </tr>
+        <tr>
+          <td class="buono">40 €</td>
+          <td>25.000 punti</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer-nav">
+    <a href="carta-decathlon.html" class="homeBtn">← Torna ad Account Decathlon</a>
+  </div>
+
+</div>
+</body>
+</html>
