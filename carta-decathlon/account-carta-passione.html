@@ -4,30 +4,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3643BA">
-  <title>Account Decathlon – Carta Passione</title>
+  <title>Account Decathlon – Carta Ambassador</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; }
+    :root { --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB; --white: #FFFFFF; --text: #0D1240; --muted: #6370A0; --radius: 16px; --radius-sm: 10px; --red: #C62828; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
     .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
     .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
     .brand { display: flex; align-items: center; gap: 12px; }
     .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
     .logo { width: 48px; height: 48px; object-fit: contain; }
     .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
     .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
     .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
+    .card + .card { margin-top: 12px; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.4px; }
     p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
-    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.4px; }
-    h3:first-child { margin-top: 0; }
-    ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
-    ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
+    p:last-child { margin-bottom: 0; }
+
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    ul li { font-size: 14px; font-weight: 600; color: var(--text); padding-left: 18px; position: relative; line-height: 1.5; }
     ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
     .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; line-height: 1.5; }
+    .alert { font-size: 13px; font-weight: 700; color: var(--red); background: #FFEBEE; border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 8px; line-height: 1.5; border-left: 3px solid var(--red); }
+
+    .linkBtn { display: block; margin-top: 10px; padding: 12px 16px; background: var(--blue); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; text-align: center; transition: background 0.1s; }
+    .linkBtn:active { background: var(--blue-dark); }
+
     .homeBtn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
     .homeBtn:active { background: var(--blue-bg); }
     .footer-nav { text-align: center; }
@@ -42,17 +53,102 @@
         <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
       </div>
       <div class="titles">
-        <h1>Carta Passione</h1>
+        <h1>Carta Ambassador</h1>
         <p class="subtitle">Account Decathlon</p>
       </div>
     </div>
     <span style="width:40px;"></span>
   </header>
 
-  <main class="card">
-    <!-- CONTENUTO DA AGGIUNGERE -->
-    <p class="note">Contenuto in arrivo.</p>
-  </main>
+  <!-- SENSO E OBIETTIVO -->
+  <div class="card">
+    <h3>Il Senso</h3>
+    <p>Promuovere il benessere e la pratica sportiva dei/delle teammates, incoraggiarli/le all'utilizzo dei prodotti delle Marche Decathlon e co-creare i nostri prodotti sportivi.</p>
+
+    <h3 style="margin-top:18px;">Obiettivo</h3>
+    <p>Ogni Teammate è Ambasciatore/trice per scoprire, testare ed utilizzare i prodotti Marche Decathlon. Con la propria esperienza sui luoghi di pratica può contribuire a migliorare il design dei prodotti fornendo feedback, partecipando ai sondaggi di co-creazione o testando i prodotti.</p>
+  </div>
+
+  <!-- BENEFIT -->
+  <div class="card">
+    <h3>Benefit</h3>
+    <p>La Carta Ambassador dà diritto a <strong>riduzioni del 25%</strong> sul prezzo d'acquisto di:</p>
+    <ul>
+      <li>Prodotti Marche Decathlon</li>
+      <li>Servizi RENT (escluse subscription e riscatto dei prodotti noleggiati)</li>
+    </ul>
+    <p class="note">❌ Esclusi: Carte Regalo, articoli ricondizionati/second hand, acquisti su alltricks.it.</p>
+    <p class="note">💳 Quando lo sconto raggiunge la soglia minima di <strong>€ 15,00</strong>, viene disposto automaticamente un bonifico sul conto corrente bancario del Teammate.</p>
+  </div>
+
+  <!-- BENEFICIARI -->
+  <div class="card">
+    <h3>Beneficiari/e</h3>
+    <p>Rivolta a tutti i/le teammate con <strong>contratto a tempo indeterminato o di apprendistato</strong> che hanno raggiunto almeno <strong>3 mesi di presenza consecutiva</strong>.</p>
+    <p>La Carta è strettamente personale e può essere utilizzata anche da:</p>
+    <ul>
+      <li>Coniuge e/o compagno/a convivente</li>
+      <li>Figli/e, anche non conviventi</li>
+    </ul>
+  </div>
+
+  <!-- REQUISITI CREAZIONE -->
+  <div class="card">
+    <h3>Requisiti per la creazione</h3>
+    <ul>
+      <li>Chi possiede già una <strong>Carta Fedeltà Decathlon</strong> deve eliminarla dalla propria area personale prima di procedere.</li>
+      <li>Inserire / aggiornare i propri dati personali su <strong>DOCSWEB → Area Privata → Dati Personali</strong>.</li>
+      <li>Non deve essere registrato un account con la <strong>mail aziendale</strong> prima della conferma di creazione della carta, altrimenti non sarà possibile emetterla.</li>
+    </ul>
+  </div>
+
+  <!-- LINEE GUIDA -->
+  <div class="card">
+    <h3>Linee Guida di utilizzo</h3>
+    <p>La Carta Ambassador va <strong>presentata prima della registrazione degli articoli in cassa</strong>. Se non viene presentata, il/la teammate perde il diritto allo sconto.</p>
+    <ul>
+      <li>Per gli acquisti e-commerce è sufficiente autenticarsi con l'<strong>account aziendale</strong> (mail decathlon) associato automaticamente alla Carta.</li>
+      <li>Per acquisti fuori dall'Italia è possibile caricare lo scontrino su <strong>Concur</strong> come voce <em>DkCard</em>.</li>
+      <li>In caso di reso, il/la teammate deve presentare la stessa Carta per annullare il vantaggio acquisito.</li>
+      <li>I benefici e il dettaglio degli acquisti sono consultabili su <strong>teammate.decathlon.net</strong>.</li>
+      <li>Gli acquisti tramite PLUS generano il rimborso solo dopo la <strong>spedizione degli articoli</strong>.</li>
+      <li>L'uso della Carta può essere sospeso in caso di <strong>aspettativa non retribuita</strong>.</li>
+    </ul>
+    <a class="linkBtn" href="https://teammate.decathlon.net/" target="_blank">🔗 teammate.decathlon.net</a>
+  </div>
+
+  <!-- VIETATO -->
+  <div class="card">
+    <h3>È in ogni caso vietato</h3>
+    <ul>
+      <li>Far beneficiare della Carta soggetti non elencati tra i/le beneficiari/e.</li>
+      <li>Dare la propria Carta o il relativo codice a soggetti terzi, compresi clienti.</li>
+      <li>Effettuare acquisti per conto di terzi.</li>
+      <li>Utilizzare la Carta su acquisti effettuati dai clienti.</li>
+      <li>Acquistare articoli destinati ad attività commerciali proprie o di terzi.</li>
+    </ul>
+  </div>
+
+  <!-- CESSAZIONE -->
+  <div class="card">
+    <h3>Cessazione del rapporto di lavoro</h3>
+    <p>Alla cessazione la Carta Ambassador non genererà più rimborsi e si trasformerà in una tradizionale <strong>Carta Membership</strong>.</p>
+    <p class="note">⚠️ Entro l'ultimo giorno di lavoro, sostituire l'indirizzo e-mail aziendale con uno personale. Una volta disattivato l'account aziendale non sarà più possibile modificarlo.</p>
+
+    <h3 style="margin-top:18px;">Trasferimento o cambio Società</h3>
+    <p>In caso di trasferimento in un'altra nazione o cambio società (es. da Decathlon Italia a Decathlon Produzione) la Carta va trasformata in Carta Fedeltà, per poi crearne una nuova nel nuovo Paese o Società.</p>
+  </div>
+
+  <!-- VERIFICHE -->
+  <div class="card">
+    <h3>Verifiche e imputazione dei costi</h3>
+    <ul>
+      <li>Il rimborso viene addebitato al <strong>negozio/deposito/servizio</strong> assegnato al profilo Identity Access del teammate.</li>
+      <li>In caso di errata imputazione, il/la Leader modifica il campo <strong>"centro di costo"</strong> su Identity Access.</li>
+      <li>Il/la Teammate in cassa/reception deve verificare la presenza della Carta e stornarla in caso di reso.</li>
+      <li>Ogni Leader di Servizio verifica periodicamente il <strong>corretto utilizzo</strong> della Carta dei propri teammates.</li>
+    </ul>
+  </div>
 
   <div class="footer-nav">
     <a href="carta-decathlon.html" class="homeBtn">← Torna ad Account Decathlon</a>
