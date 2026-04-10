@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Garanzia Legale – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    /* ── Header ── */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    /* ── Cards ── */
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card + .card { margin-top: 12px; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+    .card h3 { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue-dark); margin: 14px 0 6px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card ul { margin: 6px 0 8px 18px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .card li { margin-bottom: 4px; }
+
+    /* ── Highlight box ── */
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
+    .highlight-title { font-size: 13px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .highlight p, .highlight ul { font-size: 13px; color: #BF360C; line-height: 1.55; }
+    .highlight ul { margin: 6px 0 0 16px; }
+    .highlight li { margin-bottom: 4px; }
+
+    /* ── Examples section ── */
+    .examples-placeholder { background: var(--blue-bg); border: 2px dashed var(--blue); border-radius: var(--radius-sm); padding: 18px 16px; margin-top: 14px; text-align: center; }
+    .examples-placeholder p { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0; }
+
+    /* ── Nav ── */
+    .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Garanzia Legale</h1>
+        <p class="subtitle">Protezione · Conformità · Diritti</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── INTRO ── -->
+  <div class="card" style="animation-delay:0.08s">
+    <h2>⚖️ Cosa copre</h2>
+    <p>La garanzia copre <strong>tutti i prodotti Decathlon per 2 anni + 2 mesi</strong> dalla data di acquisto.</p>
+    <p>Copre esclusivamente <strong>difetti di produzione</strong>. Non copre danni accidentali né la normale usura.</p>
+  </div>
+
+  <!-- ── ARTICOLO 8 ── -->
+  <div class="card" style="animation-delay:0.13s">
+    <h2>Articolo 8 – Garanzia legale di conformità</h2>
+    <p>La durata della garanzia legale è di <strong>2 anni</strong> dalla consegna del bene.</p>
+    <p>In caso di prodotti difettosi o non conformi all'ordine, il cliente ha diritto al ripristino gratuito della conformità tramite <strong>riparazione o sostituzione</strong>.</p>
+    <p>Il diritto si esercita entro <strong>26 mesi</strong> dalla consegna (artt. 133 e ss. del Codice del Consumo).</p>
+    <h3>Come esercitarlo</h3>
+    <p>Il cliente deve creare una pratica di reso nella sezione <strong>"I miei ordini"</strong> dentro "Il mio conto online" su decathlon.it o sull'App Decathlon.</p>
+    <p>In caso di prodotto difettoso e non conforme, Decathlon organizza il ritiro a proprie spese.</p>
+  </div>
+
+  <!-- ── ARTICOLO 9 ── -->
+  <div class="card" style="animation-delay:0.18s">
+    <h2>Articolo 9 – Garanzia commerciale</h2>
+    <p>Alcuni prodotti beneficiano di una <strong>garanzia commerciale aggiuntiva</strong> oltre a quella legale. La durata è indicata sulla scheda prodotto.</p>
+    <p>Per usufruirne il cliente deve conservare la fattura, stampabile dalla sezione <strong>"I miei ordini"</strong>.</p>
+    <h3>Prodotti Partner (Marketplace)</h3>
+    <p>Per i prodotti venduti dai Partner, le modalità di garanzia sono consultabili nelle Condizioni Generali di Vendita del Partner, accessibili dalla scheda prodotto su decathlon.it o sull'App.</p>
+    <p>Tutti i clienti beneficiano comunque della <strong>garanzia legale di conformità</strong> (artt. 128-135 Codice del Consumo), prestata direttamente dal Partner.</p>
+  </div>
+
+  <!-- ── IMPORTANTE ── -->
+  <div class="card" style="animation-delay:0.23s">
+    <h2>⚠️ Importante ricordare</h2>
+    <div class="highlight">
+      <div class="highlight-title">🔎 Garanzie prolungate su specifiche categorie</div>
+      <ul>
+        <li><strong>Tapis Roulant e Macchine Cardio</strong> (ellittiche, cyclette): spesso garanzie prolungate su telaio e componenti strutturali (fino a 5 anni o più, a seconda del modello indicato sulla scheda prodotto).</li>
+        <li><strong>Strutture Fitness / Pesi:</strong> componenti strutturali in metallo (telai stazioni multifunzione, rack) possono avere garanzie commerciali superiori a 2 anni.</li>
+        <li><strong>Prodotti specifici:</strong> i tavoli da ping pong Decathlon, ad esempio, sono garantiti <strong>10 anni</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── ESEMPI PRODOTTI ── -->
+  <div class="card" style="animation-delay:0.28s">
+    <h2>📦 Esempi di prodotti con garanzia superiore a 2 anni</h2>
+    <div class="examples-placeholder">
+      <p>⏳ Sezione in fase di completamento</p>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="garanzia-assicurazione.html" class="homeBtn">← Torna a Garanzia e Assicurazione</a>
+  </div>
+
+</div>
+</body>
+</html>
