@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3643BA">
-  <title>Procedura IVA Speciale – Il Perfetto Venditore</title>
+  <title>Documenti IVA Speciale – Il Perfetto Venditore</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
@@ -35,25 +35,30 @@
     .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
     .card + .card { margin-top: 12px; }
     .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
-    .card h3 { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue-dark); margin: 14px 0 6px; }
     .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
-    .card p:last-child { margin-bottom: 0; }
     .card ul { margin: 6px 0 8px 18px; font-size: 14px; line-height: 1.6; color: var(--text); }
     .card li { margin-bottom: 4px; }
+
+    /* ── Q&A rows ── */
+    .qa { margin-bottom: 14px; }
+    .qa:last-child { margin-bottom: 0; }
+    .qa-q { font-size: 13px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .qa-a { font-size: 14px; line-height: 1.6; color: var(--text); }
 
     /* ── Highlight box ── */
     .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
     .highlight-title { font-size: 13px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-    .highlight p, .highlight ul { font-size: 13px; color: #BF360C; line-height: 1.55; }
-    .highlight p { margin-bottom: 6px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 6px; }
     .highlight p:last-child { margin-bottom: 0; }
-    .highlight ul { margin: 6px 0 0 16px; }
-    .highlight li { margin-bottom: 4px; }
 
-    /* ── Info box (blue) ── */
-    .info-box { background: var(--blue-bg); border: 2px solid var(--blue); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
-    .info-box p { font-size: 13px; color: var(--blue-dark); line-height: 1.55; margin-bottom: 6px; }
-    .info-box p:last-child { margin-bottom: 0; }
+    /* ── Action buttons ── */
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .actionBtn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px 14px; background: var(--blue); border: none; border-radius: var(--radius); cursor: pointer; text-align: center; text-decoration: none; transition: transform 0.1s ease, background 0.1s ease; box-shadow: 0 3px 12px rgba(54,67,186,0.25); animation: fadeUp 0.4s ease both; }
+    .actionBtn:active { transform: scale(0.95); background: var(--blue-dark); }
+    .actionBtn:nth-child(1) { animation-delay: 0.28s; }
+    .actionBtn:nth-child(2) { animation-delay: 0.33s; }
+    .action-emoji { font-size: 28px; line-height: 1; }
+    .action-label { font-size: 12px; font-weight: 700; color: var(--white); line-height: 1.25; }
 
     /* ── Nav ── */
     .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
@@ -72,107 +77,82 @@
         <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
       </div>
       <div class="titles">
-        <h1>Procedura Completa</h1>
-        <p class="subtitle">Rimborso IVA Portatori di Handicap</p>
+        <h1>Documenti IVA Speciale</h1>
+        <p class="subtitle">IVA 4% · Portatori di Handicap</p>
       </div>
     </div>
   </header>
 
-  <!-- ── NORMATIVA ── -->
+  <!-- ── SCHEDA OPERATIVA ── -->
   <div class="card" style="animation-delay:0.08s">
-    <h2>⚖️ Base normativa</h2>
-    <p>In base all'art. 16 del DPR 633/72, l'IVA al 4% si applica a tutte le spese sostenute per l'acquisto di <strong>sussidi tecnici e informatici</strong>: dispositivi basati su tecnologie meccaniche, elettroniche o informatiche, ed eventuali costi annessi come trasporto e montaggio.</p>
-    <p><strong>No abbigliamento</strong>, a meno che sia esplicitamente espresso nella prescrizione del medico curante.</p>
-    <p>L'agevolazione si applica ai dispositivi rivolti a facilitare l'autosufficienza e l'integrazione dei soggetti portatori di handicap.</p>
+    <h2>📋 IVA Portatori di Handicap</h2>
 
-    <div class="info-box">
-      <p><strong>Prodotti 2hand:</strong> l'agevolazione è applicabile.</p>
-      <p><strong>Buyback:</strong> non applicabile — seguono un regime IVA specifico e non hanno IVA sullo scontrino.</p>
+    <div class="qa">
+      <p class="qa-q">A cosa ha diritto il cliente?</p>
+      <p class="qa-a">Al pagamento dell'IVA al <strong>4%</strong> anziché al 22%.</p>
     </div>
 
-    <div class="highlight">
-      <div class="highlight-title">⚠️ Da ricordare</div>
-      <p>Assicurazione e garanzia hanno già per la normativa italiana IVA a 0%, dunque per tali importi <strong>non occorre sottrarre nulla</strong>.</p>
+    <div class="qa">
+      <p class="qa-q">Ha limiti di spesa?</p>
+      <p class="qa-a"><strong>No.</strong></p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Può acquistare ogni articolo?</p>
+      <p class="qa-a"><strong>No.</strong> Solo dispositivi basati su tecnologie meccaniche, elettroniche o informatiche rivolti a facilitare l'autosufficienza e l'integrazione dei soggetti portatori di handicap. Inclusi i costi accessori come trasporto e montaggio. <strong>No abbigliamento, no accessori.</strong></p>
     </div>
   </div>
 
-  <!-- ── DOCUMENTI ── -->
+  <!-- ── DOCUMENTI NECESSARI ── -->
   <div class="card" style="animation-delay:0.13s">
     <h2>📄 Documenti necessari</h2>
-    <p>Per usufruire dell'agevolazione servono:</p>
     <ul>
       <li><strong>Codice fiscale</strong></li>
-      <li><strong>Certificato</strong> attestante l'invalidità</li>
-      <li><strong>Prescrizione del medico curante</strong>, dalla quale risulti il collegamento funzionale tra la menomazione e il sussidio tecnico e informatico</li>
+      <li><strong>Documento d'identità</strong></li>
+      <li><strong>Certificato ASL</strong> che attesta l'invalidità</li>
+      <li><strong>Prescrizione del medico specialista</strong> che attesta il collegamento tra la merce e la menomazione</li>
     </ul>
 
-    <h3>Alternativa: Autocertificazione</h3>
-    <p>Il DL 76/2020 introduce la possibilità di <strong>autocertificazione</strong> in sostituzione della prescrizione medica (punto 3). In questo caso è necessario richiedere e conservare anche la <strong>copia della carta d'identità</strong> del cliente.</p>
-
     <div class="highlight">
-      <div class="highlight-title">⚠️ Attenzione</div>
-      <p>L'autocertificazione può essere utilizzata dal cliente <strong>solo se il certificato del medico è stato rilasciato</strong>. In caso di verifiche da parte delle Autorità, il cliente sarà sanzionato per falsa dichiarazione. Il cliente è l'unico responsabile della veridicità della dichiarazione.</p>
-    </div>
-
-    <h3>Disability Card</h3>
-    <p>La Disability Card consente il riconoscimento reciproco dello stato di disabilità tra gli Stati membri UE. Sostituisce l'autocertificazione, ma <strong>non è un documento di riconoscibilità</strong>: deve sempre essere accompagnata da un documento di riconoscimento in corso di validità.</p>
-  </div>
-
-  <!-- ── PROCEDURA IN NEGOZIO ── -->
-  <div class="card" style="animation-delay:0.18s">
-    <h2>🏪 Procedura in negozio</h2>
-    <p>Il cliente presenta in reception la documentazione richiesta.</p>
-    <ul>
-      <li>Far visualizzare al cliente l'<strong>informativa privacy</strong></li>
-      <li>Se il cliente ha <strong>più di 13 anni</strong>: far firmare il modulo "maggiorenni"</li>
-      <li>Se il cliente ha <strong>meno di 14 anni</strong>: far firmare il genitore il modulo "minorenni"</li>
-      <li>Se il cliente è un'<strong>associazione o PA</strong>: far predisporre su carta intestata una dichiarazione apposita</li>
-    </ul>
-    <p>Con il nuovo software c'è la possibilità di <strong>modificare l'IVA direttamente in cassa</strong>.</p>
-  </div>
-
-  <!-- ── ORDINE PLUS ── -->
-  <div class="card" style="animation-delay:0.23s">
-    <h2>📦 Ordine Plus</h2>
-    <p>Poiché la fattura si genera successivamente online (lo scontrino in cassa ha IVA a 0% perché è solo un deposito cauzionale), bisogna far pagare direttamente il valore corretto al cliente.</p>
-    <p>Chiudere la differenza non dovuta come <strong>pagamento differito posticipato</strong> con giustificativo <strong>"iva 4%"</strong>.</p>
-    <p>L'AS fiscale a fine mese farà l'estrazione dei pagamenti differiti con giustificativo "iva 4%" e giroconterà l'importo sul conto dell'IVA.</p>
-
-    <div class="highlight">
-      <div class="highlight-title">💰 Finanziamento</div>
-      <p>Se il cliente vuole finanziare il bene, la pratica dovrà essere aperta per l'<strong>importo totale calcolato con l'IVA al 4%</strong>.</p>
+      <div class="highlight-title">📝 Alternativa: Autocertificazione</div>
+      <p>In alternativa alla prescrizione del medico (punto 4), il cliente può presentare un'<strong>autocertificazione</strong>. In questo caso è obbligatorio richiedere e conservare anche la <strong>copia della carta d'identità</strong> del cliente.</p>
     </div>
   </div>
 
   <!-- ── FATTURA ── -->
-  <div class="card" style="animation-delay:0.28s">
-    <h2>🧾 Emissione / Stampa della Fattura</h2>
-    <p>La fattura di One Invoice si genera automaticamente con la stessa IVA presente sullo scontrino (4%). Inserire correttamente i dati del cliente per una corretta generazione della fattura elettronica.</p>
+  <div class="card" style="animation-delay:0.18s">
+    <h2>🧾 Devo emettere fattura?</h2>
+    <p><strong>Sì.</strong> Su Edok non inserire nessun articolo di legge — modifica solo l'aliquota.</p>
+  </div>
 
-    <div class="highlight">
-      <div class="highlight-title">⚠️ Intestazione</div>
-      <p>La fattura deve essere intestata al <strong>soggetto che beneficia dell'agevolazione</strong>, anche se minorenne, oppure al suo tutore legale.</p>
-    </div>
-
-    <p>Se il cliente necessita di specifiche in fattura elettronica previste dalla normativa, la fattura non potrà essere trasmessa in centralizzato e andrà caricata manualmente su <strong>Edok</strong>.</p>
-
-    <h3>Ordine Plus — Fattura</h3>
-    <p>La ricevuta di vendita o la fattura (se PA o ente/associazione) si genera in automatico su CI con IVA al 22%.</p>
-    <ul>
-      <li><strong>PA:</strong> la fattura elettronica deve essere emessa dal negozio su Edok con IVA al 4%</li>
-      <li><strong>Cliente privato:</strong> solo se richiede espressamente la fattura — flaggare "voglio la fattura" al momento dell'ordine. La fattura elettronica deve essere emessa dal negozio su Edok con IVA al 4%</li>
-    </ul>
-    <p>La fattura elettronica potrà essere scaricata dal cliente dal proprio cassetto fiscale / portale fatture e corrispettivi, o stampata in negozio se necessario.</p>
+  <!-- ── ORDINE PLUS ── -->
+  <div class="card" style="animation-delay:0.23s">
+    <h2>📦 In caso di Ordine Plus?</h2>
+    <p>Se il cliente presenta subito tutta la documentazione, ha diritto a pagare immediatamente l'importo con IVA al 4%.</p>
+    <p>Dopo aver fatto lo scontrino totale, chiudere la parte che il cliente non deve pagare con <strong>pagamento differito</strong> e giustificativo <strong>"iva 4%"</strong>.</p>
+    <p>Al momento del ritiro emettere fattura.</p>
   </div>
 
   <!-- ── ARCHIVIAZIONE ── -->
-  <div class="card" style="animation-delay:0.33s">
-    <h2>📁 Archiviazione</h2>
-    <p>Archiviare tutta la documentazione in <strong>busta cassa</strong>.</p>
+  <div class="card" style="animation-delay:0.28s">
+    <h2>📁 Come archivio i documenti?</h2>
+    <p>Una copia di tutti i documenti necessari va in <strong>busta cassa</strong> e una copia spedita in <strong>contabilità</strong>.</p>
+  </div>
+
+  <!-- ── AZIONI ── -->
+  <div class="action-grid">
+    <a class="actionBtn" href="documenti-iva-speciale-regolamento.html">
+      <span class="action-emoji">📖</span>
+      <span class="action-label">Procedura Completa</span>
+    </a>
+    <a class="actionBtn" href="https://docs.google.com/gview?url=https://valerioottobre.github.io/Il-Perfetto-Venditore/fatturazione/modulo-autocertificazione-iva-4.pdf&embedded=false" target="_blank">
+      <span class="action-emoji">🖨️</span>
+      <span class="action-label">Apri Modulo Autocertificazione</span>
+    </a>
   </div>
 
   <div class="footer-nav">
-    <a href="documenti-iva-speciale.html" class="homeBtn">← Torna a Documenti IVA Speciale</a>
+    <a href="fatturazione-fatture.html" class="homeBtn">← Torna a Fatturazione</a>
   </div>
 
 </div>
