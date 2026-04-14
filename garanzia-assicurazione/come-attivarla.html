@@ -1,1 +1,264 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Come Attivarla – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
 
+    /* ── Header ── */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    /* ── Cards ── */
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card + .card { margin-top: 12px; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+    .card h3 { font-size: 13px; font-weight: 800; color: var(--blue-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 8px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── Step list ── */
+    .steps { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .step { display: flex; align-items: flex-start; gap: 14px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .step-body { flex: 1; }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 3px; }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .step-desc strong { color: var(--text); }
+
+    /* ── Data grid ── */
+    .data-grid { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .data-row { display: flex; align-items: center; gap: 10px; background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; }
+    .data-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; flex: 1; }
+    .data-value { font-size: 13px; font-weight: 700; color: var(--text); text-align: right; }
+
+    /* ── Highlight ── */
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 12px; }
+    .highlight-title { font-size: 12px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 4px; }
+    .highlight p:last-child { margin-bottom: 0; }
+
+    /* ── Info box ── */
+    .info-box { background: var(--blue-bg); border-left: 4px solid var(--blue); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 14px; margin-top: 12px; }
+    .info-box p { font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 4px; }
+    .info-box p:last-child { margin-bottom: 0; }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: var(--blue-bg); margin: 16px 0; }
+
+    /* ── Nav ── */
+    .footer-nav { text-align: center; margin-top: 24px; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Come Attivarla</h1>
+        <p class="subtitle">Guida per il Collaboratore</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── INTRO ── -->
+  <div class="card" style="animation-delay:0.05s">
+    <h2>📋 Cosa spiegare al cliente</h2>
+    <p>Il cliente ha già acquistato il servizio in negozio. Uscendo dal negozio dovrà <strong>attivare il contratto autonomamente</strong> dal suo Conto Cliente su <strong>decathloninsurance.com</strong>.</p>
+    <p>La procedura è identica per l'Estensione di Garanzia Fitness e per l'Assicurazione Ciclismo.</p>
+    <div class="highlight">
+      <div class="highlight-title">⏱️ Finestra di attivazione</div>
+      <p>L'attivazione è disponibile a partire dalle <strong>24 ore successive all'acquisto</strong> in negozio, in qualsiasi momento fino alla data di scadenza del contratto.</p>
+      <p>Non c'è fretta: il cliente ha tutto il tempo indicato sul suo contratto, ma prima attiva e prima è coperto.</p>
+    </div>
+  </div>
+
+  <!-- ── ACCESSO ── -->
+  <div class="card" style="animation-delay:0.10s">
+    <h2>🔐 Passo 1 — Accedere al profilo</h2>
+    <p>Il cliente deve andare su <strong>decathloninsurance.com</strong> e accedere con le sue credenziali <strong>Decathlon OneID</strong> — le stesse che usa per il sito decathlon.it e l'App Decathlon.</p>
+
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Problema di accesso?</div>
+      <p>Se il cliente ha difficoltà (password errata, email non riconosciuta, mancata ricezione del codice), deve contattare il <strong>Servizio Clienti Decathlon Italia</strong> — unico responsabile del profilo OneID.</p>
+      <p>Se non ha ancora un profilo, deve crearne uno nuovo su decathlon.it prima di procedere.</p>
+    </div>
+  </div>
+
+  <!-- ── ATTIVAZIONE ── -->
+  <div class="card" style="animation-delay:0.15s">
+    <h2>✅ Passo 2 — Attivare il contratto</h2>
+    <p>Una volta dentro il profilo, il cliente segue questi passaggi:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Vai al Menù CONTRATTI</div>
+          <div class="step-desc">Visibile nella barra di navigazione principale dopo il login.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Seleziona ATTIVARE UN NUOVO CONTRATTO</div>
+          <div class="step-desc">Pulsante presente nella sezione Contratti.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Inserisci i dati dello scontrino</div>
+          <div class="step-desc">Vedi i campi richiesti nella sezione qui sotto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Inserisci i dati del prodotto</div>
+          <div class="step-desc">Prezzo, marca, modello e <strong>numero di serie</strong> (per le bici: visibile sul telaio).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Conferma e salva</div>
+          <div class="step-desc">Il cliente riceverà il Certificato di assicurazione via email. Il contratto sarà visibile nel suo profilo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DATI SCONTRINO ── -->
+  <div class="card" style="animation-delay:0.20s">
+    <h2>🧾 Dati richiesti dallo scontrino</h2>
+    <p>Assicurati che il cliente conservi lo scontrino prima di uscire. I dati necessari sono:</p>
+    <div class="data-grid">
+      <div class="data-row">
+        <span class="data-label">Data di acquisto</span>
+        <span class="data-value">Indicata sullo scontrino</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Codice negozio</span>
+        <span class="data-value">Indicato sullo scontrino</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Numero di cassa</span>
+        <span class="data-value">Indicato sullo scontrino</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Numero di transazione</span>
+        <span class="data-value">Indicato sullo scontrino</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p>Successivamente il sistema chiederà anche i dati del prodotto assicurato:</p>
+    <div class="data-grid">
+      <div class="data-row">
+        <span class="data-label">Prezzo di acquisto</span>
+        <span class="data-value">Dallo scontrino</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Marca</span>
+        <span class="data-value">Del prodotto</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Modello</span>
+        <span class="data-value">Del prodotto</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Numero di serie</span>
+        <span class="data-value">Sul prodotto / telaio</span>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:14px">
+      <div class="highlight-title">📌 Bici: dove trovare il numero di serie</div>
+      <p>Il numero di serie della bici è inciso sul <strong>telaio</strong> (di solito sotto il movimento centrale o sul tubo verticale). Non è sempre presente sullo scontrino.</p>
+    </div>
+  </div>
+
+  <!-- ── SCONTRINO PERSO ── -->
+  <div class="card" style="animation-delay:0.25s">
+    <h2>❓ Il cliente non trova lo scontrino</h2>
+    <p>Se il cliente ha la <strong>Carta Fedeltà</strong> ed è stata bippata in fase di acquisto, lo scontrino è disponibile nel suo storico acquisti sul profilo Decathlon.</p>
+    <p>Se la Carta non è stata bippata, il cliente può contattare il <strong>Servizio Clienti Decathlon Sports Insurance</strong> all'indirizzo <strong>contato.assicurazioni@decathlon.com</strong>: faranno il possibile per recuperare la transazione.</p>
+    <div class="info-box">
+      <p>💡 Per questo motivo è importante <strong>bippare sempre la Carta Fedeltà</strong> al momento della vendita.</p>
+    </div>
+  </div>
+
+  <!-- ── SENZA INTERNET ── -->
+  <div class="card" style="animation-delay:0.30s">
+    <h2>📵 Il cliente non ha internet</h2>
+    <p>Può chiamare il <strong>Servizio Clienti Decathlon Sports Insurance</strong>. Dovrà avere a disposizione lo scontrino del prodotto e dell'assicurazione.</p>
+  </div>
+
+  <!-- ── VERIFICA ── -->
+  <div class="card" style="animation-delay:0.35s">
+    <h2>🔍 Come verificare che il contratto sia attivo</h2>
+    <p>Dopo l'attivazione il contratto appare nella sezione <strong>CONTRATTI</strong> del profilo su decathloninsurance.com con stato attivo. Il cliente riceve anche il <strong>Certificato di assicurazione via email</strong>.</p>
+    <p>Se il contratto non appare, le cause più comuni sono:</p>
+    <div class="data-grid" style="margin-top:8px">
+      <div class="data-row">
+        <span class="data-label">Email diversa</span>
+        <span class="data-value">Usare quella della registrazione</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Dati scontrino errati</span>
+        <span class="data-value">Ricontrollare</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Attesa 24h</span>
+        <span class="data-value">Non ancora disponibile</span>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:12px">
+      <p>Se il problema persiste, il cliente contatta il Servizio Clienti DSI: <strong>contato.assicurazioni@decathlon.com</strong></p>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="garanzia-assicurazione.html" class="homeBtn">← Torna a Garanzia e Assicurazione</a>
+  </div>
+
+</div>
+</body>
+</html>
