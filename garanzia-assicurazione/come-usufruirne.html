@@ -1,1 +1,345 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Come Usufruirne – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
 
+    /* ── Header ── */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    /* ── Sezione label ── */
+    .section-label { margin-top: 24px; margin-bottom: 4px; padding: 0 4px; }
+    .section-label span { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+    /* ── Cards ── */
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 10px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── Step list ── */
+    .steps { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .step { display: flex; align-items: flex-start; gap: 14px; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-body { flex: 1; }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 3px; }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .step-desc strong { color: var(--text); }
+
+    /* ── Docs list ── */
+    .docs-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .doc-row { display: flex; align-items: center; gap: 10px; background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.4; }
+    .doc-icon { font-size: 16px; flex-shrink: 0; }
+
+    /* ── Esito box ── */
+    .esito-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .esito-block { background: var(--blue); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .esito-block .esito-icon { font-size: 24px; margin-bottom: 6px; }
+    .esito-block .esito-label { font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .esito-block .esito-text { font-size: 12px; font-weight: 600; color: var(--white); line-height: 1.4; }
+
+    /* ── Highlight ── */
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 12px; }
+    .highlight-title { font-size: 12px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 4px; }
+    .highlight p:last-child { margin-bottom: 0; }
+
+    /* ── Info box ── */
+    .info-box { background: var(--blue-bg); border-left: 4px solid var(--blue); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 14px; margin-top: 12px; }
+    .info-box p { font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 4px; }
+    .info-box p:last-child { margin-bottom: 0; }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: var(--blue-bg); margin: 14px 0; }
+
+    /* ── Rimborso formula ── */
+    .formula { background: var(--blue); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 10px; text-align: center; }
+    .formula p { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; margin-bottom: 4px; }
+    .formula .formula-result { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--white); margin-top: 6px; }
+
+    /* ── Nav ── */
+    .footer-nav { text-align: center; margin-top: 24px; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Come Usufruirne</h1>
+        <p class="subtitle">Guida per il Collaboratore</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════
+       SEZIONE 1 — ESTENSIONE DI GARANZIA FITNESS
+       ════════════════════════════════════ -->
+  <div class="section-label" style="animation-delay:0.05s">
+    <span>🏋️ Estensione di Garanzia Fitness</span>
+  </div>
+
+  <!-- Guasto Fitness -->
+  <div class="card" style="animation-delay:0.08s">
+    <h2>🔧 In caso di guasto</h2>
+    <p>L'assistenza è gestita direttamente dal <strong>Domyos Technical Support</strong>. Il cliente <strong>non deve aprire un sinistro</strong> su decathloninsurance.com — la procedura è gestita in back office da Domyos.</p>
+
+    <div class="highlight">
+      <div class="highlight-title">⏱️ Entro quando segnalare</div>
+      <p>Il cliente deve segnalare il guasto entro <strong>5 giorni lavorativi</strong> da quando ne viene a conoscenza.</p>
+    </div>
+
+    <h2 style="margin-top:16px">📋 Procedura</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Vai su support.decathlon.it</div>
+          <div class="step-desc">Dal browser del telefono o del computer.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Seleziona lo sport del prodotto</div>
+          <div class="step-desc">Es. fitness, cardio-training, ecc.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Cerca il modello corretto</div>
+          <div class="step-desc">Il modello è indicato sullo <strong>scontrino</strong> o sul <strong>frontespizio del manuale</strong>.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Scorri fino a RICHIESTA ASSISTENZA</div>
+          <div class="step-desc">Voce presente in fondo alla pagina del prodotto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Compila il modulo di assistenza</div>
+          <div class="step-desc">Descrivere con precisione il guasto riscontrato.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="esito-grid">
+      <div class="esito-block">
+        <div class="esito-icon">📦</div>
+        <div class="esito-label">Se riparabile</div>
+        <div class="esito-text">Pezzi di ricambio spediti a domicilio</div>
+      </div>
+      <div class="esito-block">
+        <div class="esito-icon">🔨</div>
+        <div class="esito-label">Se necessario</div>
+        <div class="esito-text">Un tecnico viene direttamente a casa</div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:12px">
+      <div class="highlight-title">🚫 Cosa NON fare</div>
+      <p>Il cliente non deve riparare il prodotto da solo né affidarlo a un riparatore di sua scelta. Deve seguire esclusivamente le istruzioni di Domyos o Evy.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════
+       SEZIONE 2 — ASSICURAZIONE CICLISMO
+       ════════════════════════════════════ -->
+  <div class="section-label" style="margin-top:28px; animation-delay:0.18s">
+    <span>🚲 Assicurazione Ciclismo</span>
+  </div>
+
+  <!-- Danno -->
+  <div class="card" style="animation-delay:0.20s">
+    <h2>💥 In caso di danno accidentale</h2>
+    <p>Il cliente dichiara il sinistro su <strong>decathloninsurance.com</strong> entro <strong>5 giorni lavorativi</strong> dall'evento.</p>
+
+    <div class="highlight">
+      <div class="highlight-title">🚫 Prima di tutto</div>
+      <p>Il cliente <strong>non deve riparare</strong> la bici da solo né portarla da un riparatore di sua scelta. Deve aspettare le istruzioni di Evy.</p>
+    </div>
+
+    <h2 style="margin-top:16px">📋 Procedura</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Accede a decathloninsurance.com</div>
+          <div class="step-desc">Con le credenziali Decathlon OneID.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Seleziona il contratto → DICHIARARE UN SINISTRO</div>
+          <div class="step-desc">Il contratto deve essere già registrato nel profilo.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Compila la dichiarazione</div>
+          <div class="step-desc">Data del sinistro, negozio Decathlon scelto per la riparazione, pezzi danneggiati, descrizione dettagliata dell'accaduto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Allega foto del danno</div>
+          <div class="step-desc">Obbligatoria per avviare la pratica.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Riceve il numero di sinistro da Evy</div>
+          <div class="step-desc">Entro 48h Evy contatta il cliente con le istruzioni e il numero di presa in carico.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Porta la bici al Laboratorio Decathlon</div>
+          <div class="step-desc">Con il <strong>numero di sinistro</strong> comunicato da Evy. Le riparazioni devono avvenire esclusivamente in un Laboratorio Decathlon.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="esito-grid">
+      <div class="esito-block">
+        <div class="esito-icon">🔧</div>
+        <div class="esito-label">Se riparabile</div>
+        <div class="esito-text">Bici riparata e restituita al cliente</div>
+      </div>
+      <div class="esito-block">
+        <div class="esito-icon">🎟️</div>
+        <div class="esito-label">Se irreparabile</div>
+        <div class="esito-text">Buono rimborso Decathlon pari al valore d'acquisto</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p>💡 <strong>Forature:</strong> la PEC viene generata automaticamente. Il cliente dichiara comunque dal suo profilo per ottenere il numero di presa in carico.</p>
+    </div>
+  </div>
+
+  <!-- Furto -->
+  <div class="card" style="animation-delay:0.25s">
+    <h2>🔓 In caso di furto</h2>
+    <p>Il cliente deve agire entro <strong>2 giorni lavorativi</strong> dall'evento.</p>
+
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Condizione essenziale</div>
+      <p>Per essere coperto, al momento del furto la bici deve essere stata <strong>fissata tramite il telaio a un punto fisso</strong> con un lucchetto ad alta sicurezza (scala B'Twin ≥ 7). Il cliente deve avere la <strong>fattura del lucchetto</strong>.</p>
+    </div>
+
+    <h2 style="margin-top:16px">📋 Procedura</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Sporge denuncia alle autorità</div>
+          <div class="step-desc">Con nome, cognome, indirizzo, circostanze del furto e descrizione della bici.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Dichiara il furto su decathloninsurance.com</div>
+          <div class="step-desc">Entro 2 giorni lavorativi. Accede con le credenziali OneID → seleziona il contratto → DICHIARARE UN SINISTRO.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Allega i documenti richiesti</div>
+          <div class="step-desc">Vedi lista qui sotto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Dopo 6 giorni lavorativi: autodichiarazione</div>
+          <div class="step-desc">Se la bici non è stata ritrovata, invia un'autodichiarazione che attesti quanto avvenuto.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:16px">📎 Documenti da allegare</h2>
+    <div class="docs-list">
+      <div class="doc-row"><span class="doc-icon">📄</span>Autodichiarazione con circostanze esatte del furto</div>
+      <div class="doc-row"><span class="doc-icon">🧾</span>Scontrino/fattura della bici e degli accessori coperti</div>
+      <div class="doc-row"><span class="doc-icon">🔒</span>Fattura del lucchetto omologato</div>
+      <div class="doc-row"><span class="doc-icon">🚔</span>Verbale delle Forze dell'Ordine (con descrizione bici e circostanze)</div>
+      <div class="doc-row"><span class="doc-icon">🏠</span>In caso di furto con effrazione: dichiarazione all'assicuratore auto/abitazione o fattura sostituzione serrature</div>
+      <div class="doc-row"><span class="doc-icon">🏥</span>In caso di rapina: certificato medico o dichiarazione di un testimone</div>
+    </div>
+
+    <div class="formula">
+      <p>Rimborso in caso di furto</p>
+      <div class="formula-result">Valore bici + accessori − 15% franchigia</div>
+      <p style="margin-top:6px; font-size:12px;">Il rimborso avviene tramite Carta Regalo Decathlon (valida 2 anni) o bonifico bancario</p>
+    </div>
+
+    <div class="info-box" style="margin-top:12px">
+      <p>💡 Gli accessori sono coperti solo se acquistati contestualmente alla bici o entro <strong>5 giorni</strong> dall'acquisto e presenti sullo stesso scontrino o acquistati in un negozio Decathlon.</p>
+    </div>
+  </div>
+
+  <!-- Regole generali -->
+  <div class="card" style="animation-delay:0.30s">
+    <h2>⚖️ Regole comuni a entrambe le assicurazioni</h2>
+    <div class="docs-list">
+      <div class="doc-row"><span class="doc-icon">🚫</span>La dichiarazione telefonica non è ammessa — serve sempre traccia scritta</div>
+      <div class="doc-row"><span class="doc-icon">📧</span>In alternativa al sito: scrivere a decathlon@evy.eu</div>
+      <div class="doc-row"><span class="doc-icon">🔧</span>Nessuna riparazione fai-da-te o con riparatore non autorizzato da Evy</div>
+      <div class="doc-row"><span class="doc-icon">📋</span>Il contratto deve essere registrato nel profilo per aprire un sinistro</div>
+      <div class="doc-row"><span class="doc-icon">🎟️</span>Il buono rimborso Decathlon è valido 2 anni dalla data di emissione</div>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="garanzia-assicurazione.html" class="homeBtn">← Torna a Garanzia e Assicurazione</a>
+  </div>
+
+</div>
+</body>
+</html>
