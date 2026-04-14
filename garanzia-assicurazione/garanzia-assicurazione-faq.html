@@ -1,1 +1,749 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>FAQ — Garanzia e Assicurazione</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--blue-bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 16px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue); margin: 0 -16px;
+      padding: 14px 20px; display: flex;
+      align-items: center; justify-content: space-between;
+      gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .logo-wrap {
+      width: 48px; height: 48px; background: transparent;
+      border-radius: 0; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; overflow: hidden;
+    }
+
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+
+    .titles h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.3px; line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px;
+    }
+
+    /* ── SEARCH ── */
+    .searchBtn {
+      background: rgba(255,255,255,0.15); border: none;
+      border-radius: 10px; width: 40px; height: 40px;
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
+    }
+    .searchBtn:active { background: rgba(255,255,255,0.25); }
+
+    .search-wrap {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.25s ease, padding 0.25s ease;
+      background: var(--blue-dark); margin: 0 -16px;
+    }
+    .search-wrap.open { max-height: 80px; padding: 10px 16px 12px; }
+
+    #searchInput {
+      width: 100%; padding: 12px 16px;
+      font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 500;
+      border: none; border-radius: var(--radius-sm);
+      background: var(--white); color: var(--text); outline: none;
+    }
+    #searchInput::placeholder { color: var(--muted); }
+
+    /* ── CATEGORIE ── */
+    .categories { margin-top: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+    .category { animation: fadeUp 0.3s ease both; }
+    .category:nth-child(1) { animation-delay: 0.05s; }
+    .category:nth-child(2) { animation-delay: 0.10s; }
+    .category:nth-child(3) { animation-delay: 0.15s; }
+    .category:nth-child(4) { animation-delay: 0.20s; }
+    .category:nth-child(5) { animation-delay: 0.25s; }
+    .category:nth-child(6) { animation-delay: 0.30s; }
+    .category:nth-child(7) { animation-delay: 0.35s; }
+
+    .cat-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .cat-emoji { font-size: 20px; }
+
+    .cat-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 800;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    /* ── ACCORDION ── */
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 8px rgba(54,67,186,0.10);
+      margin-bottom: 6px;
+      overflow: hidden;
+    }
+
+    .faq-item.hidden { display: none; }
+
+    .faq-question {
+      width: 100%; background: none; border: none;
+      padding: 14px 16px; display: flex;
+      align-items: center; justify-content: space-between; gap: 12px;
+      cursor: pointer; text-align: left;
+    }
+    .faq-question:active { background: var(--blue-bg); }
+
+    .faq-q-text {
+      font-size: 14px; font-weight: 700;
+      color: var(--text); line-height: 1.35; flex: 1;
+    }
+
+    .faq-chevron {
+      font-size: 12px; color: var(--muted);
+      flex-shrink: 0; transition: transform 0.2s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.25s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 800px; }
+
+    .faq-answer-inner {
+      padding: 0 16px 14px;
+      font-size: 14px; font-weight: 400;
+      color: var(--text); line-height: 1.55;
+      border-top: 1px solid var(--blue-bg);
+      padding-top: 10px;
+    }
+
+    /* ── EMPTY ── */
+    .empty-msg {
+      display: none; text-align: center;
+      padding: 40px 20px; color: var(--muted); font-size: 15px;
+    }
+
+    /* ── FOOTER NAV ── */
+    .footer-nav {
+      margin-top: 24px; text-align: center;
+    }
+
+    .homeBtn {
+      display: inline-block; padding: 13px 28px;
+      background: var(--blue); color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 700;
+      border-radius: var(--radius-sm); text-decoration: none;
+      box-shadow: 0 3px 12px rgba(54,67,186,0.25);
+      transition: background 0.15s;
+    }
+    .homeBtn:active { background: var(--blue-dark); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>FAQ</h1>
+        <p class="subtitle">Garanzia e Assicurazione</p>
+      </div>
+    </div>
+    <button class="searchBtn" id="searchBtn" aria-label="Cerca">🔍</button>
+  </header>
+
+  <div class="search-wrap" id="searchWrap">
+    <input id="searchInput" type="search" placeholder="Cerca una domanda…" autocomplete="off">
+  </div>
+
+  <main>
+    <div class="categories" id="categoriesWrap">
+
+      <!-- 1. RESO E RIMBORSO -->
+      <div class="category" data-cat="reso">
+        <div class="cat-header">
+          <span class="cat-emoji">↩️</span>
+          <span class="cat-title">Reso e Rimborso</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">In caso di reso di un prodotto assicurato come si procede?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Se il cambio avviene in garanzia con lo stesso prodotto, non c'è nulla da fare se non comunicare eventualmente la modifica del seriale (per le bici). Se il cliente rende il prodotto, è necessario contattare Evy per rimborsare l'assicurazione su IBAN (se acquisto in store) o su carta di credito (se acquisto online).</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Se un cliente fa il reso di una bici con assicurazione non ancora attivata sul portale, può fare il reso in negozio del servizio?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Insurance rimborsa su IBAN gli acquisti in store e riaccredita su carta gli acquisti online.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Si può fare il reso solo dell'assicurazione se non è stata attivata?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No, non è possibile effettuare il reso di un'assicurazione.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente vuole rendere un antifurto acquistato insieme a una bici con assicurazione danno+furto. Come si procede?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">È possibile fare il reso del prodotto, ma bisogna precisare al cliente che se non dispone di un altro lucchetto con le caratteristiche di sicurezza richieste — e non ne ha la prova d'acquisto — non sarà coperto in caso di furto. L'acquisto del lucchetto deve essere contestuale o anteriore all'assicurazione.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Ho emesso erroneamente uno scontrino con account aziendale per una bici 2hand + assicurazione. Come faccio il reso dell'assicurazione per ripassarla con account personale?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Se si tratta semplicemente di un cambio di email, è necessario registrare il contratto e poi contattare Evy per modificare l'email associata.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">In caso di rimborso a un cliente per articolo irreparabile, l'articolo va restituito al cliente?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No, va distrutto.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. BICI — DANNI E FURTO -->
+      <div class="category" data-cat="bici danni furto">
+        <div class="cat-header">
+          <span class="cat-emoji">🚲</span>
+          <span class="cat-title">Bici — Assicurazione Danni e Furto</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Il lucchetto per l'assicurazione furto deve essere acquistato da Decathlon o può essere comprato altrove?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Per l'assicurazione Danno + Furto il cliente deve avere la prova d'acquisto di un lucchetto adatto alle lunghe soste, acquistato prima o entro 6 giorni dall'acquisto della bici. Può essere acquistato sia da Decathlon che da altri rivenditori.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">I 6 giorni per l'assicurazione furto partono dall'acquisto, dalla spedizione o dal ritiro della bici?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Dal momento in cui il cliente entra in possesso della bici. Per un ordine PLUS, da quando la ritira in negozio.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">I 6 giorni si intendono per acquistare l'assicurazione o per sottoscrivere il contratto?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">I 6 giorni riguardano l'acquisto. Per l'attivazione del contratto non ci sono limiti di tempo.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente ha acquistato una bici tramite ordine PLUS. Se la bici arriva dopo 6 giorni, può comunque fare l'assicurazione danno e furto?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. I 6 giorni (30 nel caso di sola opzione danno) partono dal momento in cui il cliente ritira la bici.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Possiamo assicurare una bici acquistata su marketplace venduta sul sito ma non in negozio?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. L'assicurazione può essere venduta solo per prodotti venduti e spediti da Decathlon.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente vuole montare un manubrio in carbonio acquistato altrove. L'assicurazione copre eventuali danni alla bici?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">È consigliabile informare correttamente il cliente sulla validità della garanzia legale dopo una modifica del prodotto. Insurance non coprirà il nuovo manubrio e, in caso di danno accidentale che implichi la sostituzione della bici, il rimborso sarà calcolato sul prodotto originale.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">In caso di guasto all'estero, il cliente può riparare in qualsiasi negozio Decathlon europeo?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. Il cliente deve riparare nel Paese in cui l'assicurazione è stata acquistata.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente acquista una bici con account aziendale. Può acquistare l'assicurazione con il proprio account personale?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. Le indicazioni sono di non proporre il servizio assicurativo se gli articoli vengono acquistati a scopo professionale o da un'azienda.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente ha aperto un sinistro per furto ma ha ritrovato la bici. Come deve procedere?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Il cliente deve contattare Evy direttamente per comunicare il ritrovamento e fornire il verbale.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Possiamo rifiutare una PEC Ogea se la bici è stata modificata o usata in modo improprio?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, annullando la PEC e inviando una comunicazione a Evy. Per i casi in cui l'uso improprio non è esplicitamente indicato sul telaio, si applicano le stesse regole della garanzia ordinaria. È consigliabile far risalire la questione al NSL, rientrando nel suo scope di azione.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Se non abbiamo capito male, il prodotto viene assicurato per minimo 1 anno con l'assicurazione mensile. Se disdico prima cosa succede?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, il cliente ha l'obbligo di restare assicurato almeno per un anno. Può recedere solo a partire dal 13° mese. Eccezione: in caso di reso per prodotto difettoso, può chiedere a Evy di interrompere i prelievi. La disdetta si gestisce direttamente dal profilo su decathloninsurance.com.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. BICI USATA / SECOND HAND -->
+      <div class="category" data-cat="bici usata second hand ricondizionata">
+        <div class="cat-header">
+          <span class="cat-emoji">♻️</span>
+          <span class="cat-title">Bici Usata / Second Hand</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">È possibile attivare l'assicurazione per una bici ricondizionata/2hand? Il seriale non è sullo scontrino.</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. Il seriale è presente anche sul telaio.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Abbiamo ritirato una bici con il buyback e una cliente vuole acquistarla con assicurazione. Quale assicurazione applichiamo?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Second Hand = bici nuova: si applica l'assicurazione danni accidentali e/o furto (con lucchetto).</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Se un prodotto era scontato, per assicurarlo si usa il prezzo iniziale o quello scontato? E per il 2hand?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Per i prodotti scontati si fa riferimento al prezzo iniziale. Per il 2hand si usa il prezzo deciso in fase di valutazione. Confermato che è ancora così.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 4. ASSICURAZIONE MENSILE -->
+      <div class="category" data-cat="assicurazione mensile abbonamento">
+        <div class="cat-header">
+          <span class="cat-emoji">📅</span>
+          <span class="cat-title">Assicurazione Mensile</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Dopo il primo anno si può disdire in qualsiasi momento?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. Dal 13° mese in poi il cliente può disdire liberamente dal proprio profilo su decathloninsurance.com.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">La durata minima di un anno vale sia per danno accidentale che per furto?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, per tutte le assicurazioni mensili.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente ha comprato la bici 3 anni fa. Può attivare l'assicurazione? A quale prezzo?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, purché la bici abbia meno di 4 anni. Il prezzo si basa sul valore di acquisto indicato nello scontrino/fattura originale, non sul prezzo attuale.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Come funziona la vetustà con l'assicurazione mensile?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Dopo i 2 anni di vita della bici viene applicata una vetustà del 25%, più 1% per ogni mese aggiuntivo. La bici è sempre rimborsata per un minimo del 10% del suo valore. Il cliente deve valutare se le mensilità pagate superano quanto gli verrebbe rimborsato in caso di sinistro.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Si può assicurare mensilmente una bici non acquistata da Decathlon?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. Tutte le bici, anche acquistate fuori da Decathlon, sono assicurabili. Con la proposta mensile il cliente può riparare anche altrove: anticipa le spese e richiede poi il rimborso. Se arriva in Laboratorio, lo si informa che Decathlon non può effettuare la riparazione e lo si invita a riparare altrove.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Con l'assicurazione mensile sono assicurabili tutte le bici muscolari con acquisto inferiore a 4 anni?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. Bici muscolari ed elettriche sono assicurabili mensilmente a condizione che l'acquisto sia inferiore a 4 anni. Oltre i 4 anni non è più assicurabile.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">È obbligatoria la carta di credito o va anche con carta di debito?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Solo carta di credito.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">C'è un massimo di tempo per cui si può assicurare la bici?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No, il cliente può restare assicurato a vita. Tuttavia deve calcolare se le mensilità pagate nel tempo superano quanto gli verrebbe rimborsato, considerando la vetustà progressiva applicata dopo i 2 anni.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 5. ESTENSIONE DI GARANZIA -->
+      <div class="category" data-cat="estensione garanzia">
+        <div class="cat-header">
+          <span class="cat-emoji">⚖️</span>
+          <span class="cat-title">Estensione di Garanzia</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Il prodotto è difettoso e viene sostituito. Si può spostare l'estensione di garanzia sul nuovo prodotto?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, ma il cliente deve avvisare del cambio prodotto.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">L'estensione di garanzia può essere attivata da soggetti che richiedono l'IVA al 4%?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì. Resta un uso privato, pertanto è possibile.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">L'estensione di garanzia acquistata in Italia è valida se il cliente si trasferisce all'estero?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. Il cliente deve essere residente in Italia. Se si trasferisce altrove, non sarà più coperto.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 6. OPERATIVITÀ IN NEGOZIO -->
+      <div class="category" data-cat="operatività negozio flyer cassa attivazione">
+        <div class="cat-header">
+          <span class="cat-emoji">🏪</span>
+          <span class="cat-title">Operatività in Negozio</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">I flyer assicurazione ciclismo arrivano in automatico o vanno ordinati?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Vanno ordinati su COM2U dopo il primo push, cercando "Assicurazione" nella barra di ricerca.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">L'assicurazione può essere attivata subito dopo l'acquisto o bisogna attendere 24h?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Si comunica al cliente di attendere 24h per evitare problemi legati alla risalita degli scontrini, ma in generale è possibile procedere subito.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Abbiamo bippato in cassa il codice assicurazione sbagliato (ciclismo invece di attrezzatura sportiva). Come risolviamo?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">L'assicurazione non è valida: non c'è coerenza di eligibilità (un prodotto sport acquatici non è eligibile a un'assicurazione ciclismo). Il prezzo uguale non è rilevante. Bisogna bippare in cassa il codice corretto.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente ha acquistato una bici con account aziendale ma si è licenziato e l'account è stato cancellato. Come denuncia un sinistro?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Deve creare un profilo personale e contattare Evy per richiedere il trasferimento dalla vecchia email alla nuova.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Come riattivare il servizio GPS sulla Elops 920E Connect dopo la scadenza del primo anno offerto da Decathlon?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Contattare il DIRCO.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 7. ALTRO -->
+      <div class="category" data-cat="altro monopattino roller tenda sup">
+        <div class="cat-header">
+          <span class="cat-emoji">📦</span>
+          <span class="cat-title">Altro</span>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">I monopattini elettrici possono essere assicurati? Quali sono i prezzi?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, con ONE DAMAGE. Il premio dipende dalla tranche di prezzo del prodotto.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">L'assicurazione roller a 4,99€ vale anche per i monopattini elettrici?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Con l'assicurazione ONE DAMAGE sui monopattini elettrici a 4,99€ è coperta anche la foratura?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Per le tende, l'assicurazione ONE DAMAGE copre danni da grandine e temporali?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sì, è un classico esempio di danno accidentale.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-q-text">Un cliente ha acquistato un SUP con assicurazione. Dopo 2 anni può rinnovarla?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. Tranne per la bici usata, nessuna assicurazione è rinnovabile.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /categories -->
+
+    <p class="empty-msg" id="emptyMsg">Nessuna domanda trovata.</p>
+  </main>
+
+  <div class="footer-nav">
+    <a href="garanzia-assicurazione.html" class="homeBtn">← Torna a Garanzia e Assicurazione</a>
+  </div>
+
+</div>
+
+<script>
+  // ── ACCORDION ──
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── SEARCH ──
+  const searchBtn   = document.getElementById('searchBtn');
+  const searchWrap  = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+  const emptyMsg    = document.getElementById('emptyMsg');
+
+  searchBtn.addEventListener('click', () => {
+    const isOpen = searchWrap.classList.toggle('open');
+    searchBtn.textContent = isOpen ? '❌' : '🔍';
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+    if (!isOpen) { searchInput.value = ''; filterFaq(''); }
+  });
+
+  function filterFaq(q) {
+    let totalVisible = 0;
+    document.querySelectorAll('.category').forEach(cat => {
+      let catVisible = 0;
+      cat.querySelectorAll('.faq-item').forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const show = text.includes(q);
+        item.classList.toggle('hidden', !show);
+        if (show) catVisible++;
+      });
+      cat.style.display = catVisible === 0 ? 'none' : '';
+      totalVisible += catVisible;
+    });
+    emptyMsg.style.display = totalVisible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', () => {
+    filterFaq(searchInput.value.toLowerCase().trim());
+  });
+</script>
+</body>
+</html>
