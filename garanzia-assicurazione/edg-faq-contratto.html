@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Estensione di Garanzia – Contratto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .searchBtn { background: rgba(255,255,255,0.15); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+    .searchBtn:active { background: rgba(255,255,255,0.25); }
+    .search-wrap { overflow: hidden; max-height: 0; transition: max-height 0.25s ease, padding 0.25s ease; background: var(--blue-dark); margin: 0 -16px; }
+    .search-wrap.open { max-height: 80px; padding: 10px 16px 12px; }
+    #searchInput { width: 100%; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 500; border: none; border-radius: var(--radius-sm); background: var(--white); color: var(--text); outline: none; }
+    #searchInput::placeholder { color: var(--muted); }
+
+    .faq-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    .faq-item { background: var(--white); border-radius: var(--radius-sm); box-shadow: 0 2px 8px rgba(54,67,186,0.10); overflow: hidden; animation: fadeUp 0.3s ease both; }
+    .faq-item.hidden { display: none; }
+    .faq-item:nth-child(1) { animation-delay: 0.05s; }
+    .faq-item:nth-child(2) { animation-delay: 0.10s; }
+    .faq-item:nth-child(3) { animation-delay: 0.15s; }
+    .faq-item:nth-child(4) { animation-delay: 0.20s; }
+    .faq-item:nth-child(5) { animation-delay: 0.25s; }
+    .faq-item:nth-child(6) { animation-delay: 0.30s; }
+    .faq-item:nth-child(7) { animation-delay: 0.35s; }
+    .faq-item:nth-child(8) { animation-delay: 0.40s; }
+
+    .faq-question { width: 100%; background: none; border: none; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; text-align: left; }
+    .faq-question:active { background: var(--blue-bg); }
+    .faq-q-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; flex: 1; }
+    .faq-chevron { font-size: 12px; color: var(--muted); flex-shrink: 0; transition: transform 0.2s ease; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 1200px; }
+    .faq-answer-inner { padding: 10px 16px 16px; font-size: 14px; color: var(--text); line-height: 1.6; border-top: 1px solid var(--blue-bg); }
+    .faq-answer-inner p { margin-bottom: 8px; }
+    .faq-answer-inner p:last-child { margin-bottom: 0; }
+    .faq-answer-inner ul { margin: 6px 0 8px 18px; }
+    .faq-answer-inner li { margin-bottom: 5px; }
+    .faq-answer-inner strong { color: var(--blue-dark); }
+
+    /* Esclusioni box */
+    .exclusions { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 10px; }
+    .exclusions-title { font-size: 12px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
+    .exclusions ul { margin: 0 0 0 4px; list-style: none; }
+    .exclusions li { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 5px; padding-left: 4px; }
+
+    .empty-msg { display: none; text-align: center; padding: 40px 20px; color: var(--muted); font-size: 15px; }
+
+    .footer-nav { text-align: center; margin-top: 24px; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>FAQ Contratto</h1>
+        <p class="subtitle">Estensione di Garanzia</p>
+      </div>
+    </div>
+    <button class="searchBtn" id="searchBtn" aria-label="Cerca">🔍</button>
+  </header>
+
+  <div class="search-wrap" id="searchWrap">
+    <input id="searchInput" type="search" placeholder="Cerca una domanda…" autocomplete="off">
+  </div>
+
+  <div class="faq-list" id="faqList">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Cosa copre un contratto di estensione di garanzia?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>L'estensione di garanzia è un prolungamento della Garanzia Legale e copre le stesse casistiche.</p>
+          <p>Il cliente è coperto in caso di <strong>malfunzionamento causato da un improvviso guasto elettrico, elettronico, elettromeccanico o meccanico</strong> che renda il prodotto inadatto all'uso normale, oppure da <strong>usura anomala</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Quanto dura un contratto di estensione di garanzia?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Estensione Fitness Domyos:</strong> 3 anni, in aggiunta alla Garanzia Legale.</p>
+          <p><strong>Estensione Articoli Elettronici:</strong> 2 anni, in aggiunta alla Garanzia Legale.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">In quali casi si conclude anticipatamente il contratto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <ul>
+            <li>Furto o perdita del prodotto</li>
+            <li>Recesso del cliente entro 14 giorni dalla sottoscrizione (rimborso obbligatorio). Oltre i 14 giorni, il Servizio Clienti DSI può valutare caso per caso</li>
+            <li>Cambio di residenza del cliente fuori dal territorio italiano</li>
+            <li>Presenza di una delle esclusioni previste dal contratto</li>
+            <li>Raggiungimento del massimale di copertura (solo per l'estensione elettronica)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">È possibile fare il reso di un'estensione di garanzia?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Sì, contattando direttamente il Servizio Clienti DSI all'indirizzo <strong>contatto.assicurazioni@decathlon.com</strong>.</p>
+          <p>Il rimborso avviene tramite bonifico sul conto corrente del cliente, a condizione che tutte le condizioni siano rispettate (contratto ancora valido, nessuna assistenza già liquidata, ecc.).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Un cliente in negozio mi chiede il rimborso della sua estensione. Come mi comporto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Contatta <strong>Evy</strong> per verificare che il cliente abbia diritto al rimborso prima di procedere.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Dove può consultare il cliente il suo contratto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>In qualsiasi momento accedendo al suo <strong>Conto Cliente</strong> su <strong>www.assicurazioni.decathlon.it</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">In caso di sostituzione del prodotto per difetto, il contratto riparte da capo? Devo vendere un'altra estensione?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>No. Il contratto inizialmente acquistato copre il prodotto sostitutivo per il <strong>periodo restante</strong>. Non è necessario vendere una nuova estensione.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Quanti prodotti copre un singolo contratto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Ogni contratto copre <strong>un solo prodotto</strong> con gli accessori forniti di serie. Un codice = un contratto.</p>
+          <p><strong>Esempio 1 — Kit:</strong> il cliente acquista un kit con un unico codice → un solo contratto.</p>
+          <p><strong>Esempio 2 — Prodotto + complemento:</strong> due prodotti con codici separati → un contratto per ciascuno. Entrambi devono essere eligibili all'estensione.</p>
+          <p>⚠️ Scegli la tranche di prezzo corrispondente a ogni prodotto singolarmente: non sommare i prezzi passando un solo contratto in cassa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Quali sono le esclusioni dell'estensione di garanzia?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <div class="exclusions">
+            <div class="exclusions-title">❌ Non coperto</div>
+            <ul>
+              <li>Utilizzo o conservazione all'aperto in ambiente umido</li>
+              <li>Danni da mancato rispetto delle istruzioni d'uso</li>
+              <li>Assistenza o riparazione effettuata dall'assicurato o per suo conto</li>
+              <li>Danni da eventi esterni: cadute, ammaccature, acqua, fulmine, ossidazione, furto, incendio</li>
+              <li>Danni causati da accessori non conformi o non adatti al prodotto</li>
+              <li>Scarsa manutenzione</li>
+              <li>Accessori e materiali di consumo</li>
+              <li>Utilizzo commerciale o non privato</li>
+              <li>Danni intenzionali o evidente negligenza</li>
+              <li>Difetti non coperti dalla garanzia convenzionale del produttore</li>
+              <li>Difetti soggetti a richiamo da parte del produttore</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="empty-msg" id="emptyMsg">Nessuna domanda trovata.</p>
+
+  <div class="footer-nav">
+    <a href="estensione-di-garanzia.html" class="homeBtn">← Torna a Estensione di Garanzia</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const searchBtn   = document.getElementById('searchBtn');
+  const searchWrap  = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+  const emptyMsg    = document.getElementById('emptyMsg');
+  const allItems    = document.querySelectorAll('.faq-item');
+
+  searchBtn.addEventListener('click', () => {
+    const isOpen = searchWrap.classList.toggle('open');
+    searchBtn.textContent = isOpen ? '❌' : '🔍';
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+    if (!isOpen) { searchInput.value = ''; filterFaq(''); }
+  });
+
+  function filterFaq(q) {
+    let visible = 0;
+    allItems.forEach(item => {
+      const show = item.innerText.toLowerCase().includes(q);
+      item.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', () => filterFaq(searchInput.value.toLowerCase().trim()));
+</script>
+</body>
+</html>
