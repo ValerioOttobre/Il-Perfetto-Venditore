@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Estensione di Garanzia – Assistenza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .searchBtn { background: rgba(255,255,255,0.15); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+    .searchBtn:active { background: rgba(255,255,255,0.25); }
+    .search-wrap { overflow: hidden; max-height: 0; transition: max-height 0.25s ease, padding 0.25s ease; background: var(--blue-dark); margin: 0 -16px; }
+    .search-wrap.open { max-height: 80px; padding: 10px 16px 12px; }
+    #searchInput { width: 100%; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 500; border: none; border-radius: var(--radius-sm); background: var(--white); color: var(--text); outline: none; }
+    #searchInput::placeholder { color: var(--muted); }
+
+    .faq-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    .faq-item { background: var(--white); border-radius: var(--radius-sm); box-shadow: 0 2px 8px rgba(54,67,186,0.10); overflow: hidden; animation: fadeUp 0.3s ease both; }
+    .faq-item.hidden { display: none; }
+    .faq-item:nth-child(1) { animation-delay: 0.05s; }
+    .faq-item:nth-child(2) { animation-delay: 0.10s; }
+    .faq-item:nth-child(3) { animation-delay: 0.15s; }
+    .faq-item:nth-child(4) { animation-delay: 0.20s; }
+    .faq-item:nth-child(5) { animation-delay: 0.25s; }
+    .faq-item:nth-child(6) { animation-delay: 0.30s; }
+    .faq-item:nth-child(7) { animation-delay: 0.35s; }
+    .faq-item:nth-child(8) { animation-delay: 0.40s; }
+    .faq-item:nth-child(9) { animation-delay: 0.45s; }
+
+    .faq-question { width: 100%; background: none; border: none; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; text-align: left; }
+    .faq-question:active { background: var(--blue-bg); }
+    .faq-q-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; flex: 1; }
+    .faq-chevron { font-size: 12px; color: var(--muted); flex-shrink: 0; transition: transform 0.2s ease; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 1400px; }
+    .faq-answer-inner { padding: 10px 16px 16px; font-size: 14px; color: var(--text); line-height: 1.6; border-top: 1px solid var(--blue-bg); }
+    .faq-answer-inner p { margin-bottom: 8px; }
+    .faq-answer-inner p:last-child { margin-bottom: 0; }
+    .faq-answer-inner ul { margin: 6px 0 8px 18px; }
+    .faq-answer-inner ol { margin: 6px 0 8px 18px; }
+    .faq-answer-inner li { margin-bottom: 5px; }
+    .faq-answer-inner strong { color: var(--blue-dark); }
+
+    /* canale box */
+    .channel-block { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 10px; }
+    .channel-block + .channel-block { margin-top: 8px; }
+    .channel-title { font-size: 12px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .channel-block p { font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 6px; }
+    .channel-block p:last-child { margin-bottom: 0; }
+    .channel-block ul, .channel-block ol { margin: 4px 0 0 16px; }
+    .channel-block li { font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 4px; }
+
+    /* warning box */
+    .warning { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 10px; }
+    .warning-title { font-size: 12px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .warning p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 5px; }
+    .warning p:last-child { margin-bottom: 0; }
+
+    .empty-msg { display: none; text-align: center; padding: 40px 20px; color: var(--muted); font-size: 15px; }
+
+    .footer-nav { text-align: center; margin-top: 24px; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>FAQ Assistenza</h1>
+        <p class="subtitle">Estensione di Garanzia</p>
+      </div>
+    </div>
+    <button class="searchBtn" id="searchBtn" aria-label="Cerca">🔍</button>
+  </header>
+
+  <div class="search-wrap" id="searchWrap">
+    <input id="searchInput" type="search" placeholder="Cerca una domanda…" autocomplete="off">
+  </div>
+
+  <div class="faq-list" id="faqList">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Cosa deve fare il cliente in caso di malfunzionamento durante l'estensione di garanzia Domyos?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>L'assistenza è fornita dal <strong>Domyos Technical Support</strong>, sia durante la garanzia legale che durante l'estensione.</p>
+          <p>Il cliente deve fare una segnalazione su <strong>support.decathlon.it</strong>, seguendo questi passaggi:</p>
+          <ul>
+            <li>Selezionare lo sport corrispondente al prodotto</li>
+            <li>Ricercare il modello corretto (indicato sullo scontrino o sul frontespizio del manuale)</li>
+            <li>Scorrere fino alla voce <strong>RICHIESTA ASSISTENZA</strong></li>
+          </ul>
+          <div class="warning">
+            <div class="warning-title">⚠️ Importante</div>
+            <p>Non è necessario che il cliente apra un sinistro dal suo profilo su assicurazioni.decathlon.it. La procedura è gestita in back office direttamente dal Domyos Technical Support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Cosa deve fare il cliente in caso di malfunzionamento di un prodotto Elettronico?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <div class="channel-block">
+            <div class="channel-title">📅 Ancora in garanzia legale</div>
+            <p>Il cliente si rivolge direttamente al <strong>Laboratorio</strong>, seguendo la procedura SAV comunicata dal DSO Laboratorio. Per dubbi, contattare il Laboratorio Regionale o il monitore processo.</p>
+          </div>
+          <div class="channel-block">
+            <div class="channel-title">📅 Nel periodo di estensione (garanzia legale terminata)</div>
+            <p>Il cliente accede al suo Conto Cliente su <strong>www.assicurazioni.decathlon.it</strong> e apre una segnalazione tramite <strong>NUOVO SINISTRO</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Come si richiede assistenza per un prodotto Elettronico?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Il cliente accede al suo Conto Cliente su <strong>www.assicurazioni.decathlon.it</strong> e clicca su <strong>NUOVO SINISTRO</strong>.</p>
+          <div class="warning">
+            <div class="warning-title">⚠️ Attenzione</div>
+            <p>Il contratto deve essere già stato registrato e deve risultare nel profilo del cliente. Se non è presente, consultare le FAQ nella sezione <strong>Attivazione</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Il cliente non riesce a fare una richiesta di assistenza dal suo profilo. Perché?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <ul>
+            <li><strong>Email diversa:</strong> il cliente deve usare la stessa email con cui ha registrato il contratto.</li>
+            <li><strong>Contratto non registrato:</strong> nella sezione CONTRATTI non appare nessun contratto attivo. Consultare le FAQ nella sezione Attivazione.</li>
+            <li><strong>Contratto scaduto:</strong> verificabile filtrando la visualizzazione dei contratti sul sito.</li>
+            <li><strong>Massimale esaurito</strong> (solo prodotti elettronici): il montante disponibile è già stato interamente utilizzato. Verificabile nel dettaglio del contratto, che risulterà chiuso.</li>
+          </ul>
+          <p>Se nessuna di queste situazioni corrisponde, contattare il <strong>Servizio Clienti Decathlon Sports Insurance</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Il cliente non può aprire una nuova richiesta perché ne risulta un'altra ancora aperta. Come mi comporto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Prima di tutto, verifica di aver <strong>chiuso in cassa la PEC</strong> legata alla richiesta precedente. Questo passaggio è fondamentale per:</p>
+          <ol>
+            <li>Permettere la rifatturazione al negozio del corrispettivo della PEC</li>
+            <li>Permettere la chiusura informatica automatica delle richieste</li>
+          </ol>
+          <p>Se la PEC è già chiusa, la richiesta potrebbe essere troppo recente per la chiusura automatica: contattare il <strong>Servizio Clienti Decathlon Sports Insurance</strong>.</p>
+          <p>Nel frattempo, invitare il cliente a inviare una dichiarazione via email a <strong>contatto.assicurazioni@decathlon.com</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">È possibile dichiarare un malfunzionamento telefonicamente?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>No. Per obbligo normativo è necessaria una <strong>traccia scritta</strong>. La dichiarazione telefonica non è percorribile.</p>
+          <p>Il cliente può dichiarare dal suo Conto Cliente su assicurazioni.decathlon.it oppure scrivendo a <strong>contatto.assicurazioni@decathlon.com</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Quali informazioni vengono richieste in fase di richiesta di assistenza?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <ul>
+            <li>Data in cui è avvenuto il malfunzionamento</li>
+            <li>Negozio dove verranno effettuate le riparazioni</li>
+            <li>Pezzi danneggiati</li>
+            <li>Descrizione del guasto riscontrato</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Il cliente è venuto in negozio senza aver fatto la sua segnalazione. Come mi comporto?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Invita il cliente a effettuare la dichiarazione dal suo Conto Cliente oppure via email a <strong>contatto.assicurazioni@decathlon.com</strong>.</p>
+          <div class="warning">
+            <div class="warning-title">⚠️ Non suggerire di chiamare</div>
+            <p>La dichiarazione telefonica non è percorribile.</p>
+          </div>
+          <p style="margin-top:10px;">Se hai spazio in negozio, puoi prendere in carico il prodotto emettendo una <strong>nota Laboratorio per il deposito</strong> e rilasciandola al cliente, in attesa delle istruzioni di Decathlon Sports Insurance.</p>
+          <p>Se non hai alternativa, invita il cliente a tornare dopo aver effettuato la dichiarazione.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span class="faq-q-text">Il cliente può far riparare il prodotto al di fuori di un Laboratorio Decathlon?</span>
+        <span class="faq-chevron">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Per i prodotti <strong>Domyos Fitness</strong>: no. Le riparazioni devono essere effettuate esclusivamente in un Laboratorio di un negozio Decathlon.</p>
+          <p>Per i prodotti <strong>Elettronici</strong>: Decathlon non gestisce direttamente le riparazioni, quindi il cliente sarà indirizzato a riparare c/o terzi. Il Servizio Clienti DSI guiderà il cliente sulla procedura, che potrebbe prevedere l'anticipo del pagamento con rimborso successivo.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="empty-msg" id="emptyMsg">Nessuna domanda trovata.</p>
+
+  <div class="footer-nav">
+    <a href="estensione-di-garanzia.html" class="homeBtn">← Torna a Estensione di Garanzia</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const searchBtn   = document.getElementById('searchBtn');
+  const searchWrap  = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+  const emptyMsg    = document.getElementById('emptyMsg');
+  const allItems    = document.querySelectorAll('.faq-item');
+
+  searchBtn.addEventListener('click', () => {
+    const isOpen = searchWrap.classList.toggle('open');
+    searchBtn.textContent = isOpen ? '❌' : '🔍';
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+    if (!isOpen) { searchInput.value = ''; filterFaq(''); }
+  });
+
+  function filterFaq(q) {
+    let visible = 0;
+    allItems.forEach(item => {
+      const show = item.innerText.toLowerCase().includes(q);
+      item.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', () => filterFaq(searchInput.value.toLowerCase().trim()));
+</script>
+</body>
+</html>
