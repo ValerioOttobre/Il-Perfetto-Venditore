@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Lineare – Tappe di Vita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+    /* HINT */
+    .hint { margin-top: 16px; text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.3px; }
+
+    /* ZOOM CONTAINER */
+    .zoom-wrap {
+      margin-top: 10px;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(54,67,186,0.08);
+      touch-action: none;
+      cursor: grab;
+      user-select: none;
+    }
+    .zoom-wrap:active { cursor: grabbing; }
+    .zoom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+    .zoom-inner img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      pointer-events: none;
+      border-radius: var(--radius-sm);
+    }
+
+    /* RESET BTN */
+    .reset-btn {
+      display: block;
+      margin: 12px auto 0;
+      padding: 8px 20px;
+      background: var(--white);
+      color: var(--blue);
+      border: 2px solid var(--blue);
+      border-radius: var(--radius-sm);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+    }
+    .reset-btn:active { background: var(--blue-bg); }
+
+    /* FOOTER */
+    .footer-nav { margin-top: 24px; }
+    .homeBtn { display: block; width: 100%; padding: 14px; background: var(--blue); color: var(--white); text-align: center; border-radius: var(--radius); font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.2px; }
+    .homeBtn:active { background: var(--blue-dark); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo" src="../assets/logo.png" alt="Decathlon" onerror="this.style.display='none'">
+    </div>
+    <div class="titles">
+      <h1>Tappe di Vita</h1>
+      <div class="subtitle">Lineare · Il Perfetto Venditore</div>
+    </div>
+  </div>
+
+  <p class="hint">🔍 Pizzica per ingrandire · Trascina per spostarti</p>
+
+  <div class="zoom-wrap" id="zoomWrap">
+    <div class="zoom-inner" id="zoomInner">
+      <img src="tappe_di_vita.jpg" alt="Tappe di Vita">
+    </div>
+  </div>
+
+  <button class="reset-btn" id="resetBtn">↺ Reimposta zoom</button>
+
+  <div class="footer-nav">
+    <a href="lineare.html" class="homeBtn">← Torna a Lineare</a>
+  </div>
+
+</div>
+
+<script>
+  const wrap   = document.getElementById('zoomWrap');
+  const inner  = document.getElementById('zoomInner');
+  const resetB = document.getElementById('resetBtn');
+
+  let scale    = 1;
+  let posX     = 0;
+  let posY     = 0;
+  let startDist = 0;
+  let startScale = 1;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let lastPosX = 0;
+  let lastPosY = 0;
+
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 5;
+
+  function applyTransform() {
+    inner.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+  }
+
+  function clampPos() {
+    const wRect = wrap.getBoundingClientRect();
+    const iRect = inner.getBoundingClientRect();
+    const scaledW = inner.offsetWidth * scale;
+    const scaledH = inner.offsetHeight * scale;
+    const maxX = Math.max(0, (scaledW - wRect.width) / 2);
+    const maxY = Math.max(0, (scaledH - wRect.height) / 2);
+    posX = Math.min(maxX, Math.max(-maxX, posX));
+    posY = Math.min(maxY, Math.max(-maxY, posY));
+  }
+
+  function getDist(t) {
+    const dx = t[0].clientX - t[1].clientX;
+    const dy = t[0].clientY - t[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  function getMidpoint(t) {
+    return {
+      x: (t[0].clientX + t[1].clientX) / 2,
+      y: (t[0].clientY + t[1].clientY) / 2
+    };
+  }
+
+  wrap.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      startDist  = getDist(e.touches);
+      startScale = scale;
+    } else if (e.touches.length === 1) {
+      isDragging = true;
+      dragStartX = e.touches[0].clientX - posX;
+      dragStartY = e.touches[0].clientY - posY;
+    }
+  }, { passive: false });
+
+  wrap.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+      const dist = getDist(e.touches);
+      scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (dist / startDist)));
+      clampPos();
+      applyTransform();
+    } else if (e.touches.length === 1 && isDragging) {
+      posX = e.touches[0].clientX - dragStartX;
+      posY = e.touches[0].clientY - dragStartY;
+      clampPos();
+      applyTransform();
+    }
+  }, { passive: false });
+
+  wrap.addEventListener('touchend', e => {
+    if (e.touches.length < 2) isDragging = false;
+    if (scale <= MIN_SCALE) { scale = MIN_SCALE; posX = 0; posY = 0; applyTransform(); }
+  });
+
+  // Mouse drag (desktop)
+  wrap.addEventListener('mousedown', e => {
+    isDragging = true;
+    dragStartX = e.clientX - posX;
+    dragStartY = e.clientY - posY;
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    posX = e.clientX - dragStartX;
+    posY = e.clientY - dragStartY;
+    clampPos();
+    applyTransform();
+  });
+  window.addEventListener('mouseup', () => isDragging = false);
+
+  // Mouse wheel zoom (desktop)
+  wrap.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+    clampPos();
+    applyTransform();
+  }, { passive: false });
+
+  resetB.addEventListener('click', () => {
+    scale = 1; posX = 0; posY = 0;
+    inner.style.transition = 'transform 0.25s ease';
+    applyTransform();
+    setTimeout(() => inner.style.transition = '', 250);
+  });
+</script>
+</body>
+</html>
