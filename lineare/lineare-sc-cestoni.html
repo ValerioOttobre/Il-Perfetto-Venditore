@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Cestoni – Spazi Commerciali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+      --red:       #C62828;
+      --red-bg:    #FDECEA;
+      --green:     #1B7F4F;
+      --green-bg:  #E6F4ED;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+    .hero { background: var(--blue); margin: 0 -16px; padding: 20px 20px 28px; color: var(--white); }
+    .hero h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.1; margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    .section-gap { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .card { background: var(--white); border-radius: var(--radius); padding: 18px; box-shadow: 0 2px 8px rgba(54,67,186,0.08); }
+    .card-num { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .num-badge { background: var(--blue); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; }
+
+    .point-list { display: flex; flex-direction: column; gap: 8px; }
+    .point { font-size: 13px; color: var(--text); line-height: 1.5; background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 12px; }
+    .point .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); display: block; margin-bottom: 2px; }
+    .point strong { color: var(--blue); }
+
+    /* TABELLA POSIZIONAMENTO */
+    .pos-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+    .pos-table th { background: var(--blue); color: var(--white); font-weight: 700; text-align: left; padding: 8px 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .pos-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .pos-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+    .pos-table td { padding: 9px 10px; vertical-align: top; line-height: 1.45; border-bottom: 1px solid var(--blue-bg); }
+    .pos-table tr:last-child td { border-bottom: none; }
+    .pos-table tr:nth-child(even) td { background: var(--blue-bg); }
+    .pos-table td:first-child { font-weight: 700; color: var(--blue); white-space: nowrap; }
+
+    /* ALERT ROSSO */
+    .alert { background: var(--red-bg); border-left: 4px solid var(--red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 12px; font-size: 13px; color: var(--red); font-weight: 600; line-height: 1.45; display: flex; flex-direction: column; gap: 4px; }
+    .alert span { display: block; }
+
+    /* CONFIGURAZIONI */
+    .config-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .config { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; gap: 10px; align-items: flex-start; }
+    .config-num { background: var(--blue); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .config-text { font-size: 13px; color: var(--text); line-height: 1.45; }
+    .config-text strong { color: var(--blue); }
+
+    /* BALISAGE */
+    .balisage-row { display: flex; gap: 8px; margin-top: 4px; }
+    .badge { flex: 1; background: var(--blue); color: var(--white); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; }
+    .badge .fmt { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; }
+    .badge .desc { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 2px; line-height: 1.3; }
+
+    .footer-nav { margin-top: 24px; }
+    .homeBtn { display: block; width: 100%; padding: 14px; background: var(--blue); color: var(--white); text-align: center; border-radius: var(--radius); font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.2px; }
+    .homeBtn:active { background: var(--blue-dark); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo" src="../decathlon-logo.png" alt="Decathlon" onerror="this.style.display='none'">
+    </div>
+    <div class="titles">
+      <h1>Cestoni</h1>
+      <div class="subtitle">Spazi Commerciali · Lineare</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Cestoni</h2>
+    <p>Strumenti espositivi tattici focalizzati sulla vendita di massa e sull'acquisto d'impulso.</p>
+  </div>
+
+  <div class="section-gap">
+
+    <!-- 1. FUNZIONE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">1</div>
+        <h3>Funzione e Scopo</h3>
+      </div>
+      <div class="point-list">
+        <div class="point"><span class="label">Acquisto d'impulso</span>Facilitare decisioni d'acquisto rapide per aumentare i volumi di vendita (boost alle quantità).</div>
+        <div class="point"><span class="label">Orientamento</span>Se posizionati in coerenza con gli universi, aiutano il cliente a navigare nel negozio.</div>
+      </div>
+    </div>
+
+    <!-- 2. DOVE IMPIANTARE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">2</div>
+        <h3>Dove Impiantare</h3>
+      </div>
+      <table class="pos-table">
+        <thead>
+          <tr><th>Larghezza Corridoio</th><th>Configurazione</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt; 3,5 m</td><td>Nessun cestone (non ostacolare il flusso).</td></tr>
+          <tr><td>&gt; 3,5 m</td><td>Blocchi o isole da <strong>2 cestoni</strong> in profondità.</td></tr>
+          <tr><td>&gt; 4 m</td><td>Blocchi o isole da <strong>4 cestoni</strong> (max 2 in profondità).</td></tr>
+        </tbody>
+      </table>
+      <div class="alert">
+        <span>⛔ Non devono mai ostacolare il percorso del cliente.</span>
+        <span>⛔ Non devono compromettere la visibilità e la lettura del negozio da lontano.</span>
+      </div>
+    </div>
+
+    <!-- 3. COSA IMPIANTARE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">3</div>
+        <h3>Cosa Impiantare</h3>
+      </div>
+      <div class="point-list">
+        <div class="point"><span class="label">Tipologia</span>Monoprodotto — <strong>un solo tipo di articolo</strong> per cestone.</div>
+        <div class="point"><span class="label">Margine</span>Deve essere <strong>superiore al 30%</strong>.</div>
+        <div class="point"><span class="label">Prezzo</span>Deve essere <strong>inferiore a 25€</strong> (soglia per l'acquisto d'impulso).</div>
+        <div class="point"><span class="label">Priorità</span>Prodotti "Top Quantità" e articoli legati a Operazioni Commerciali correnti.</div>
+        <div class="point"><span class="label">Varietà</span>Evitare lo stesso prodotto in più cestoni lungo il corridoio centrale per garantire dinamismo.</div>
+      </div>
+    </div>
+
+    <!-- 4. COME IMPIANTARE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">4</div>
+        <h3>Come Impiantare</h3>
+      </div>
+      <div class="config-list">
+        <div class="config">
+          <div class="config-num">1</div>
+          <div class="config-text"><strong>Standard</strong> — 1 cestone = 1 prodotto.</div>
+        </div>
+        <div class="config">
+          <div class="config-num">2</div>
+          <div class="config-text"><strong>Eccezione (Accessori/Calze)</strong> — 1 cestone = 1 taglia. Limitato a max un'isola calze nel corridoio centrale.</div>
+        </div>
+      </div>
+      <div class="balisage-row">
+        <div class="badge">
+          <div class="fmt">A4 / A5</div>
+          <div class="desc">Balisage "cartuccia" (copricestone) — lettura da lontano</div>
+        </div>
+        <div class="badge">
+          <div class="fmt">A4</div>
+          <div class="desc">Balisage permanente — quando non è presente un copricestone</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-nav">
+    <a href="lineare-spazi-commerciali.html" class="homeBtn">← Torna a Spazi Commerciali</a>
+  </div>
+
+</div>
+</body>
+</html>
