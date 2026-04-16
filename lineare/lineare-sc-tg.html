@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>TG – Spazi Commerciali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+      --green:     #1B7F4F;
+      --green-bg:  #E6F4ED;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+    /* HERO */
+    .hero { background: var(--blue); margin: 0 -16px; padding: 20px 20px 28px; color: var(--white); }
+    .hero h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.1; margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    /* CARDS */
+    .section-gap { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .card { background: var(--white); border-radius: var(--radius); padding: 18px; box-shadow: 0 2px 8px rgba(54,67,186,0.08); }
+    .card-num { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .num-badge { background: var(--blue); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; }
+
+    /* LISTA PUNTI */
+    .point-list { display: flex; flex-direction: column; gap: 8px; }
+    .point { font-size: 13px; color: var(--text); line-height: 1.5; background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 12px; }
+    .point .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); display: block; margin-bottom: 2px; }
+    .point strong { color: var(--blue); }
+
+    /* TABELLA OBIETTIVI */
+    .obj-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .obj-table th { background: var(--blue); color: var(--white); font-weight: 700; text-align: left; padding: 8px 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .obj-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .obj-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+    .obj-table td { padding: 9px 10px; vertical-align: top; line-height: 1.45; border-bottom: 1px solid var(--blue-bg); }
+    .obj-table tr:last-child td { border-bottom: none; }
+    .obj-table tr:nth-child(even) td { background: var(--blue-bg); }
+    .obj-table td:first-child { font-weight: 700; color: var(--blue); white-space: nowrap; }
+
+    /* CONFIGURAZIONI */
+    .config-list { display: flex; flex-direction: column; gap: 8px; }
+    .config { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; gap: 10px; align-items: flex-start; }
+    .config-num { background: var(--blue); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .config-text { font-size: 13px; color: var(--text); line-height: 1.45; }
+    .config-text strong { color: var(--blue); }
+
+    .balisage-row { display: flex; gap: 8px; margin-top: 10px; }
+    .badge { flex: 1; background: var(--blue); color: var(--white); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; }
+    .badge .fmt { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; }
+    .badge .desc { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+    /* ZOOM */
+    .hint { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; }
+    .zoom-wrap { margin-top: 8px; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 8px rgba(54,67,186,0.08); touch-action: none; cursor: grab; user-select: none; }
+    .zoom-wrap:active { cursor: grabbing; }
+    .zoom-inner { display: flex; align-items: center; justify-content: center; padding: 12px; transform-origin: 0 0; will-change: transform; }
+    .zoom-inner img { width: 100%; max-width: 100%; height: auto; display: block; pointer-events: none; border-radius: var(--radius-sm); }
+    .reset-btn { display: block; margin: 10px auto 0; padding: 8px 20px; background: var(--white); color: var(--blue); border: 2px solid var(--blue); border-radius: var(--radius-sm); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .reset-btn:active { background: var(--blue-bg); }
+
+    /* FOOTER */
+    .footer-nav { margin-top: 24px; }
+    .homeBtn { display: block; width: 100%; padding: 14px; background: var(--blue); color: var(--white); text-align: center; border-radius: var(--radius); font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.2px; }
+    .homeBtn:active { background: var(--blue-dark); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo" src="../decathlon-logo.png" alt="Decathlon" onerror="this.style.display='none'">
+    </div>
+    <div class="titles">
+      <h1>Testa di Gondola</h1>
+      <div class="subtitle">Spazi Commerciali · Lineare</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Testa di Gondola (TG)</h2>
+    <p>Linee guida operative per l'allestimento delle TG: linguaggio comune e massimizzazione dei risultati di vendita.</p>
+  </div>
+
+  <div class="section-gap">
+
+    <!-- 1. VISIONE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">1</div>
+        <h3>Visione e Obiettivi Strategici</h3>
+      </div>
+      <div class="point-list">
+        <div class="point"><span class="label">Unificazione degli strumenti</span>Approccio unico per l'animazione commerciale in tutti i punti vendita.</div>
+        <div class="point"><span class="label">Categorizzazione</span>Distinzione netta tra <strong>Must Have</strong> (indispensabili) e <strong>Nice to Have</strong> (opzionali).</div>
+        <div class="point"><span class="label">Ottimizzazione del Mix</span>Bilanciamento corretto tra materiale, abbigliamento e accessori.</div>
+        <div class="point"><span class="label">Dinamismo Commerciale</span>Reattività stagionale e accompagnamento delle competenze in negozio.</div>
+      </div>
+    </div>
+
+    <!-- 2. DEFINIZIONE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">2</div>
+        <h3>Definizione e Scopo</h3>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;">La TG è lo strumento principale per dinamizzare il commercio nelle corsie.</p>
+      <table class="obj-table">
+        <thead>
+          <tr><th>Obiettivo</th><th>Descrizione</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Generazione CA</td><td>Aumentare la cifra d'affari mettendo in avanti i prodotti "forti".</td></tr>
+          <tr><td>Paniere Medio</td><td>Incrementare il numero di articoli per scontrino tramite prodotti complementari.</td></tr>
+          <tr><td>Visibilità</td><td>Accompagnare il cliente nel percorso con impatto multisport stagionale.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. COSA IMPIANTARE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">3</div>
+        <h3>Cosa Impiantare</h3>
+      </div>
+      <div class="point-list">
+        <div class="point"><span class="label">Flessibilità</span>Adattamento costante a stagione, meteo e andamento delle ultime settimane.</div>
+        <div class="point"><span class="label">Margine %</span>Ogni prodotto in TG deve avere un <strong>margine superiore al 30%</strong>.</div>
+        <div class="point"><span class="label">Regola V+1 — Posizione</span>I prodotti Additional Sales vanno sempre <strong>in alto a destra</strong>, seguendo la direzione naturale di lettura.</div>
+        <div class="point"><span class="label">Regola V+1 — Prezzo</span>Prezzo del prodotto complementare <strong>&lt; 25%</strong> del prodotto principale.</div>
+        <div class="point"><span class="label">Disponibilità</span>Esporre il <strong>100% delle taglie</strong>. Niente fine serie, eccetto saldi.</div>
+        <div class="point"><span class="label">Posizionamento di Gamma</span>Spingere sia l'accessibilità (prezzi bassi) che prodotti di gamme superiori, in coerenza con la politica commerciale del negozio.</div>
+      </div>
+    </div>
+
+    <!-- 4. COME IMPIANTARE -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">4</div>
+        <h3>Come Impiantare</h3>
+      </div>
+      <div class="config-list">
+        <div class="config">
+          <div class="config-num">1</div>
+          <div class="config-text"><strong>Monoprodotto</strong> — Un singolo articolo principale + 1 articolo complementare (V+1).</div>
+        </div>
+        <div class="config">
+          <div class="config-num">2</div>
+          <div class="config-text"><strong>Panoplie Abbigliamento</strong> — 2 prodotti tessili coordinati + 1 articolo complementare.</div>
+        </div>
+        <div class="config">
+          <div class="config-num">3</div>
+          <div class="config-text"><strong>Panoplie Materiale</strong> — 2 prodotti di equipaggiamento/attrezzatura + 1 articolo complementare.</div>
+        </div>
+        <div class="config">
+          <div class="config-num">4</div>
+          <div class="config-text"><strong>Mix Completo</strong> — 2 prodotti abbigliamento + scarpe/equipaggiamento + 1 articolo complementare.</div>
+        </div>
+      </div>
+      <div class="balisage-row">
+        <div class="badge">
+          <div class="fmt">A5</div>
+          <div class="desc">Prodotto principale</div>
+        </div>
+        <div class="badge">
+          <div class="fmt">A7</div>
+          <div class="desc">Prodotto complementare (V+1)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. STRUTTURA TECNICA -->
+    <div class="card">
+      <div class="card-num">
+        <div class="num-badge">5</div>
+        <h3>Struttura Tecnica della Griglia</h3>
+      </div>
+      <div class="point-list">
+        <div class="point"><span class="label">Altezza standard</span>220 cm.</div>
+        <div class="point"><span class="label">Calzature (Shoes)</span>Inizio alla griglia <strong>3</strong>, scaffalatura ogni <strong>3 griglie</strong>.</div>
+        <div class="point"><span class="label">Stock e Presentazione</span>Zone di prelievo: <strong>3–21</strong> · Zone espositive: <strong>32–41</strong>.</div>
+      </div>
+
+      <p class="hint">🔍 Pizzica per ingrandire · Trascina per spostarti</p>
+      <div class="zoom-wrap" id="zoomWrap">
+        <div class="zoom-inner" id="zoomInner">
+          <img src="8.jpg" alt="Grid Structure Head of Aisle">
+        </div>
+      </div>
+      <button class="reset-btn" id="resetBtn">↺ Reimposta zoom</button>
+    </div>
+
+  </div>
+
+  <div class="footer-nav">
+    <a href="lineare-spazi-commerciali.html" class="homeBtn">← Torna a Spazi Commerciali</a>
+  </div>
+
+</div>
+
+<script>
+  const wrap   = document.getElementById('zoomWrap');
+  const inner  = document.getElementById('zoomInner');
+  const resetB = document.getElementById('resetBtn');
+
+  let scale = 1, posX = 0, posY = 0;
+  let startDist = 0, startScale = 1;
+  let isDragging = false, dragStartX = 0, dragStartY = 0;
+
+  const MIN_SCALE = 1, MAX_SCALE = 5;
+
+  function applyTransform() {
+    inner.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+  }
+  function clampPos() {
+    const wRect = wrap.getBoundingClientRect();
+    const scaledW = inner.offsetWidth * scale;
+    const scaledH = inner.offsetHeight * scale;
+    const maxX = Math.max(0, (scaledW - wRect.width) / 2);
+    const maxY = Math.max(0, (scaledH - wRect.height) / 2);
+    posX = Math.min(maxX, Math.max(-maxX, posX));
+    posY = Math.min(maxY, Math.max(-maxY, posY));
+  }
+  function getDist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+
+  wrap.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) { e.preventDefault(); startDist = getDist(e.touches); startScale = scale; }
+    else if (e.touches.length === 1) { isDragging = true; dragStartX = e.touches[0].clientX - posX; dragStartY = e.touches[0].clientY - posY; }
+  }, { passive: false });
+
+  wrap.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+      scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (getDist(e.touches) / startDist)));
+      clampPos(); applyTransform();
+    } else if (e.touches.length === 1 && isDragging) {
+      posX = e.touches[0].clientX - dragStartX;
+      posY = e.touches[0].clientY - dragStartY;
+      clampPos(); applyTransform();
+    }
+  }, { passive: false });
+
+  wrap.addEventListener('touchend', e => {
+    if (e.touches.length < 2) isDragging = false;
+    if (scale <= MIN_SCALE) { scale = MIN_SCALE; posX = 0; posY = 0; applyTransform(); }
+  });
+
+  wrap.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX - posX; dragStartY = e.clientY - posY; });
+  window.addEventListener('mousemove', e => { if (!isDragging) return; posX = e.clientX - dragStartX; posY = e.clientY - dragStartY; clampPos(); applyTransform(); });
+  window.addEventListener('mouseup', () => isDragging = false);
+  wrap.addEventListener('wheel', e => { e.preventDefault(); scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * (e.deltaY > 0 ? 0.9 : 1.1))); clampPos(); applyTransform(); }, { passive: false });
+
+  resetB.addEventListener('click', () => {
+    scale = 1; posX = 0; posY = 0;
+    inner.style.transition = 'transform 0.25s ease';
+    applyTransform();
+    setTimeout(() => inner.style.transition = '', 250);
+  });
+</script>
+</body>
+</html>
