@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Lineare – LBA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+    /* HERO */
+    .hero { background: var(--blue); margin: 0 -16px; padding: 20px 20px 28px; color: var(--white); }
+    .hero h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.1; margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    /* CARDS */
+    .section-gap { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .card { background: var(--white); border-radius: var(--radius); padding: 18px; box-shadow: 0 2px 8px rgba(54,67,186,0.08); }
+    .card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+
+    /* OBIETTIVO */
+    .obj-box { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 14px; color: var(--text); line-height: 1.55; }
+
+    /* PILASTRI */
+    .pilastri-list { display: flex; flex-direction: column; gap: 12px; }
+    .pilastro { border-left: 4px solid var(--blue); padding: 12px 14px; background: var(--blue-bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .pilastro-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .num-badge { background: var(--blue); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pilastro-verb { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: 0.5px; }
+    .pilastro-body { display: flex; flex-direction: column; gap: 5px; }
+    .row-item { font-size: 13px; color: var(--text); line-height: 1.45; padding-left: 4px; }
+    .row-item strong { color: var(--blue); }
+    .row-item .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); display: block; margin-bottom: 1px; }
+
+    /* SERVIZI TABLE */
+    .servizi-list { display: flex; flex-direction: column; gap: 10px; }
+    .servizio { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 12px 14px; }
+    .servizio-title { font-size: 13px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .servizio-desc { font-size: 13px; color: var(--text); line-height: 1.5; }
+    .servizio-desc strong { color: var(--blue); }
+
+    /* FOOTER */
+    .footer-nav { margin-top: 24px; }
+    .homeBtn { display: block; width: 100%; padding: 14px; background: var(--blue); color: var(--white); text-align: center; border-radius: var(--radius); font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.2px; }
+    .homeBtn:active { background: var(--blue-dark); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img class="logo" src="../assets/logo.png" alt="Decathlon" onerror="this.style.display='none'">
+      </div>
+      <div class="titles">
+        <h1>LBA</h1>
+        <div class="subtitle">Lineare · Il Perfetto Venditore</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Libero Buon Acquisto</h2>
+    <p>Permettere al cliente di scegliere e acquistare in totale autonomia, garantendo un'esperienza fluida e professionale.</p>
+  </div>
+
+  <div class="section-gap">
+
+    <!-- OBIETTIVO -->
+    <div class="card">
+      <h3>Obiettivo Strategico</h3>
+      <div class="obj-box">
+        Rimuovere ogni barriera tra il cliente e il prodotto, permettendogli di compiere un buon acquisto senza dover necessariamente attendere l'intervento di un venditore.
+      </div>
+    </div>
+
+    <!-- 5 PILASTRI -->
+    <div class="card">
+      <h3>I 5 Pilastri del LBA</h3>
+      <div class="pilastri-list">
+
+        <div class="pilastro">
+          <div class="pilastro-head">
+            <div class="num-badge">1</div>
+            <div class="pilastro-verb">VEDO</div>
+          </div>
+          <div class="pilastro-body">
+            <div class="row-item"><span class="label">Broches</span>Ogni prodotto esposto in <strong>tutte le sue taglie</strong>.</div>
+            <div class="row-item"><span class="label">Identificazione</span>Il prodotto deve essere facilmente riconoscibile a colpo d'occhio.</div>
+          </div>
+        </div>
+
+        <div class="pilastro">
+          <div class="pilastro-head">
+            <div class="num-badge">2</div>
+            <div class="pilastro-verb">TOCCO</div>
+          </div>
+          <div class="pilastro-body">
+            <div class="row-item"><span class="label">Regola del 100%</span>Il cliente deve poter toccare e prendere autonomamente il <strong>100% dei prodotti</strong> esposti.</div>
+            <div class="row-item"><span class="label">Libertà</span>Niente prodotti legati o inaccessibili che limitino l'interazione fisica.</div>
+          </div>
+        </div>
+
+        <div class="pilastro">
+          <div class="pilastro-head">
+            <div class="num-badge">3</div>
+            <div class="pilastro-verb">LEGGO</div>
+          </div>
+          <div class="pilastro-body">
+            <div class="row-item"><span class="label">Balisage</span>Prezzi sempre presenti, aggiornati e coerenti con il mercato.</div>
+            <div class="row-item"><span class="label">Specifiche Tecniche</span>Ogni articolo con informazioni chiare sui vantaggi.</div>
+            <div class="row-item"><span class="label">Comunicazione Commerciale</span>Per i prodotti standard si parla all'<strong>Utilizzatore</strong> (tecnicità).</div>
+          </div>
+        </div>
+
+        <div class="pilastro">
+          <div class="pilastro-head">
+            <div class="num-badge">4</div>
+            <div class="pilastro-verb">PROVO</div>
+          </div>
+          <div class="pilastro-body">
+            <div class="row-item"><span class="label">Zone Test</span>Panchine per scarpe, calze prova, specchi e cabine di prova per l'abbigliamento.</div>
+            <div class="row-item"><span class="label">Validazione</span>Il cliente conferma che il prodotto sia adatto prima dell'acquisto.</div>
+          </div>
+        </div>
+
+        <div class="pilastro">
+          <div class="pilastro-head">
+            <div class="num-badge">5</div>
+            <div class="pilastro-verb">PRENDO</div>
+          </div>
+          <div class="pilastro-body">
+            <div class="row-item"><span class="label">Taglie</span>Tutte le varianti e le taglie disponibili sul lineare.</div>
+            <div class="row-item"><span class="label">Gestione Stock</span>Monitoraggio costante delle rotture di stock per evitare delusioni al cliente.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SERVIZI -->
+    <div class="card">
+      <h3>Servizi a Supporto del Cliente</h3>
+      <div class="servizi-list">
+
+        <div class="servizio">
+          <div class="servizio-title">🧺 Cabas (Cestini)</div>
+          <div class="servizio-desc"><strong>5–8 cestini</strong> ad ogni ingresso di corsia, posizionati in controflusso per facilitare la raccolta dei prodotti.</div>
+        </div>
+
+        <div class="servizio">
+          <div class="servizio-title">🔀 Cross-Merchandising</div>
+          <div class="servizio-desc">Esposizione di prodotti complementari coerenti con il prodotto principale (es. calze vicino alle scarpe) per soddisfare il bisogno completo in un unico punto.</div>
+        </div>
+
+        <div class="servizio">
+          <div class="servizio-title">🖥️ e-FCS</div>
+          <div class="servizio-desc"><strong>Famiglia Cliente Soddisfatto</strong> — strumento su Cube-in-Store per identificare e sanare le anomalie del lineare (prezzi mancanti, stock esaurito).</div>
+        </div>
+
+        <div class="servizio">
+          <div class="servizio-title">🔧 Manutenzione del Lineare</div>
+          <div class="servizio-desc">Azione quotidiana per garantire che il LBA sia sempre attivo: ripristino taglie e facing.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-nav">
+    <a href="lineare.html" class="homeBtn">← Torna a Lineare</a>
+  </div>
+
+</div>
+</body>
+</html>
