@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Tax Free – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --danger:    #D94040;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    /* SEZIONI */
+    .section { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.1); animation: fadeUp 0.4s ease both; }
+    .section:nth-child(1) { animation-delay: 0.05s; }
+    .section:nth-child(2) { animation-delay: 0.10s; }
+    .section:nth-child(3) { animation-delay: 0.15s; }
+    .section:nth-child(4) { animation-delay: 0.20s; }
+    .section:nth-child(5) { animation-delay: 0.25s; }
+
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 800; color: var(--blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+
+    .definition { font-size: 15px; font-weight: 500; line-height: 1.6; color: var(--text); }
+    .definition strong { font-weight: 700; }
+
+    /* LISTA REQUISITI */
+    .req-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .req-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--text); }
+    .req-list li::before { content: '✓'; font-size: 13px; font-weight: 800; color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+
+    /* ALERT */
+    .alert { background: #FFF3F3; border-left: 4px solid var(--danger); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 12px; }
+    .alert:last-child { margin-bottom: 0; }
+    .alert-title { font-size: 12px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--danger); margin-bottom: 6px; }
+    .alert p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+    .info-block { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 12px; }
+    .info-block:last-child { margin-bottom: 0; }
+    .info-block-title { font-size: 12px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .info-block p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+    /* BOTTONI LINK */
+    .links-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; animation: fadeUp 0.4s 0.30s ease both; }
+    .linkBtn { display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: var(--blue); border: none; border-radius: var(--radius); cursor: pointer; text-decoration: none; box-shadow: 0 3px 12px rgba(54,67,186,0.25); transition: transform 0.1s ease, background 0.1s ease; }
+    .linkBtn:active { transform: scale(0.98); background: var(--blue-dark); }
+    .linkBtn-emoji { font-size: 28px; line-height: 1; flex-shrink: 0; }
+    .linkBtn-text { display: flex; flex-direction: column; gap: 2px; }
+    .linkBtn-label { font-size: 15px; font-weight: 800; color: var(--white); line-height: 1.2; }
+    .linkBtn-sub { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.4px; }
+
+    /* NAV */
+    .footer-nav { text-align: center; margin-top: 24px; animation: fadeUp 0.4s 0.35s ease both; }
+    .homeBtn { display: inline-block; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Tax Free</h1>
+        <p class="subtitle">Rimborso IVA · Viaggiatori Extra-UE</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- COS'È -->
+    <div class="section">
+      <p class="section-title">Cos'è il Tax Free</p>
+      <p class="definition">
+        Agevolazione che permette ai viaggiatori residenti <strong>fuori dall'Unione Europea</strong> di ottenere il rimborso o lo scorporo dell'IVA sui beni acquistati in Italia per uso personale, trasportati nei propri bagagli entro il <strong>terzo mese successivo all'acquisto</strong>. Il valore degli acquisti per singola fattura deve superare i <strong>€70</strong>.
+      </p>
+    </div>
+
+    <!-- REQUISITI -->
+    <div class="section">
+      <p class="section-title">Elementi necessari</p>
+      <ul class="req-list">
+        <li>Documento di riconoscimento valido</li>
+        <li>Età minima 16 anni</li>
+        <li>Cliente privato residente o domiciliato fuori dall'UE</li>
+        <li>Merce trasportata fuori dall'UE nei bagagli personali (non valido per servizi, noleggi, carte regalo, ecc.)</li>
+        <li>Valore complessivo per singola fattura superiore a €70</li>
+        <li>Merce deve uscire dall'UE entro tre mesi dall'acquisto</li>
+      </ul>
+    </div>
+
+    <!-- REGOLE IMPORTANTI -->
+    <div class="section">
+      <p class="section-title">Regole importanti</p>
+
+      <div class="alert">
+        <p class="alert-title">⚠️ Stessa giornata</p>
+        <p>Il cliente deve richiedere il Tax Free nella stessa giornata dell'emissione dello scontrino.</p>
+      </div>
+
+      <div class="alert">
+        <p class="alert-title">⚠️ Ordini digitali con consegna a domicilio</p>
+        <p>Non può essere emesso il Tax Free. Solo per ritiro in negozio, e il cliente deve comunicarlo in accoglienza.</p>
+      </div>
+
+      <div class="info-block">
+        <p class="info-block-title">📄 Ristampare un Tax Free</p>
+        <p>Dal menù principale → Storico Transazioni → clicca su Azioni per procedere alla ristampa.</p>
+      </div>
+
+      <div class="info-block">
+        <p class="info-block-title">❌ Annullare un Tax Free</p>
+        <p>In caso di errore: emetti nota di credito e inserisci il documento corretto. <strong>Non è necessario fare il reso in cassa.</strong> Cerca il tax free e tra le azioni seleziona "Annullo con nota di credito".</p>
+      </div>
+
+      <div class="info-block">
+        <p class="info-block-title">🔁 Reso merce</p>
+        <p>Effettua la normale procedura di reso e annulla il Tax Free.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LINK ESTERNI -->
+  <div class="links-grid">
+    <a class="linkBtn" href="https://docs.google.com/document/d/1QDF-nSIWDK5_cWi8YXtczmL_gGO6z97RcPhCjRWEbSA/edit?tab=t.0" target="_blank">
+      <span class="linkBtn-emoji">📋</span>
+      <div class="linkBtn-text">
+        <span class="linkBtn-label">Procedura Completa</span>
+        <span class="linkBtn-sub">Guida passo per passo</span>
+      </div>
+    </a>
+    <a class="linkBtn" href="https://docs.google.com/document/d/15C2qpion3YAymB4IfIMbG64KUhNvovFGv5mwWl-CMKU/edit?tab=t.0" target="_blank">
+      <span class="linkBtn-emoji">📦</span>
+      <div class="linkBtn-text">
+        <span class="linkBtn-label">Procedura Ordini Digitali</span>
+        <span class="linkBtn-sub">Solo per ritiro in negozio</span>
+      </div>
+    </a>
+    <a class="linkBtn" href="https://ic2.globalblue.com/pilot/login" target="_blank">
+      <span class="linkBtn-emoji">🌐</span>
+      <div class="linkBtn-text">
+        <span class="linkBtn-label">Portale Global Blue</span>
+        <span class="linkBtn-sub">User: ITA820044 · Password: INT@820044</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer-nav">
+    <a href="fatturazione-fatture.html" class="homeBtn">← Torna a Fatturazione</a>
+  </div>
+
+</div>
+</body>
+</html>
