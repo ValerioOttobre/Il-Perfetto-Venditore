@@ -12,15 +12,13 @@
     :root {
       --blue: #3643BA; --blue-dark: #2A3499; --blue-bg: #EEF0FB;
       --white: #FFFFFF; --text: #0D1240; --muted: #6370A0;
-      --green: #00a651; --green-bg: #E8F8EF;
-      --orange: #FFA500;
+      --green: #00a651; --orange: #FFA500;
       --radius: 16px; --radius-sm: 10px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
     .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
 
-    /* HEADER */
     .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
     .brand { display: flex; align-items: center; gap: 12px; }
     .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
@@ -28,32 +26,26 @@
     .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
     .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
 
-    /* CARDS */
     .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s ease both; }
     .card + .card { margin-top: 12px; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
     .card-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .lead { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 14px; }
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+    h3:first-child { margin-top: 0; }
     p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
     p:last-child { margin-bottom: 0; }
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
+    ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
 
-    /* VIDEO */
     .video-wrap { margin-top: 16px; border-radius: var(--radius-sm); overflow: hidden; background: #000; box-shadow: 0 4px 16px rgba(54,67,186,0.18); }
     .video-wrap video { width: 100%; display: block; max-height: 320px; object-fit: contain; background: #000; }
     .video-caption { font-size: 12px; font-weight: 600; color: var(--muted); text-align: center; padding: 8px 12px; background: var(--blue-bg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
 
-    /* STEPS */
-    .step-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-    .step-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 14px; background: var(--blue-bg); border-radius: var(--radius-sm); }
-    .step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-    .step-body { font-size: 14px; line-height: 1.6; color: var(--text); flex: 1; }
-    .step-body strong { color: var(--blue); }
-
-    /* NOTE */
     .note { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--blue-bg); border-radius: var(--radius-sm); padding: 10px 14px; margin: 12px 0 0; line-height: 1.5; }
     .alert { font-size: 13px; font-weight: 600; color: var(--text); background: #FFF3CD; border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0 0; line-height: 1.5; border-left: 3px solid var(--orange); }
 
-    /* HOME BTN */
     .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
     .homeBtn:active { background: var(--blue-bg); }
     .footer-nav { text-align: center; }
@@ -78,7 +70,6 @@
   <!-- VIDEO -->
   <div class="card" style="animation-delay:0.05s">
     <p class="card-tag">Tutorial</p>
-    <p class="lead">Guarda il video per una panoramica completa della procedura.</p>
     <div class="video-wrap">
       <video controls preload="metadata" playsinline>
         <source src="mettere_in_vendita_un_second_hand.mp4" type="video/mp4">
@@ -88,44 +79,46 @@
     </div>
   </div>
 
-  <!-- PASSAGGI -->
+  <!-- ACCESSO -->
   <div class="card" style="animation-delay:0.10s">
-    <p class="card-tag">Procedura passo a passo</p>
-    <p class="lead">Segui questi passaggi nell'ordine indicato.</p>
-
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-body"><strong>Passaggio 1</strong><br>Descrizione del passaggio da inserire.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-body"><strong>Passaggio 2</strong><br>Descrizione del passaggio da inserire.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-body"><strong>Passaggio 3</strong><br>Descrizione del passaggio da inserire.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <div class="step-body"><strong>Passaggio 4</strong><br>Descrizione del passaggio da inserire.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">5</div>
-        <div class="step-body"><strong>Passaggio 5</strong><br>Descrizione del passaggio da inserire.</div>
-      </div>
-    </div>
-
-    <div class="note">
-      ℹ️ Aggiungi o rimuovi passaggi in base al contenuto del video.
-    </div>
+    <p class="card-tag">Punto di partenza</p>
+    <p class="lead">La procedura si avvia dall'app, sezione <strong>Second Hand</strong>.</p>
+    <p>Dal menu principale dell'app, selezionare <strong>Second Hand</strong>. Nella schermata dello stock, selezionare <strong>"Da mettere in vendita"</strong> e premere il tasto <strong>"Mettere in vendita"</strong> in alto a destra.</p>
   </div>
 
-  <!-- NOTA OPERATIVA -->
+  <!-- PROCEDURA -->
   <div class="card" style="animation-delay:0.15s">
+    <p class="card-tag">Procedura</p>
+    <p class="lead">Seguire gli step nell'ordine proposto dall'app.</p>
+
+    <h3>1 — Controllo visivo</h3>
+    <p>Verificare le condizioni del prodotto e selezionare <strong>✓</strong> se il controllo è superato, <strong>✗</strong> se non lo è. È possibile aggiungere commenti o raccomandazioni (max 600 caratteri). Premere <strong>Continua</strong>.</p>
+
+    <h3>2 — Foto</h3>
+    <p>Aggiungere fino a <strong>5 foto</strong> del prodotto. Le foto sono ad uso interno: non vengono pubblicate online ma servono ai colleghi per identificare il prodotto e i suoi difetti. Premere <strong>Continua</strong>.</p>
+
+    <h3>3 — Stato</h3>
+    <p>Selezionare una delle quattro condizioni disponibili:</p>
+    <ul>
+      <li><strong>Eccellente</strong></li>
+      <li><strong>Molto buono</strong></li>
+      <li><strong>Buono</strong></li>
+      <li><strong>Idoneo</strong></li>
+    </ul>
+    <p>Usare il tasto <strong>"Mostra le condizioni"</strong> per consultare le definizioni di ciascuna. Premere <strong>Continua</strong>.</p>
+
+    <h3>4 — Prezzo</h3>
+    <p>Il sistema propone un prezzo suggerito con relativo range consigliato. Vengono mostrati la percentuale di margine lordo e la stock life time stimata. Premere <strong>Continua</strong>.</p>
+
+    <h3>5 — Stampa etichetta e RFID</h3>
+    <p>Prima della messa in vendita definitiva, l'app mostra una <strong>lista di controllo</strong>. Rimuovere il vecchio tag RFID dal prodotto, selezionare il dispositivo RFID disponibile (Zebra) e procedere con la stampa della nuova etichetta.</p>
+  </div>
+
+  <!-- NOTA -->
+  <div class="card" style="animation-delay:0.20s">
     <p class="card-tag">Da sapere</p>
     <div class="alert">
-      ⚠️ Testo di eventuale avviso operativo da inserire qui.
+      ⚠️ Rimuovere sempre il vecchio tag RFID prima di stampare quello nuovo, per evitare conflitti di lettura.
     </div>
   </div>
 
