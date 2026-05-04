@@ -154,6 +154,14 @@
         <div class="point"><span class="label">Disponibilità</span>Esporre il <strong>100% delle taglie</strong>. Niente fine serie, eccetto saldi.</div>
         <div class="point"><span class="label">Posizionamento di Gamma</span>Spingere sia l'accessibilità (prezzi bassi) che prodotti di gamme superiori, in coerenza con la politica commerciale del negozio.</div>
       </div>
+
+      <p class="hint">🔍 Pizzica per ingrandire · Trascina per spostarti</p>
+      <div class="zoom-wrap" id="zoomWrap2">
+        <div class="zoom-inner" id="zoomInner2">
+          <img src="Image_20260425_155010__1_.png" alt="Posizionamento Additional Sales – sempre in alto a destra">
+        </div>
+      </div>
+      <button class="reset-btn" id="resetBtn2">↺ Reimposta zoom</button>
     </div>
 
     <!-- 4. COME IMPIANTARE -->
@@ -222,63 +230,67 @@
 </div>
 
 <script>
-  const wrap   = document.getElementById('zoomWrap');
-  const inner  = document.getElementById('zoomInner');
-  const resetB = document.getElementById('resetBtn');
+  function makeZoom(wrapId, innerId, resetId) {
+    const wrap   = document.getElementById(wrapId);
+    const inner  = document.getElementById(innerId);
+    const resetB = document.getElementById(resetId);
 
-  let scale = 1, posX = 0, posY = 0;
-  let startDist = 0, startScale = 1;
-  let isDragging = false, dragStartX = 0, dragStartY = 0;
+    let scale = 1, posX = 0, posY = 0;
+    let startDist = 0, startScale = 1;
+    let isDragging = false, dragStartX = 0, dragStartY = 0;
+    const MIN_SCALE = 1, MAX_SCALE = 5;
 
-  const MIN_SCALE = 1, MAX_SCALE = 5;
-
-  function applyTransform() {
-    inner.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-  }
-  function clampPos() {
-    const wRect = wrap.getBoundingClientRect();
-    const scaledW = inner.offsetWidth * scale;
-    const scaledH = inner.offsetHeight * scale;
-    const maxX = Math.max(0, (scaledW - wRect.width) / 2);
-    const maxY = Math.max(0, (scaledH - wRect.height) / 2);
-    posX = Math.min(maxX, Math.max(-maxX, posX));
-    posY = Math.min(maxY, Math.max(-maxY, posY));
-  }
-  function getDist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
-
-  wrap.addEventListener('touchstart', e => {
-    if (e.touches.length === 2) { e.preventDefault(); startDist = getDist(e.touches); startScale = scale; }
-    else if (e.touches.length === 1) { isDragging = true; dragStartX = e.touches[0].clientX - posX; dragStartY = e.touches[0].clientY - posY; }
-  }, { passive: false });
-
-  wrap.addEventListener('touchmove', e => {
-    e.preventDefault();
-    if (e.touches.length === 2) {
-      scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (getDist(e.touches) / startDist)));
-      clampPos(); applyTransform();
-    } else if (e.touches.length === 1 && isDragging) {
-      posX = e.touches[0].clientX - dragStartX;
-      posY = e.touches[0].clientY - dragStartY;
-      clampPos(); applyTransform();
+    function applyTransform() {
+      inner.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
     }
-  }, { passive: false });
+    function clampPos() {
+      const wRect = wrap.getBoundingClientRect();
+      const scaledW = inner.offsetWidth * scale;
+      const scaledH = inner.offsetHeight * scale;
+      const maxX = Math.max(0, (scaledW - wRect.width) / 2);
+      const maxY = Math.max(0, (scaledH - wRect.height) / 2);
+      posX = Math.min(maxX, Math.max(-maxX, posX));
+      posY = Math.min(maxY, Math.max(-maxY, posY));
+    }
+    function getDist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
 
-  wrap.addEventListener('touchend', e => {
-    if (e.touches.length < 2) isDragging = false;
-    if (scale <= MIN_SCALE) { scale = MIN_SCALE; posX = 0; posY = 0; applyTransform(); }
-  });
+    wrap.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) { e.preventDefault(); startDist = getDist(e.touches); startScale = scale; }
+      else if (e.touches.length === 1) { isDragging = true; dragStartX = e.touches[0].clientX - posX; dragStartY = e.touches[0].clientY - posY; }
+    }, { passive: false });
 
-  wrap.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX - posX; dragStartY = e.clientY - posY; });
-  window.addEventListener('mousemove', e => { if (!isDragging) return; posX = e.clientX - dragStartX; posY = e.clientY - dragStartY; clampPos(); applyTransform(); });
-  window.addEventListener('mouseup', () => isDragging = false);
-  wrap.addEventListener('wheel', e => { e.preventDefault(); scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * (e.deltaY > 0 ? 0.9 : 1.1))); clampPos(); applyTransform(); }, { passive: false });
+    wrap.addEventListener('touchmove', e => {
+      e.preventDefault();
+      if (e.touches.length === 2) {
+        scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (getDist(e.touches) / startDist)));
+        clampPos(); applyTransform();
+      } else if (e.touches.length === 1 && isDragging) {
+        posX = e.touches[0].clientX - dragStartX;
+        posY = e.touches[0].clientY - dragStartY;
+        clampPos(); applyTransform();
+      }
+    }, { passive: false });
 
-  resetB.addEventListener('click', () => {
-    scale = 1; posX = 0; posY = 0;
-    inner.style.transition = 'transform 0.25s ease';
-    applyTransform();
-    setTimeout(() => inner.style.transition = '', 250);
-  });
+    wrap.addEventListener('touchend', e => {
+      if (e.touches.length < 2) isDragging = false;
+      if (scale <= MIN_SCALE) { scale = MIN_SCALE; posX = 0; posY = 0; applyTransform(); }
+    });
+
+    wrap.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX - posX; dragStartY = e.clientY - posY; });
+    window.addEventListener('mousemove', e => { if (!isDragging) return; posX = e.clientX - dragStartX; posY = e.clientY - dragStartY; clampPos(); applyTransform(); });
+    window.addEventListener('mouseup', () => isDragging = false);
+    wrap.addEventListener('wheel', e => { e.preventDefault(); scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * (e.deltaY > 0 ? 0.9 : 1.1))); clampPos(); applyTransform(); }, { passive: false });
+
+    resetB.addEventListener('click', () => {
+      scale = 1; posX = 0; posY = 0;
+      inner.style.transition = 'transform 0.25s ease';
+      applyTransform();
+      setTimeout(() => inner.style.transition = '', 250);
+    });
+  }
+
+  makeZoom('zoomWrap2', 'zoomInner2', 'resetBtn2');
+  makeZoom('zoomWrap',  'zoomInner',  'resetBtn');
 </script>
 </body>
 </html>
