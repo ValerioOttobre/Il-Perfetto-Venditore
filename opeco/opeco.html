@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3643BA">
-  <title>Campagna – Il Perfetto Venditore</title>
+  <title>Summer Campaign – Il Perfetto Venditore</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
@@ -19,24 +19,59 @@
     .logo { width: 48px; height: 48px; object-fit: contain; }
     .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
     .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
     .hero { margin-top: 20px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 3px 14px rgba(54,67,186,0.2); animation: fadeUp 0.3s ease both; }
-    .hero img { width: 100%; display: block; object-fit: cover; max-height: 200px; }
+    .hero img { width: 100%; display: block; object-fit: cover; }
+
     .card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-top: 12px; box-shadow: 0 3px 12px rgba(54,67,186,0.10); animation: fadeUp 0.3s 0.05s ease both; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
     .card-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--blue); margin-bottom: 10px; line-height: 1.1; }
-    .date-badge { display: inline-block; font-size: 12px; font-weight: 700; color: var(--muted); background: var(--blue-bg); border-radius: 6px; padding: 4px 10px; margin-bottom: 14px; }
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--blue); margin: 16px 0 8px; line-height: 1.2; }
+    h3:first-child { margin-top: 0; }
+
     p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
-    p:last-of-type { margin-bottom: 0; }
+    p:last-child { margin-bottom: 0; }
+
     ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
     ul li { font-size: 15px; line-height: 1.5; color: var(--text); padding-left: 18px; position: relative; }
     ul li::before { content: '–'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
-    .cta-wrap { margin-top: 20px; animation: fadeUp 0.3s 0.1s ease both; }
-    .ctaBtn { display: block; width: 100%; padding: 18px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); background: var(--blue); border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 3px 12px rgba(54,67,186,0.3); transition: background 0.1s; }
+
+    .full-img { width: 100%; display: block; border-radius: var(--radius-sm); margin-top: 12px; }
+
+    .date-row { display: flex; gap: 10px; margin: 14px 0 6px; flex-wrap: wrap; }
+    .date-pill { font-size: 12px; font-weight: 700; color: var(--blue); background: var(--blue-bg); border-radius: 6px; padding: 6px 12px; }
+
+    .alert {
+      background: #FEF3C7; border-left: 4px solid #F59E0B;
+      border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0;
+    }
+    .alert p { font-size: 14px; line-height: 1.5; color: #78350F; }
+    .alert strong { color: #92400E; }
+
+    .note {
+      background: var(--blue-bg); border-left: 4px solid var(--blue);
+      border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0;
+    }
+    .note p { font-size: 14px; line-height: 1.5; color: var(--text); }
+
+    .ctaBtn {
+      display: block; width: 100%; padding: 16px; text-align: center;
+      font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 800;
+      color: var(--white); background: var(--blue); border-radius: var(--radius-sm);
+      text-decoration: none; box-shadow: 0 3px 12px rgba(54,67,186,0.3);
+      transition: background 0.1s; margin-top: 14px;
+    }
     .ctaBtn:active { background: var(--blue-dark); }
+
     .homeBtn { display: inline-block; margin-top: 16px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
     .homeBtn:active { background: var(--blue-bg); }
     .footer-nav { text-align: center; }
+
+    .sub-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--blue-bg); }
+    .sub-block:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .sub-block h3 { margin-top: 0; }
   </style>
 </head>
 <body>
@@ -48,7 +83,7 @@
         <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
       </div>
       <div class="titles">
-        <h1 id="pageTitle">Campagna in corso</h1>
+        <h1>Summer Campaign</h1>
         <p class="subtitle">Opeco</p>
       </div>
     </div>
@@ -56,20 +91,102 @@
   </header>
 
   <div class="hero">
-    <img id="heroImg" src="" alt="Immagine campagna">
+    <img src="summer-banner.jpg" alt="La tua estate comincia da Decathlon">
   </div>
 
+  <!-- ── INTRO ── -->
   <div class="card">
     <p class="card-tag">Campagna attiva</p>
-    <p class="card-title" id="cardTitle">—</p>
-    <p class="date-badge" id="dateBadge">—</p>
-    <div id="cardContent"></div>
+    <p class="card-title">La tua estate comincia da Decathlon</p>
+    <p>La campagna <strong>Summer</strong> si rivolge prioritariamente al target <strong>Family</strong>, che vuole vivere esperienze all'aria aperta con una forte attenzione alla convenienza e al rapporto qualità-prezzo.</p>
+    <p>Saremo presenti con:</p>
+    <ul>
+      <li><strong>14 prodotti top selection</strong> Primi Prezzi Tecnici</li>
+      <li><strong>11 prodotti Gold</strong></li>
+      <li><strong>3 Shopping Missions</strong> principali</li>
+    </ul>
   </div>
 
-  <div class="cta-wrap">
-    <a id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer" class="ctaBtn">
-      🔗 Vai alla pagina della campagna
+  <!-- ── CALENDARIO ── -->
+  <div class="card">
+    <p class="card-tag">Calendario</p>
+    <p class="card-title">Le date della campagna</p>
+    <p>La campagna Summer vivrà <strong>due momenti</strong>, con un focus Saldi nel mezzo durante il quale le campagne coesisteranno.</p>
+
+    <img src="summer-timeline.png" alt="Timeline P3 Summer" class="full-img">
+
+    <h3>Summer 1 — dal 27 maggio al 3 luglio</h3>
+    <h3>Saldi Lazio — dal 4 al 15 luglio</h3>
+    <p>Focus dedicato ai Saldi. Le campagne Summer e Saldi <strong>coesistono</strong> in questa finestra.</p>
+    <h3>Summer 2 — dal 15 luglio al 16 agosto</h3>
+  </div>
+
+  <!-- ── SHOPPING MISSIONS ── -->
+  <div class="card">
+    <p class="card-tag">Offerta</p>
+    <p class="card-title">Shopping Mission e Sport Chiave</p>
+    <p>Le 3 main shopping missions della campagna:</p>
+    <img src="shopping-missions.png" alt="Shopping Mission e Sport Chiave" class="full-img">
+  </div>
+
+  <!-- ── LISTA PRODOTTI IN LINEARE ── -->
+  <div class="card">
+    <p class="card-tag">Operativo</p>
+    <p class="card-title">Prodotti da mettere in avanti sui lineari</p>
+    <p>La lista completa dei prodotti da mettere in avanti sui nostri lineari è già disponibile a questo link.</p>
+    <div class="note">
+      <p>Consultala prima di iniziare i merchandising di reparto.</p>
+    </div>
+    <a href="https://docs.google.com/spreadsheets/d/1BnbMF_Xw1PJeXTCwKrDB3N--2tZL4xmysaj4IAfAch4/edit?gid=613287832#gid=613287832" target="_blank" rel="noopener noreferrer" class="ctaBtn">
+      📋 Apri la lista prodotti
     </a>
+  </div>
+
+  <!-- ── PRIMI PREZZI TECNICI ── -->
+  <div class="card">
+    <p class="card-tag">Offerta</p>
+    <p class="card-title">Selezione Primi Prezzi Tecnici</p>
+    <p><strong>14 prodotti</strong> in evidenza, suddivisi tra le tre shopping missions Great Outdoor, Beach &amp; Water e City Outdoor.</p>
+    <img src="prodotti-primi-prezzi.png" alt="Selezione Primi Prezzi Tecnici" class="full-img">
+  </div>
+
+  <!-- ── PRODOTTI GOLD ── -->
+  <div class="card">
+    <p class="card-tag">Offerta</p>
+    <p class="card-title">Prodotti Gold</p>
+    <p><strong>11 prodotti Gold</strong> suddivisi tra le tre shopping missions.</p>
+    <img src="prodotti-gold.png" alt="Prodotti Gold" class="full-img">
+  </div>
+
+  <!-- ── APP & MEMBERSHIP ── -->
+  <div class="card">
+    <p class="card-tag">App &amp; Membership</p>
+    <p class="card-title">Attivazioni dedicate</p>
+    <p>Tre attivazioni specifiche per spingere App e Membership durante la campagna.</p>
+
+    <div class="sub-block">
+      <h3>Promo code -10% su App</h3>
+      <div class="date-row">
+        <span class="date-pill">12 – 22 giugno</span>
+      </div>
+      <p>Coupon del <strong>-10%</strong> su un carrello minimo di <strong>50€</strong>, valido <strong>solo su App</strong>.</p>
+    </div>
+
+    <div class="sub-block">
+      <h3>Buono Summer Edition</h3>
+      <div class="date-row">
+        <span class="date-pill">1 – 15 giugno</span>
+      </div>
+      <p>Nel catalogo Member sarà inserito un buono <strong>SUMMER EDITION da 12€</strong>, sbloccabile con soli <strong>2000 punti</strong>, valido <strong>1 mese</strong> su una spesa minima di <strong>200€</strong>.</p>
+    </div>
+
+    <div class="sub-block">
+      <h3>Lotti &amp; Panoplie Members</h3>
+      <div class="date-row">
+        <span class="date-pill">Tutta la campagna</span>
+      </div>
+      <p>Per tutta la durata della campagna saranno attivi <strong>nuovi Lotti &amp; Panoplie dedicati ai Members</strong>, con una nuova grafica.</p>
+    </div>
   </div>
 
   <div class="footer-nav">
@@ -77,53 +194,5 @@
   </div>
 
 </div>
-
-<script>
-  // ── OPECO ──
-  // Stesso array dell'index.html — tienili sincronizzati quando aggiungi campagne.
-  // immagine: percorso relativo dalla cartella opeco/ (quindi solo il nome file)
-  const opeco = [
-    {
-      inizio:       "2026-03-15",
-      fine:         "2026-05-14",
-      immagine:     "opeco-run.jpg",
-      titolo:       "Run Your Next Challenge",
-      descrizione:  `<p>La campagna <strong>Run Your Next Challenge</strong> è dedicata al running: abbigliamento tecnico, scarpe e accessori per chi vuole migliorare le proprie performance.</p>
-                     <ul>
-                       <li>10€ in punti extra — esclusiva Membership</li>
-                       <li>Selezione scarpe da corsa in evidenza</li>
-                       <li>Abbigliamento tecnico running uomo e donna</li>
-                     </ul>`,
-      linkEsterno:  "https://www.decathlon.it"
-    }
-  ];
-
-  function getOpecoAttiva() {
-    const oggi = new Date();
-    oggi.setHours(0, 0, 0, 0);
-    return opeco.find(o => {
-      const start = new Date(o.inizio);
-      const end   = new Date(o.fine);
-      end.setHours(23, 59, 59);
-      return oggi >= start && oggi <= end;
-    });
-  }
-
-  function formatData(str) {
-    const d = new Date(str);
-    return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  const attiva = getOpecoAttiva();
-  if (attiva) {
-    document.getElementById('pageTitle').textContent  = attiva.titolo;
-    document.getElementById('heroImg').src            = attiva.immagine;
-    document.getElementById('heroImg').alt            = attiva.titolo;
-    document.getElementById('cardTitle').textContent  = attiva.titolo;
-    document.getElementById('dateBadge').textContent  = formatData(attiva.inizio) + ' – ' + formatData(attiva.fine);
-    document.getElementById('cardContent').innerHTML  = attiva.descrizione;
-    document.getElementById('ctaBtn').href            = attiva.linkEsterno;
-  }
-</script>
 </body>
 </html>
