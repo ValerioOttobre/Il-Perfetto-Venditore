@@ -104,6 +104,7 @@
       cursor: pointer; overflow: hidden; position: relative;
       box-shadow: 0 3px 14px rgba(54,67,186,0.25);
       animation: fadeUp 0.3s ease both; background: var(--blue);
+      text-decoration: none;
     }
     .opecoBtn:active { transform: scale(0.98); }
 
@@ -229,11 +230,11 @@
   </div>
 
   <div class="opeco-wrap">
-    <button class="opecoBtn" id="opecoBtn">
-      <img class="opeco-img" id="opecoImg" src="" alt="Campagna attiva">
+    <a class="opecoBtn" href="opeco/opeco.html">
+      <img class="opeco-img" src="opeco/summer-banner.jpg" alt="Summer Campaign">
       <div class="opeco-overlay"></div>
-      <span class="opeco-label" id="opecoLabel">Campagna in corso</span>
-    </button>
+      <span class="opeco-label">Summer Campaign</span>
+    </a>
   </div>
 
   <main>
@@ -297,40 +298,6 @@
 </div>
 
 <script>
-  // ── OPECO ──
-  // Per aggiungere una nuova campagna: aggiungi un oggetto all'array.
-  // immagine: il file va caricato nella cartella opeco/
-  const opeco = [
-    {
-      inizio:   "2026-05-24",
-      fine:     "2026-08-16",
-      immagine: "opeco/summer-banner.jpg",
-      titolo:   "Summer Campaign",
-      link:     "opeco/opeco.html"
-    }
-  ];
-
-  function getOpecoAttiva() {
-    const oggi = new Date();
-    oggi.setHours(0, 0, 0, 0);
-    return opeco.find(o => {
-      const start = new Date(o.inizio);
-      const end   = new Date(o.fine);
-      end.setHours(23, 59, 59);
-      return oggi >= start && oggi <= end;
-    });
-  }
-
-  const attiva = getOpecoAttiva();
-  if (attiva) {
-    document.getElementById('opecoImg').src           = attiva.immagine;
-    document.getElementById('opecoImg').alt           = attiva.titolo;
-    document.getElementById('opecoLabel').textContent = attiva.titolo;
-    document.getElementById('opecoBtn').addEventListener('click', () => {
-      window.location.href = attiva.link;
-    });
-  }
-
   // ── NAVIGATION ──
   document.querySelectorAll('.sectionBtn, .accentBtn').forEach(btn => {
     btn.addEventListener('click', () => {
