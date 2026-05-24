@@ -23,6 +23,7 @@
     body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
     .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
 
+    /* ── Header ── */
     .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
     .brand { display: flex; align-items: center; gap: 12px; }
     .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
@@ -30,56 +31,44 @@
     .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
     .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
 
-    /* ── Contenuto principale ── */
-    .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 32px 0; animation: fadeUp 0.4s ease both; }
+    /* ── Cards ── */
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card + .card { margin-top: 12px; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+    .card h3 { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue-dark); margin: 14px 0 6px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card ul { margin: 6px 0 8px 18px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .card li { margin-bottom: 6px; }
+    .card .example { font-style: italic; color: var(--muted); margin-top: 6px; }
 
-    /* ── Alert card ── */
-    .alert-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgba(54,67,186,0.15);
-      overflow: hidden;
-    }
+    /* ── Highlight (warning) ── */
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
+    .highlight-title { font-size: 13px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; }
 
-    .alert-header {
-      background: #D32F2F;
-      padding: 24px 24px 20px;
-      text-align: center;
-    }
+    /* ── Info box (positive) ── */
+    .info-box { background: var(--blue-bg); border-left: 4px solid var(--blue); border-radius: var(--radius-sm); padding: 12px 14px; margin: 12px 0; }
+    .info-box p { font-size: 13px; line-height: 1.55; color: var(--text); }
 
-    .alert-icon { font-size: 52px; line-height: 1; margin-bottom: 12px; }
+    /* ── Sinistro outcome ── */
+    .outcome-row { display: flex; gap: 10px; margin: 14px 0 10px; }
+    .outcome-block { flex: 1; text-align: center; padding: 16px 12px; border-radius: var(--radius-sm); background: var(--blue-bg); }
+    .outcome-emoji { font-size: 32px; line-height: 1; margin-bottom: 6px; }
+    .outcome-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .outcome-desc { font-size: 12px; line-height: 1.45; color: var(--text); }
 
-    .alert-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px; font-weight: 800;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
-    }
+    /* ── Esclusione block ── */
+    .esclusione { padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--blue-bg); }
+    .esclusione:first-of-type { padding-top: 0; margin-top: 0; border-top: none; }
+    .esclusione h3 { margin-top: 0; }
 
-    .alert-body { padding: 24px; }
-
-    .alert-row {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--blue-bg);
-    }
-    .alert-row:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .alert-row-icon { font-size: 28px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
-
-    .alert-row-text { flex: 1; }
-    .alert-row-text strong {
-      display: block;
-      font-size: 15px; font-weight: 800;
-      color: #D32F2F;
-      margin-bottom: 4px;
-    }
-    .alert-row-text p {
-      font-size: 14px; line-height: 1.6;
-      color: var(--text);
-    }
+    /* ── Lineare tools ── */
+    .tool-block { padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--blue-bg); }
+    .tool-block:first-of-type { padding-top: 0; margin-top: 0; border-top: none; }
+    .tool-block h3 { margin-top: 0; text-transform: uppercase; letter-spacing: 0.4px; font-size: 13px; color: var(--blue); }
+    .tool-block ol { margin: 6px 0 8px 22px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .tool-block ol li { margin-bottom: 4px; }
+    .tool-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--white); background: var(--blue); padding: 4px 10px; border-radius: 6px; margin-top: 4px; }
 
     /* ── Nav ── */
     .footer-nav { text-align: center; margin-top: 24px; }
@@ -104,33 +93,172 @@
     </div>
   </header>
 
-  <div class="main-content">
-    <div class="alert-card">
+  <!-- ── COS'È L'ASSICURAZIONE ── -->
+  <div class="card" style="animation-delay:0.08s">
+    <h2>💥 Cos'è l'assicurazione One Damage</h2>
+    <p>L'assicurazione copre tutti i <strong>danni accidentali</strong>.</p>
+    <p>Un danno accidentale è un danno <strong>imprevisto e involontario</strong>, causato da un evento esterno durante il normale utilizzo del prodotto. Non è legato a un difetto di fabbricazione né a una mancanza di manutenzione, ma a un incidente.</p>
+    <h3>Caratteristiche principali</h3>
+    <ul>
+      <li>È <strong>improvviso e non intenzionale</strong></li>
+      <li>Si verifica durante un <strong>uso corretto</strong> del prodotto</li>
+      <li>È causato da un <strong>evento esterno</strong> (caduta, urto, impatto, ecc.)</li>
+    </ul>
+    <p class="example">Es. un tappetino da yoga che si strappa rimanendo incastrato in una porta.</p>
+    <div class="info-box">
+      <p>I costi di riparazione o sostituzione sono <strong>a carico dell'assicurazione</strong>.</p>
+    </div>
+  </div>
 
-      <div class="alert-header">
-        <div class="alert-icon">🗑️</div>
-        <div class="alert-title">Cestinare i vecchi flyer One Damage</div>
+  <!-- ── INFORMAZIONI CHIAVE ── -->
+  <div class="card" style="animation-delay:0.13s">
+    <h2>🔑 Informazioni chiave</h2>
+    <ul>
+      <li>Validità di <strong>2 anni</strong> a partire dalla data di acquisto</li>
+      <li><strong>Un solo prodotto</strong> coperto per contratto venduto</li>
+      <li>Il prodotto deve essere <strong>idoneo</strong> alla protezione One Damage</li>
+      <li>Deve essere stato acquistato <strong>meno di 6 giorni fa</strong></li>
+      <li>Il cliente deve possedere una <strong>carta fedeltà</strong></li>
+    </ul>
+  </div>
+
+  <!-- ── IN CASO DI SINISTRO ── -->
+  <div class="card" style="animation-delay:0.18s">
+    <h2>🛠️ In caso di sinistro il prodotto sarà…</h2>
+    <div class="outcome-row">
+      <div class="outcome-block">
+        <div class="outcome-emoji">🔧</div>
+        <div class="outcome-title">Riparato</div>
+        <div class="outcome-desc">Con emissione di una <strong>PEC Laboratorio</strong></div>
       </div>
-
-      <div class="alert-body">
-
-        <div class="alert-row">
-          <div class="alert-row-icon">🚫</div>
-          <div class="alert-row-text">
-            <strong>Codici bloccati dal 31 Marzo</strong>
-            <p>Dal 31 Marzo i vecchi codici sono stati bloccati in cassa e non sono più utilizzabili.</p>
-          </div>
-        </div>
-
-        <div class="alert-row">
-          <div class="alert-row-icon">⚠️</div>
-          <div class="alert-row-text">
-            <strong>Non forzare i vecchi codici</strong>
-            <p>Se un vecchio codice viene forzato in cassa, non viene generato nessun contratto. Il cliente non risulterà assicurato.</p>
-          </div>
-        </div>
-
+      <div class="outcome-block">
+        <div class="outcome-emoji">🎁</div>
+        <div class="outcome-title">Sostituito</div>
+        <div class="outcome-desc">Se non è riparabile, con emissione di una <strong>carta regalo</strong></div>
       </div>
+    </div>
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Importante</div>
+      <p>In caso di sostituzione viene detratta una <strong>franchigia del 15%</strong> del prezzo d'acquisto. Es. per un prodotto da 100€, l'indennizzo massimo è di <strong>85€</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ── PRODOTTI ASSICURABILI ── -->
+  <div class="card" style="animation-delay:0.23s">
+    <h2>✅ Quali prodotti si possono assicurare</h2>
+    <p>Con la protezione <strong>One Damage</strong> è possibile assicurare qualsiasi attrezzatura sportiva, di marca passione o AMI, <strong>nuova o Second Life</strong>:</p>
+    <ul>
+      <li>Sacchi e guanti da boxe</li>
+      <li>Trampolini e tappeti elastici</li>
+      <li>Psicomotricità bambino</li>
+      <li>Tappetini (gym, yoga e pilates)</li>
+      <li>Balance board e attrezzature per l'equilibrio</li>
+      <li>Fitball e softball</li>
+      <li>Accessori yoga e pilates</li>
+      <li>Sacche e carrelli da golf</li>
+      <li>Mazze</li>
+      <li>Archi e bersagli</li>
+      <li>Attrezzatura da scherma</li>
+      <li>Tavoli da biliardo</li>
+    </ul>
+  </div>
+
+  <!-- ── ESCLUSIONI ── -->
+  <div class="card" style="animation-delay:0.28s">
+    <h2>❌ Esclusioni da ricordare</h2>
+
+    <div class="esclusione">
+      <h3>Usura e difetti</h3>
+      <p>I danni derivanti da <strong>difetti di fabbricazione, montaggio</strong>, ecc. sono già coperti dalla <strong>Garanzia legale</strong>.</p>
+      <p>I danni derivanti da <strong>usura</strong> o da una <strong>mancanza di manutenzione</strong> rimangono a carico del cliente.</p>
+    </div>
+
+    <div class="esclusione">
+      <h3>Prodotti esclusi</h3>
+      <p>La protezione "One Damage" <strong>non copre</strong>:</p>
+      <ul>
+        <li>Le <strong>bici</strong> (adulto e bambino)</li>
+        <li>Le <strong>racchette</strong> (padel, tennis, ping pong, badminton, pickleball, squash, beach tennis, speedball, speed badminton, crossminton, frontenis)</li>
+        <li>Gli <strong>attrezzi fitness</strong> (tapis roulant, camminatori, ellittiche, cyclette, vogatori, stazioni multifunzione/pesi)</li>
+      </ul>
+    </div>
+
+    <div class="esclusione">
+      <h3>Danni estetici</h3>
+      <p>I <strong>danni estetici</strong> non sono coperti. Rientrano in questa categoria:</p>
+      <ul>
+        <li>Graffi</li>
+        <li>Abrasioni</li>
+        <li>Scoloriture o opacizzazione</li>
+        <li>Macchie</li>
+        <li>Tutti i danni che <strong>non impediscono</strong> di utilizzare il prodotto in modo corretto e sicuro</li>
+      </ul>
+    </div>
+
+    <div class="esclusione">
+      <h3>Perdita o furto</h3>
+      <p>La protezione One Damage <strong>non copre</strong>:</p>
+      <ul>
+        <li>Il <strong>furto totale o parziale</strong> del prodotto</li>
+        <li>Quando il cliente <strong>perde una parte</strong> o il <strong>prodotto completo</strong></li>
+      </ul>
+    </div>
+
+    <div class="esclusione">
+      <h3>Uso professionale</h3>
+      <p>La protezione <strong>non è valida</strong> se il prodotto viene utilizzato in un contesto professionale (es. consegne, Deliveroo, ecc.).</p>
+      <p>Inoltre <strong>non si applica</strong> agli acquisti effettuati da aziende, club sportivi, scuole o associazioni (in generale per gli acquisti <strong>B2B</strong>).</p>
+    </div>
+
+    <div class="esclusione">
+      <h3>Tessile e calzature</h3>
+      <p>Non puoi proporre il servizio di protezione contro i danni accidentali per:</p>
+      <ul>
+        <li><strong>Tessile</strong> (es. t-shirt da fitness, pantaloncini da running, costumi da bagno, pile, kimono, ecc.)</li>
+        <li><strong>Calzature</strong> (es. scarpe da camminata, da running, ecc.)</li>
+      </ul>
+    </div>
+
+    <div class="esclusione">
+      <h3>Modifiche</h3>
+      <p>La protezione <strong>non copre</strong> i prodotti che sono stati <strong>modificati</strong> rispetto alla loro configurazione originale.</p>
+      <p>In tal caso, le spese di riparazione o di ripristino saranno a carico del cliente.</p>
+      <p class="example">Es. modifica delle ruote dei monopattini, sostituzione di pezzi di ricambio con pezzi non originali, montaggio di accessori non autorizzati, ecc.</p>
+    </div>
+
+    <div class="esclusione">
+      <h3>Danni già presenti</h3>
+      <p>La protezione <strong>non è retroattiva</strong>. Eventuali danni già presenti sul prodotto <strong>prima</strong> della sottoscrizione del contratto non sono coperti.</p>
+      <p class="example">Esempio: un cliente ha acquistato una racchetta due settimane fa e si presenta in negozio riportandola rotta. Posso proporgli la protezione per coprire questo danno, dato che è ancora nei termini di tempo previsti? <strong>NO.</strong> Il cliente dovrà prima far riparare il danno e solo successivamente potrà sottoscrivere il contratto per proteggersi in futuro.</p>
+    </div>
+  </div>
+
+  <!-- ── COMUNICAZIONE SUL LINEARE ── -->
+  <div class="card" style="animation-delay:0.33s">
+    <h2>📣 Come comunicare il servizio sul lineare</h2>
+
+    <div class="tool-block">
+      <h3>🪧 Il Flyer</h3>
+      <p>È utile per:</p>
+      <ol>
+        <li>Attirare l'attenzione del cliente</li>
+        <li>Spiegare in modo semplice i principali vantaggi ed esclusioni</li>
+        <li>Supportarti durante la vendita</li>
+        <li>Fornire il prezzo dell'assicurazione rispetto al prezzo del prodotto</li>
+      </ol>
+      <p>Assicurati sempre di <strong>esporlo in modo visibile</strong> vicino ai prodotti e di averne sempre in stock.</p>
+      <div class="highlight">
+        <div class="highlight-title">⚠️ Attenzione</div>
+        <p>Prendi in considerazione il <strong>prezzo pieno</strong> e non il prezzo in promozione o in saldo.</p>
+      </div>
+    </div>
+
+    <div class="tool-block">
+      <h3>📐 Balisage A4 — Print in store</h3>
+      <span class="tool-tag">Ordinabile su Com2U</span>
+      <p style="margin-top:10px;">Questo supporto ti aiuta a proporre il servizio nello showroom o sul lineare, soprattutto se il cliente acquista il prodotto in modo autonomo.</p>
+      <h3 style="margin-top:14px;">Sport prioritari</h3>
+      <p>Sci · Tavoli da ping pong · Trampolini · Tende e materiale da campeggio · Canestri · Kayak · Tavole da surf · SUP · Monopattini · Orologi</p>
     </div>
   </div>
 
