@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>AgosPass – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --danger:    #D94040;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+    .spec { background: var(--white); border-radius: var(--radius-sm); padding: 12px 6px; text-align: center; box-shadow: 0 2px 8px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .spec-value { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--blue); line-height: 1; }
+    .spec-label { font-size: 9px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; margin-top: 5px; }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card + .card { margin-top: 12px; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+    .card h3 { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue-dark); margin: 14px 0 6px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card p:last-child { margin-bottom: 0; }
+    .card ul { margin: 6px 0 8px 18px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .card li { margin-bottom: 4px; }
+    .card a { color: var(--blue); font-weight: 600; text-decoration: none; word-break: break-word; }
+
+    .example { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 10px; }
+    .example-title { font-size: 12px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .example p { font-size: 13px; line-height: 1.6; color: var(--text); margin-bottom: 4px; }
+    .example strong { color: var(--blue-dark); }
+
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
+    .highlight-title { font-size: 13px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 6px; }
+    .highlight p:last-child { margin-bottom: 0; }
+    .highlight strong { color: #BF360C; }
+
+    .alert { background: #FFF3F3; border-left: 4px solid var(--danger); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
+    .alert-title { font-size: 12px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--danger); margin-bottom: 6px; }
+    .alert p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 0; }
+
+    .info-block { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 12px; }
+    .info-block-title { font-size: 12px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .info-block p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 0; }
+    .info-block a { color: var(--blue); font-weight: 700; text-decoration: none; word-break: break-word; }
+
+    .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>AgosPass</h1>
+        <p class="subtitle">Finanziamento con Fido · Tasso 0</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- SPEC STRIP -->
+  <div class="specs">
+    <div class="spec" style="animation-delay:0.06s"><div class="spec-value">99–1.500</div><div class="spec-label">Importo €</div></div>
+    <div class="spec" style="animation-delay:0.09s"><div class="spec-value">4–24</div><div class="spec-label">Rate (mesi)</div></div>
+    <div class="spec" style="animation-delay:0.12s"><div class="spec-value">0%</div><div class="spec-label">Interessi</div></div>
+  </div>
+
+  <!-- COS'È -->
+  <div class="card" style="animation-delay:0.10s">
+    <h2>🔄 Cos'è AgosPass</h2>
+    <p>A differenza di PagoDIL non è una dilazione, ma un <strong>finanziamento con FIDO</strong> da 99€ a 1.500€, da 4 a 24 mesi, sempre senza interessi.</p>
+    <p>Una volta aperto, il cliente potrà tornare ad acquistare altra merce <strong>senza riaprire un nuovo finanziamento</strong>, beneficiando del fido residuo.</p>
+  </div>
+
+  <!-- DOCUMENTI -->
+  <div class="card" style="animation-delay:0.13s">
+    <h2>📄 Documenti necessari</h2>
+    <ul>
+      <li>Carta d'identità / patente / passaporto</li>
+      <li>Tessera sanitaria</li>
+      <li><strong>Solo carte di debito</strong></li>
+      <li>IBAN (se richiesto)</li>
+      <li>Permesso di soggiorno per gli extracomunitari</li>
+    </ul>
+  </div>
+
+  <!-- FIDO -->
+  <div class="card" style="animation-delay:0.16s">
+    <h2>💡 Come funziona il Fido</h2>
+    <p>Il fido è una somma in più che Agos riconosce al cliente, riutilizzabile in futuro per altri acquisti senza aprire un nuovo finanziamento.</p>
+    <p><strong>Formula:</strong> importo finanziato + 50€, arrotondato alla centinaia successiva. Il calcolo è fatto in automatico dal POS.</p>
+    <div class="example">
+      <div class="example-title">📐 Esempio</div>
+      <p>Finanziamento da <strong>670€</strong> + 50€ = 720€ → arrotondato a <strong>800€ di fido</strong>.</p>
+      <p>Il cliente paga solo i <strong>670€</strong> (es. 67€/mese in 10 rate).</p>
+      <p>Dopo 3 mesi (3 rate pagate) può tornare in negozio: 670€ − 201€ (3 rate) + 130€ (differenza tra 670€ e 800€) = <strong>331€ rifinanziabili</strong>.</p>
+    </div>
+    <p style="margin-top:10px;">Per l'integrazione al finanziamento si generano voucher dal portale, non da POS.</p>
+  </div>
+
+  <!-- INFO UTILI -->
+  <div class="card" style="animation-delay:0.19s">
+    <h2>ℹ️ Info operative</h2>
+    <ul>
+      <li>Si chiude in cassa come un Agos normale.</li>
+      <li>Inserire sempre il <strong>numero di pratica come giustificativo</strong>, anche in caso di utilizzo del fido.</li>
+      <li>Se il cliente ci ripensa, viene annullato un ordine o fa un reso totale e non vuole tenere il finanziamento → scrivere a <a href="mailto:gestione.mercati@agos.it">gestione.mercati@agos.it</a> entro 30 giorni.</li>
+      <li>Se il cliente fa un reso parziale → caricare una semplice carta regalo.</li>
+      <li>L'importo eccedente il fido non può essere pagato con finanziamento, ma con carte/bancomat/contanti/PagoDIL.</li>
+    </ul>
+  </div>
+
+  <!-- REQUISITI (condivisi Agos) -->
+  <div class="card" style="animation-delay:0.22s">
+    <h2>📋 Requisiti e regole di compilazione</h2>
+    <ul>
+      <li><strong>Extracomunitari:</strong> serve in più solo il permesso di soggiorno; per il resto trattati come i comunitari.</li>
+      <li><strong>Documento di reddito:</strong> non richiesto per AgosPass (sotto i 1.500€).</li>
+      <li><strong>Pensioni:</strong> accettate tutte, anche di invalidità, purché &gt; 500€/mese.</li>
+      <li><strong>Permesso di soggiorno:</strong> può scadere anche prima del termine del finanziamento. Va bene anche ricevuta della raccomandata per appuntamento in questura + lettera di convocazione + bollettino pagato.</li>
+      <li><strong>Bollettino postale</strong> al posto dell'IBAN: non penalizza la pratica.</li>
+      <li><strong>Codice fiscale:</strong> solo originale, no foglio di attribuzione. Se il cliente ispira fiducia, si prende inserendo "Comportamento anomalo" con commento: decide comunque Agos.</li>
+      <li><strong>Residenza:</strong> se inferiore a 5 anni, non serve l'indirizzo precedente.</li>
+      <li>Numero componenti famiglia: <strong>non serve più</strong>.</li>
+      <li>Inserire <strong>solo i dati preceduti dal punto esclamativo</strong> (trucchetto: clicca subito Conferma per farli comparire).</li>
+      <li><strong>Non modificare mai la prima scadenza</strong>, altrimenti si posticipa la liquidazione.</li>
+      <li><strong>Voce IMPEGNI:</strong> riguarda solo l'affitto (non il mutuo). Se convivente/coniugato si segna il 50% (es. 500€ → inserisci 250€).</li>
+      <li><strong>Politicamente esposto:</strong> non è una nostra preoccupazione, la responsabilità è del cliente.</li>
+    </ul>
+    <div class="highlight">
+      <div class="highlight-title">📌 Trattamento dati</div>
+      <p>Vivamente consigliato <strong>flaggare tutti e tre i punti</strong>. I "terzi" siamo noi Decathlon: ci permette di raggiungere il cliente anche su questo canale e ad Agos di comunicare campagne dedicate e sul fido.</p>
+    </div>
+  </div>
+
+  <!-- RESO CAMBIO -->
+  <div class="card" style="animation-delay:0.25s">
+    <h2>🔁 Reso con cambio prodotto</h2>
+    <p>Normale procedura di cassa per il reso: si emette la carta reso, con cui il cliente paga il nuovo prodotto. Il finanziamento prosegue e il cliente salda regolarmente le rate.</p>
+  </div>
+
+  <!-- RESO RIMBORSO / ANNULLAMENTO -->
+  <div class="card" style="animation-delay:0.28s">
+    <h2>↩️ Reso con rimborso (annullamento)</h2>
+    <p>Diritto di recesso entro 14 giorni; Agos concede una condizione di favore: <strong>30 giorni dalla firma del contratto</strong> (giorno di emissione dello scontrino).</p>
+    <div class="alert">
+      <p class="alert-title">⚠️ Gestione</p>
+      <p>La procedura va gestita dall'HR <strong>solo ed esclusivamente in presenza del permanente</strong>.</p>
+    </div>
+    <h3>Modulo di annullamento — dati da compilare</h3>
+    <ul>
+      <li>Data richiesta annullamento</li>
+      <li>Punto vendita (nome negozio)</li>
+      <li>N° pratica di finanziamento (anche dallo scontrino)</li>
+      <li>Nome e cognome cliente</li>
+      <li>Motivo: rinuncia al finanziamento</li>
+      <li>Importo finanziato</li>
+      <li>Firma del cliente</li>
+      <li>Timbro del PV e firma leggibile dell'incaricato</li>
+    </ul>
+    <div class="info-block">
+      <div class="info-block-title">✉️ Invio modulo</div>
+      <p>A <a href="mailto:storni_premium@agos.it">storni_premium@agos.it</a> e <a href="mailto:support.rendicontazioneincassi@decathlon.com">support.rendicontazioneincassi@decathlon.com</a>, in copia Danilo Orefice, Jacopo Maria Scibilia e il proprio AP. Restituire al cliente copia dello scontrino originale, del modulo e dello scontrino di reso.</p>
+    </div>
+  </div>
+
+  <!-- CASISTICHE ANNULLAMENTO -->
+  <div class="card" style="animation-delay:0.31s">
+    <h2>⚖️ Casistiche</h2>
+    <p><strong>Annullamento parziale impossibile:</strong> o si fa la carta reso per il prodotto da sostituire, oppure si annulla tutto.</p>
+    <p><strong>Pagamento misto</strong> (finanziamento + contanti/carte): reso di tutti i prodotti, carta reso per l'importo non finanziato, procedura di annullamento per la parte finanziata.</p>
+    <p>Se durante i 30 giorni il cliente ha già pagato la prima rata, Agos provvede a restituirla o stornarla.</p>
+    <p><strong>Oltre 30 giorni:</strong> cambio solo per difettoso (procedura difettosi). Se serve reso in contanti, l'HR procede al reso difettoso consegnando il denaro, <strong>senza annullare il contratto</strong>.</p>
+    <p>È possibile annullare una pratica anche se inserita da un altro negozio: stessa procedura, indicando ad Agos il numero di pratica.</p>
+  </div>
+
+  <!-- REFERENTE -->
+  <div class="card" style="animation-delay:0.34s">
+    <h2>👤 Referente AgosPass</h2>
+    <p><strong>Leonardo Caponi</strong><br>
+       📞 <a href="tel:3336845333">333 6845333</a><br>
+       ✉️ <a href="mailto:l.caponi@agos.it">l.caponi@agos.it</a></p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="fatturazione-finanziamenti.html" class="homeBtn">← Torna a Finanziamenti</a>
+  </div>
+
+</div>
+</body>
+</html>
