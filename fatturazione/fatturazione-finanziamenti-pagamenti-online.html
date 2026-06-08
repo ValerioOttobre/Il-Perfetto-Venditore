@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3643BA">
+  <title>Pagamenti Online – Il Perfetto Venditore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #3643BA;
+      --blue-dark: #2A3499;
+      --blue-bg:   #EEF0FB;
+      --white:     #FFFFFF;
+      --text:      #0D1240;
+      --muted:     #6370A0;
+      --danger:    #D94040;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--blue-bg); color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; }
+    .wrap { width: 100%; max-width: 540px; margin: 0 auto; padding: 0 16px 32px; flex: 1; display: flex; flex-direction: column; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: var(--blue); margin: 0 -16px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(54,67,186,0.3); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo { width: 48px; height: 48px; object-fit: contain; }
+    .titles h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: 0.3px; line-height: 1.1; }
+    .subtitle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+    .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-top: 16px; box-shadow: 0 2px 10px rgba(54,67,186,0.08); animation: fadeUp 0.4s ease both; }
+    .card + .card { margin-top: 12px; }
+    .card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .card h3 { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue-dark); margin: 14px 0 6px; }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
+    .card p:last-child { margin-bottom: 0; }
+    .card ul { margin: 6px 0 8px 18px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .card li { margin-bottom: 4px; }
+    .card a { color: var(--blue); font-weight: 600; text-decoration: none; word-break: break-word; }
+
+    .pill { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: #FFE0B2; color: #E65100; }
+
+    .mono { font-family: monospace; font-size: 13px; background: var(--blue-bg); padding: 2px 6px; border-radius: 6px; }
+
+    .highlight { background: #FFF3E0; border: 2px solid #FF9800; border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px; }
+    .highlight-title { font-size: 13px; font-weight: 800; color: #E65100; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .highlight p { font-size: 13px; color: #BF360C; line-height: 1.55; margin-bottom: 6px; }
+    .highlight p:last-child { margin-bottom: 0; }
+    .highlight strong { color: #BF360C; }
+
+    .info-block { background: var(--blue-bg); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 12px; }
+    .info-block-title { font-size: 12px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .info-block p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 0; }
+    .info-block a { color: var(--blue); font-weight: 700; text-decoration: none; }
+
+    .homeBtn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: var(--white); color: var(--blue); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); text-decoration: none; box-shadow: 0 2px 8px rgba(54,67,186,0.15); transition: background 0.1s; }
+    .homeBtn:active { background: var(--blue-bg); }
+    .footer-nav { text-align: center; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img src="../decathlon-logo.png" alt="Decathlon" class="logo">
+      </div>
+      <div class="titles">
+        <h1>Pagamenti Online</h1>
+        <p class="subtitle">Metodi disponibili sul sito</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- KLARNA -->
+  <div class="card" style="animation-delay:0.08s">
+    <h2>Klarna <span class="pill">A rate</span></h2>
+    <p>Attivabile con carte di credito / debito / prepagate. La prima rata viene addebitata alla conferma dell'ordine, le successive con cadenza mensile.</p>
+    <ul>
+      <li><strong>Paga in 3 rate:</strong> da 35€ a 1.500€, tasso zero</li>
+      <li><strong>Paga in 6 rate:</strong> da 35€ a 3.000€</li>
+      <li><strong>Paga in 12 rate:</strong> da 120€ a 3.000€</li>
+    </ul>
+  </div>
+
+  <!-- PAGODIL -->
+  <div class="card" style="animation-delay:0.11s">
+    <h2>PagoDIL by Cofidis <span class="pill">A rate</span></h2>
+    <p>Acquisti online in <strong>10 rate</strong>, da <strong>€250 a €10.000</strong>, senza costi aggiuntivi. Esito istantaneo. Esclusi articoli Partner, Carte Regalo e "Ritira in negozio in 1 ora".</p>
+    <div class="info-block">
+      <div class="info-block-title">📄 Procedura completa e resi</div>
+      <p>Vedi la <a href="fatturazione-finanziamenti-pagodil.html">pagina PagoDIL</a>.</p>
+    </div>
+  </div>
+
+  <!-- PAYPAL -->
+  <div class="card" style="animation-delay:0.14s">
+    <h2>PayPal <span class="pill">A rate</span></h2>
+    <p>Disponibile come metodo di pagamento online, con opzione di rateizzazione PayPal.</p>
+  </div>
+
+  <!-- BONIFICO -->
+  <div class="card" style="animation-delay:0.17s">
+    <h2>🏦 Bonifico bancario</h2>
+    <p>Disponibile per ordini da <strong>500€</strong> (clienti privati) e da <strong>50€</strong> (account business). Allo step "Pagamento" selezionare <em>bonifico bancario manuale</em>, accettare le condizioni e cliccare "Concludi l'ordine e paga".</p>
+    <p><strong>Escluso</strong> per ordini con consegna "Ritiro in negozio in 1 ora", articoli venduti e spediti da Partner e acquisto di Carte Regalo.</p>
+    <div class="info-block">
+      <div class="info-block-title">💶 Coordinate Decathlon Italia S.r.l.</div>
+      <p>IBAN: <span class="mono">IT96G0623001627000044505032</span><br>
+         BIC/SWIFT: <span class="mono">CRPPIT2P227</span><br>
+         Causale: il numero dell'ordine (ITxxxxxx)</p>
+    </div>
+    <p style="margin-top:10px;">I prodotti restano riservati fino a 3 giorni lavorativi. Anche con bonifico istantaneo servono comunque <strong>24h</strong> per la validazione dell'ordine.</p>
+  </div>
+
+  <!-- SATISPAY -->
+  <div class="card" style="animation-delay:0.20s">
+    <h2>📲 Satispay</h2>
+    <p>Disponibile per importi fino a <strong>500€</strong>. Richiede servizio attivo e App installata. Si scannerizza un QR code o si inserisce il numero di telefono per confermare.</p>
+    <div class="highlight">
+      <div class="highlight-title">⏱️ Tempi</div>
+      <p>Possono servire <strong>15–20 minuti</strong> per l'approvazione del pagamento.</p>
+    </div>
+  </div>
+
+  <!-- CARTA DI CREDITO -->
+  <div class="card" style="animation-delay:0.23s">
+    <h2>💳 Carta di credito</h2>
+    <p>Accettate carte di credito e prepagate dei circuiti <strong>Visa, Mastercard, American Express, Visa Electron</strong> (inclusa Postepay).</p>
+  </div>
+
+  <!-- GOOGLE PAY -->
+  <div class="card" style="animation-delay:0.26s">
+    <h2>🟢 Google Pay</h2>
+    <p>Disponibile senza limiti di spesa. Wallet che paga con le carte salvate nell'account Google.</p>
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Limite</div>
+      <p>Non disponibile per ordini effettuati tramite <strong>App Decathlon</strong>.</p>
+    </div>
+  </div>
+
+  <!-- APPLE PAY -->
+  <div class="card" style="animation-delay:0.29s">
+    <h2>🍎 Apple Pay</h2>
+    <p>Disponibile senza limiti di spesa, escluso l'acquisto di Carte Regalo.</p>
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Limite</div>
+      <p>Visibile solo accedendo da <strong>Safari</strong> (MacOS e iOS). Non disponibile da device Android.</p>
+    </div>
+  </div>
+
+  <!-- CARTA REGALO -->
+  <div class="card" style="animation-delay:0.32s">
+    <h2>🎁 Carta Regalo · Carta Reso · Buono Trocathlon</h2>
+    <p>Allo step "Pagamento" selezionare "Carta Regalo / Carta Reso e Buono Trocathlon" come primo metodo. Inserire le <strong>16 cifre</strong> sul retro e il <strong>PIN di 4 cifre</strong> (grattando la zona in alto a destra), poi Conferma.</p>
+    <div class="highlight">
+      <div class="highlight-title">⚠️ Attenzione</div>
+      <p>Utilizzabili per ordini online solo <strong>24 ore dopo l'attivazione</strong> e per un massimo di <strong>9 per singolo ordine</strong>.</p>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="fatturazione-finanziamenti.html" class="homeBtn">← Torna a Finanziamenti</a>
+  </div>
+
+</div>
+</body>
+</html>
