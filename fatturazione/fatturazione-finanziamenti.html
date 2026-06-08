@@ -32,6 +32,10 @@
     .sectionBtn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px 14px; background: var(--blue); border: none; border-radius: var(--radius); cursor: pointer; text-align: center; transition: transform 0.1s ease, background 0.1s ease; box-shadow: 0 3px 12px rgba(54,67,186,0.25); animation: fadeUp 0.4s ease both; }
     .sectionBtn:active { transform: scale(0.95); background: var(--blue-dark); }
     .sectionBtn:nth-child(1) { animation-delay: 0.08s; }
+    .sectionBtn:nth-child(2) { animation-delay: 0.13s; }
+    .sectionBtn:nth-child(3) { animation-delay: 0.18s; }
+    .sectionBtn:nth-child(4) { animation-delay: 0.23s; }
+    .sectionBtn:nth-child(5) { animation-delay: 0.28s; }
     .sectionBtn.full-width { grid-column: 1 / -1; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
     .btn-emoji { font-size: 32px; line-height: 1; }
@@ -51,13 +55,29 @@
       </div>
       <div class="titles">
         <h1>Finanziamenti</h1>
-        <p class="subtitle">Servizi · Contatti</p>
+        <p class="subtitle">PagoDIL · Agos · Pagamenti</p>
       </div>
     </div>
   </header>
 
   <main>
     <div class="grid">
+      <button class="sectionBtn" onclick="location.href='fatturazione-finanziamenti-pagodil.html'">
+        <span class="btn-emoji">💳</span>
+        <span class="btn-label">PagoDIL<br>by Cofidis</span>
+      </button>
+      <button class="sectionBtn" onclick="location.href='fatturazione-finanziamenti-agospass.html'">
+        <span class="btn-emoji">🔄</span>
+        <span class="btn-label">AgosPass<br>(Fido)</span>
+      </button>
+      <button class="sectionBtn" onclick="location.href='fatturazione-finanziamenti-agos-classico.html'">
+        <span class="btn-emoji">📑</span>
+        <span class="btn-label">Agos<br>Classico</span>
+      </button>
+      <button class="sectionBtn" onclick="location.href='fatturazione-finanziamenti-pagamenti-online.html'">
+        <span class="btn-emoji">🌐</span>
+        <span class="btn-label">Pagamenti<br>Online</span>
+      </button>
       <button class="sectionBtn full-width" onclick="location.href='fatturazione-finanziamenti-contatti.html'">
         <span class="btn-emoji">📞</span>
         <span class="btn-label">Contatti</span>
